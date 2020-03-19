@@ -16,7 +16,7 @@ public class PersonDataAccessService implements PersonDao {
 
     @Override
     public int insertPerson(UUID id, Person person) {
-        DB.add(new Person(id, person.getName()));
+        DB.add(new Person(id, person.getName(), person.getParent1(), person.getParent2()));
         return 1;
     }
 
@@ -43,11 +43,11 @@ public class PersonDataAccessService implements PersonDao {
     }
 
     @Override
-    public int updatePersonById(UUID id, Person person) {
+    public int updatePersonById(UUID id, Person updatedPerson) {
         return selectPersonById(id).map(person1 -> {
-            int indexOfPersonToUpdate = DB.indexOf(person);
+            int indexOfPersonToUpdate = DB.indexOf(person1);
             if(indexOfPersonToUpdate >= 0) {
-                DB.set(indexOfPersonToUpdate, person);
+                DB.set(indexOfPersonToUpdate, new Person(id, updatedPerson.getName(), updatedPerson.getParent1(), updatedPerson.getParent2()));
                 return 1;
             }
             return 0;

@@ -18,7 +18,6 @@ public class PersonService {
     @Autowired
     public PersonService(@Qualifier("personDao") PersonDao personDao) {
         this.personDao = personDao;
-        addPerson(new Person(UUID.randomUUID(), "Jason Bourne", "male" , "1999/10/20",null, null));
     }
 
     // Adds a person to the database

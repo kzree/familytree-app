@@ -27,7 +27,7 @@ public class PersonController {
     }
 
     // Returns the database contents
-    @GetMapping(path= "/getAll")
+    @GetMapping(path= "/all")
     public List<Person> getAllPeople() {
         return personService.getAllPeople();
     }

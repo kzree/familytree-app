@@ -11,16 +11,16 @@ public class Person {
     private final String name;
     private final String gender;
     private final String birthDate; // Birth date is in ISO format yyyy/mm/dd
-    private final boolean isDead;
     private final String deathDate; // Death date is in ISO format yyyy/mm/dd
     private final UUID parent1;
     private final UUID parent2;
+    private final boolean dead;
 
     public Person(@JsonProperty("id") UUID id,
                   @JsonProperty("name") String name,
                   @JsonProperty("gender") String gender,
                   @JsonProperty("birthDate") String birthDate,
-                  @JsonProperty("isDead") boolean isDead,
+                  @JsonProperty("dead") boolean dead,
                   @JsonProperty("deathDate") String deathDate,
                   @JsonProperty("parent1") UUID parent1,
                   @JsonProperty("parent2") UUID parent2) {
@@ -28,10 +28,10 @@ public class Person {
         this.name = name;
         this.gender = gender;
         this.birthDate = birthDate;
-        this.isDead = isDead;
+        this.dead = dead;
         this.deathDate = deathDate;
-        this.parent1 = parent1;
-        this.parent2 = parent2;
+        this.parent1 = parent1; // Mother
+        this.parent2 = parent2; // Father
     }
 
     public UUID getId() {
@@ -55,7 +55,7 @@ public class Person {
     }
 
     public boolean isDead() {
-        return isDead;
+        return dead;
     }
 
     public String getDeathDate() {

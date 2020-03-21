@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
+import Router from './components/Router';
 
 class App extends React.Component {
     render() {
-        return <div className="test">Andrei</div>;
+        return <Router />;
     }
 }
 

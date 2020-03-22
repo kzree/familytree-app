@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { getAll } from '../services/personService';
 import { PersonType } from '../types/PersonType';
+import '../style/HomePage.css';
 
 export default class HomePage extends PureComponent {
     items: PersonType[];
@@ -9,7 +10,7 @@ export default class HomePage extends PureComponent {
         this.items = [];
     }
 
-    fetch = async () => {
+    fetchAll = async () => {
         await getAll().then(data => {
             for (let i = 0; i < data.length; i++) {
                 this.items[i] = data[i];
@@ -21,8 +22,8 @@ export default class HomePage extends PureComponent {
 
     render() {
         return (
-            <div className="tester">
-                <button onClick={this.fetch}>Click me</button>
+            <div className="t">
+                <div className="s">Andrei</div>
             </div>
         );
     }

@@ -1,0 +1,79 @@
+.header-wrap {
+    width: 100%;
+    height: 60px;
+    background-color: #181a1b;
+    display: flex;
+}
+
+.header-content {
+    display: flex;
+    width: auto;
+}
+
+.header-wrap a:link {
+    text-decoration: none;
+}
+
+.header-content {
+    width: 100%;
+}
+
+/* Logo */
+.header-logo-wrap {
+    width: 156px;
+    height: 100%;
+}
+
+.header-logo {
+    color: white;
+    width: 156px;
+    height: 100%;
+    font-size: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Divider */
+
+/* Item */
+.header-item-wrap {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 80px;
+    height: 100%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.header-item-wrap a {
+    color: white;
+    position: absolute;
+    font-size: 24px;
+    text-align: center;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.header-item-wrap:hover {
+    background-color: rgba(255, 255, 255, 0.199);
+}
+
+/* Decoration */
+
+.header-deco-wrap {
+    width: 120px;
+    height: 60px;
+    display: flex;
+}
+
+.header-deco-s {
+    width: 60px;
+    background-color: #ff0062;
+}
+
+.header-deco-f {
+    width: 60px;
+    background-color: #00ff80;
+}

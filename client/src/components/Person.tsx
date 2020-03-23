@@ -57,7 +57,7 @@ export default class Person extends PureComponent<PersonInterface, state> {
 
     render() {
         return (
-            <Link to={`/items/${this.props.id}`}>
+            <Link to={`/person/${this.props.id}`}>
                 <div className="person-wrap">
                     <div className="person-body">
                         <div className="person-body-name">

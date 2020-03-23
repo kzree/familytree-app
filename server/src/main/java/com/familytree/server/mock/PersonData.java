@@ -2,7 +2,6 @@ package com.familytree.server.mock;
 
 import com.familytree.server.dao.PersonDao;
 import com.familytree.server.model.Person;
-import com.familytree.server.service.PersonService;
 
 import java.util.ArrayList;
 import java.util.List;

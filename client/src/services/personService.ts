@@ -14,3 +14,16 @@ export function getAll(): Promise<Array<PersonType>> {
         return response.json();
     });
 }
+
+export function getById(id: string): Promise<PersonType> {
+    return fetch(basePath + '/' + id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(async response => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}

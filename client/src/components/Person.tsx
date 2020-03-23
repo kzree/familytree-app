@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import { PersonInterface } from '../types/PersonType';
 
 interface state {
@@ -56,18 +57,22 @@ export default class Person extends PureComponent<PersonInterface, state> {
 
     render() {
         return (
-            <div className="person-wrap">
-                <div className="person-body">
-                    <div className="person-body-name">{this.state.name}</div>
-                    <div className="person-body-gender">
-                        {this.props.gender}
-                    </div>
-                    <div className="person-body-age">{this.state.age}</div>
-                    <div className="person-body-birthday">
-                        {this.props.birthDate}
+            <Link to={`/items/${this.props.id}`}>
+                <div className="person-wrap">
+                    <div className="person-body">
+                        <div className="person-body-name">
+                            {this.state.name}
+                        </div>
+                        <div className="person-body-gender">
+                            {this.props.gender}
+                        </div>
+                        <div className="person-body-age">{this.state.age}</div>
+                        <div className="person-body-birthday">
+                            {this.props.birthDate}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Link>
         );
     }
 }

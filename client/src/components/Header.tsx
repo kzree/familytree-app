@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../style/Header.css';
 import { Link } from 'react-router-dom';
 
 const HeaderLogo = () => {
@@ -35,7 +34,7 @@ export default class Header extends Component {
             <div className="header-wrap">
                 <div className="header-content">
                     <HeaderLogo />
-                    <HeaderItem text="List" link="/all" />
+                    {/* <HeaderItem text="List" link="/all" /> */}
                 </div>
                 <HeaderDeco />
             </div>

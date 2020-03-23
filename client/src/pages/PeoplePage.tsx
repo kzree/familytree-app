@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { PersonType } from '../types/PersonType';
 import { getAll } from '../services/personService';
-import Person from '../components/Person';
+import Person, { PersonHeader } from '../components/Person';
 
 const PeoplePanel = () => {
     return (
@@ -13,24 +13,56 @@ const PeoplePanel = () => {
     );
 };
 
-export default class PeoplePage extends PureComponent {
+const PeopleTable = (props: { visiblePeople: PersonType[] }) => {
+    return (
+        <>
+            {console.log(props.visiblePeople.length)}
+            {props.visiblePeople.map((item, i) => {
+                return (
+                    <Person
+                        key={i}
+                        id={item.id}
+                        name={item.name}
+                        birthDate={item.birthDate}
+                        deathDate={item.deathDate}
+                        dead={item.dead}
+                        gender={item.gender}
+                        parent1={item.parent1}
+                        parent2={item.parent2}
+                    />
+                );
+            })}
+        </>
+    );
+};
+
+interface PeoplePageState {
+    update: number;
+}
+
+export default class PeoplePage extends PureComponent<{}, PeoplePageState> {
     items: PersonType[];
-    constructor(props: Readonly<{}>) {
+    constructor(props: any) {
         super(props);
         this.items = [];
+        this.state = {
+            update: 1
+        };
     }
 
     fetchAll = async () => {
         await getAll().then(data => {
-            for (let i = 0; i < data.length; i++) {
-                this.items[i] = data[i];
-            }
+            this.items = data;
         });
 
         console.log('DEBUG: ', this.items);
+        this.setState({
+            update: this.items.length
+        });
     };
 
     componentDidMount() {
+        window.scrollTo(0, 0);
         this.fetchAll();
     }
 
@@ -39,6 +71,10 @@ export default class PeoplePage extends PureComponent {
             <div className="people-wrap">
                 <div className="people-content-wrap">
                     <PeoplePanel />
+                    <div className="people-table-wrap">
+                        <PersonHeader />
+                        <PeopleTable visiblePeople={this.items} />
+                    </div>
                 </div>
             </div>
         );

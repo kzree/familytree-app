@@ -6,6 +6,7 @@
 }
 
 .people-content-wrap {
+    position: relative;
     width: 80%;
     background-color: #ffffff;
     min-height: 800px;
@@ -36,4 +37,15 @@
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+.people-table-wrap {
+    position: absolute;
+    width: 80%;
+    height: auto;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-left: 1px solid rgba(0, 0, 0, 0.5);
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
 }

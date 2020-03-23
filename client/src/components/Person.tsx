@@ -17,9 +17,15 @@ export default class Person extends PureComponent<PersonInterface, state> {
         };
     }
 
-    calculateAge = (dateString: string) => {
-        let birthday = +new Date(dateString);
-        return ~~((Date.now() - birthday) / 31557600000);
+    calculateAge = () => {
+        if (!this.props.dead) {
+            let birthday = +new Date(this.props.birthDate);
+            return ~~((Date.now() - birthday) / 31557600000);
+        } else {
+            let birthday = +new Date(this.props.birthDate);
+            let deathday = +new Date(this.props.deathDate);
+            return ~~((deathday - birthday) / 31557600000);
+        }
     };
 
     checkIfDead = () => {
@@ -33,7 +39,7 @@ export default class Person extends PureComponent<PersonInterface, state> {
     init = () => {
         this.setState({
             id: this.props.id,
-            age: this.calculateAge(this.props.birthDate),
+            age: this.calculateAge(),
             name: this.checkIfDead()
         });
     };
@@ -43,7 +49,7 @@ export default class Person extends PureComponent<PersonInterface, state> {
     };
 
     componentDidUpdate = () => {
-        if (this.state.id != this.props.id) {
+        if (this.state.id !== this.props.id) {
             this.init();
         }
     };
@@ -57,8 +63,24 @@ export default class Person extends PureComponent<PersonInterface, state> {
                         {this.props.gender}
                     </div>
                     <div className="person-body-age">{this.state.age}</div>
+                    <div className="person-body-birthday">
+                        {this.props.birthDate}
+                    </div>
                 </div>
             </div>
         );
     }
 }
+
+export const PersonHeader = () => {
+    return (
+        <div className="person-head-wrap">
+            <div className="person-head-body">
+                <div className="person-body-name">Name</div>
+                <div className="person-body-gender">Gender</div>
+                <div className="person-body-age">Age</div>
+                <div className="person-body-birthday">Birthday</div>
+            </div>
+        </div>
+    );
+};

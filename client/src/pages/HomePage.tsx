@@ -75,6 +75,10 @@ const HomeLower = () => {
 };
 
 export default class HomePage extends PureComponent {
+    componentDidMount = () => {
+        window.scrollTo(0, 0);
+    };
+
     render() {
         return (
             <div className="home-wrap">

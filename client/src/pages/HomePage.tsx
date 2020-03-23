@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import { getAll } from '../services/personService';
-import { PersonType } from '../types/PersonType';
 import ButtonBig, { ButtonBigAlt } from '../components/Button';
 import '../style/Index.scss';
 
@@ -77,22 +75,6 @@ const HomeLower = () => {
 };
 
 export default class HomePage extends PureComponent {
-    items: PersonType[];
-    constructor(props: Readonly<{}>) {
-        super(props);
-        this.items = [];
-    }
-
-    fetchAll = async () => {
-        await getAll().then(data => {
-            for (let i = 0; i < data.length; i++) {
-                this.items[i] = data[i];
-            }
-        });
-
-        console.log(this.items);
-    };
-
     render() {
         return (
             <div className="home-wrap">

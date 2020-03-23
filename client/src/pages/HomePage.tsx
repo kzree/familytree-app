@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import { getAll } from '../services/personService';
 import { PersonType } from '../types/PersonType';
 import ButtonBig, { ButtonBigAlt } from '../components/Button';
@@ -52,7 +53,9 @@ const HomeLower = () => {
                         culpa, corporis temporibus laboriosam?
                     </div>
                 </div>
-                <ButtonBigAlt text="View list of all" />
+                <Link to={'/viewall'}>
+                    <ButtonBigAlt text="View list of all" />
+                </Link>
             </div>
             <div className="home-lower-panel-a">
                 <div className="home-lower-panel-t-wrap">

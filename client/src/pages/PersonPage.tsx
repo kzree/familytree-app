@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { PersonType } from '../types/PersonType';
-import { getById, getByFamilyId } from '../services/personService';
+import { getById, getByFamilyId, getChildren } from '../services/personService';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import { ButtonSmallAlt } from '../components/Button';
 
@@ -22,6 +22,7 @@ interface StateTypes {
     parent2name: string;
     parent1id: string;
     parent2id: string;
+    children: PersonType[];
     status: string;
     docRelativesAmount: number;
 }
@@ -48,6 +49,7 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
             parent2name: '-',
             parent1id: '',
             parent2id: '',
+            children: [],
             status: 'alive',
             docRelativesAmount: 0
         };
@@ -76,6 +78,7 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
             this.calculateAge();
             this.getParents();
             this.getRelatives();
+            this.getChildren();
         });
     };
 
@@ -157,6 +160,28 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
         });
     };
 
+    getChildren = async () => {
+        await getChildren(this.state.personId).then(data => {
+            this.setState({
+                children: data
+            });
+        });
+    };
+
+    renderChildren = () => {
+        return (
+            <>
+                {this.state.children.map((item, i) => {
+                    return (
+                        <li>
+                            <Link to={`/person/${item.id}`}>{item.name}</Link>
+                        </li>
+                    );
+                })}
+            </>
+        );
+    };
+
     render() {
         let profileClass = '';
         if (this.state.person.gender === 'male') {
@@ -210,6 +235,10 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                             <div className="person-page-extra-info-text">
                                 Number of documented relatives:{' '}
                                 {this.state.docRelativesAmount}
+                            </div>
+                            <div className="person-page-extra-info-text">
+                                Children: <br />
+                                <ul>{this.renderChildren()}</ul>
                             </div>
                         </div>
                         <div className="person-page-edit">

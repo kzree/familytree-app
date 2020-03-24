@@ -15,6 +15,7 @@ public class Person {
     private final UUID parent1;
     private final UUID parent2;
     private final boolean dead;
+    private final UUID family;
 
     public Person(@JsonProperty("id") UUID id,
                   @JsonProperty("name") String name,
@@ -23,7 +24,8 @@ public class Person {
                   @JsonProperty("dead") boolean dead,
                   @JsonProperty("deathDate") String deathDate,
                   @JsonProperty("parent1") UUID parent1,
-                  @JsonProperty("parent2") UUID parent2) {
+                  @JsonProperty("parent2") UUID parent2,
+                  @JsonProperty("familyid") UUID family){
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -32,6 +34,7 @@ public class Person {
         this.deathDate = deathDate;
         this.parent1 = parent1; // Mother
         this.parent2 = parent2; // Father
+        this.family = family;
     }
 
     public UUID getId() {
@@ -64,5 +67,9 @@ public class Person {
 
     public String getGender() {
         return gender;
+    }
+
+    public UUID getFamily() {
+        return family;
     }
 }

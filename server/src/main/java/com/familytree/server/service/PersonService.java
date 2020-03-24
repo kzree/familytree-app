@@ -1,7 +1,7 @@
 package com.familytree.server.service;
 
 import com.familytree.server.dao.PersonDao;
-import com.familytree.server.mock.PersonData;
+import com.familytree.server.mock.MockData;
 import com.familytree.server.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,7 +19,7 @@ public class PersonService {
     @Autowired
     public PersonService(@Qualifier("personDao") PersonDao personDao) {
         this.personDao = personDao;
-        PersonData.initAll(personDao);
+        MockData.initPeopleToDB(personDao);
     }
 
     // Adds a person to the database

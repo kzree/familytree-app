@@ -13,11 +13,7 @@ export default class Router extends Component {
                 <Switch>
                     <Route path="/" exact component={HomePage} />
                     <Route path="/viewall" exact component={PeoplePage} />
-                    <Route
-                        path="/person/:itemId"
-                        exact
-                        component={PersonPage}
-                    />
+                    <Route path="/person/:id" exact component={PersonPage} />
                 </Switch>
             </BrowserRouter>
         );

@@ -7,6 +7,7 @@ export type PersonType = {
     deathDate: string;
     parent1: string;
     parent2: string;
+    family: string;
 };
 
 export interface PersonInterface {
@@ -19,4 +20,5 @@ export interface PersonInterface {
     deathDate: string;
     parent1: string;
     parent2: string;
+    family: string;
 }

@@ -1,0 +1,75 @@
+.person-page-wrap {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.person-page-content {
+    position: relative;
+    display: flex;
+    width: 80%;
+    background-color: #ffffff;
+    height: 800px;
+    height: 90%;
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.person-page-info {
+    width: 300px;
+    height: 100%;
+    background-color: $app-black;
+}
+
+.person-page-info-pic-wrap {
+    padding-top: 32px;
+    width: 300px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+}
+
+%shared-person-page-info-pic {
+    width: 200px;
+    height: 200px;
+}
+
+.person-page-info-pic-male {
+    @extend %shared-person-page-info-pic;
+    background-image: url(/male-pic.png);
+    border: 5px solid $app-color2;
+}
+
+.person-page-info-pic-female {
+    @extend %shared-person-page-info-pic;
+    background-image: url(/female-pic.png);
+    border: 5px solid $app-color1;
+}
+
+.person-page-info-content {
+    width: 300px;
+    height: 500px;
+}
+
+.person-page-info-content-text {
+    width: 300px;
+    height: 30px;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 26px;
+    color: #ffffff;
+}
+
+.person-page-extra {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
+    padding: 24px;
+    width: 100%;
+    height: 100%;
+}
+
+.person-page-extra-info-text {
+    font-size: 20px;
+    padding: 3px;
+}

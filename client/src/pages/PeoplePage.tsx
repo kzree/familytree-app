@@ -28,6 +28,7 @@ const PeopleTable = (props: { visiblePeople: PersonType[] }) => {
                         gender={item.gender}
                         parent1={item.parent1}
                         parent2={item.parent2}
+                        family={item.family}
                     />
                 );
             })}

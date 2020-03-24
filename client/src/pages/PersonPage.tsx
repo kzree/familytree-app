@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { PersonType } from '../types/PersonType';
 import { getById } from '../services/personService';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, Link } from 'react-router-dom';
 
 type PathParamsType = {
     id: string;
@@ -16,6 +16,12 @@ interface StateTypes {
     personId: string;
     person: PersonType;
     age: number;
+    name: string;
+    parent1name: string;
+    parent2name: string;
+    parent1id: string;
+    parent2id: string;
+    status: string;
 }
 
 export default class PersonPage extends PureComponent<PropsType, StateTypes> {
@@ -31,43 +37,168 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                 gender: '',
                 name: '',
                 parent1: null,
-                parent2: null
+                parent2: null,
+                family: ''
             },
-            age: 0
+            age: 0,
+            name: '',
+            parent1name: '-',
+            parent2name: '-',
+            parent1id: '',
+            parent2id: '',
+            status: 'alive'
         };
     }
 
     componentDidMount = () => {
-        this.fetchPerson();
+        this.init();
     };
 
-    fetchPerson = async () => {
+    componentDidUpdate = () => {
+        if (this.state.personId != this.props.match.params.id) {
+            this.init();
+        }
+    };
+
+    init = async () => {
         let pId: string = this.props.match.params.id;
         await getById(pId).then(data => {
             this.setState({
                 personId: data.id,
                 person: data,
-                age: this.calculateAge()
+                parent1id: data.parent1,
+                parent2id: data.parent2
             });
+            this.checkIfDead();
+            this.calculateAge();
+            this.getParents();
         });
     };
 
+    checkIfDead = () => {
+        if (this.state.person.dead) {
+            this.setState({
+                name: '✝' + this.state.person.name,
+                status: 'Deceased (' + this.state.person.deathDate + ')'
+            });
+        } else {
+            this.setState({
+                name: this.state.person.name,
+                status: 'Alive'
+            });
+        }
+
+        console.log(this.state.name);
+    };
+
     calculateAge = () => {
+        let newAge = 0;
         if (!this.state.person.dead) {
             let birthday = +new Date(this.state.person.birthDate);
-            return ~~((Date.now() - birthday) / 31557600000);
+            newAge = ~~((Date.now() - birthday) / 31557600000);
         } else {
             let birthday = +new Date(this.state.person.birthDate);
             let deathday = +new Date(this.state.person.deathDate);
-            return ~~((deathday - birthday) / 31557600000);
+            newAge = ~~((deathday - birthday) / 31557600000);
+        }
+        this.setState({
+            age: newAge
+        });
+    };
+
+    getParents = async () => {
+        if (this.state.parent1id !== null && this.state.parent1id !== '') {
+            await getById(this.state.parent1id).then(data => {
+                if (data.dead) {
+                    this.setState({
+                        parent1name: '✝' + data.name
+                    });
+                } else {
+                    this.setState({
+                        parent1name: data.name
+                    });
+                }
+                console.log(this.state.parent1name);
+            });
+        } else {
+            this.setState({
+                parent1name: '-',
+                parent1id: this.state.personId
+            });
+        }
+        if (this.state.parent2id !== null && this.state.parent2id !== '') {
+            await getById(this.state.parent2id).then(data => {
+                if (data.dead) {
+                    this.setState({
+                        parent2name: '✝' + data.name
+                    });
+                } else {
+                    this.setState({
+                        parent2name: data.name
+                    });
+                }
+                console.log(this.state.parent2name);
+            });
+        } else {
+            this.setState({
+                parent2name: '-',
+                parent2id: this.state.personId
+            });
         }
     };
 
     render() {
+        let profileClass = '';
+        if (this.state.person.gender === 'male') {
+            profileClass = 'person-page-info-pic-male';
+        } else {
+            profileClass = 'person-page-info-pic-female';
+        }
         return (
             <div className="person-page-wrap">
                 <div className="person-page-content">
-                    {this.state.person.name}
+                    <div className="person-page-info">
+                        <div className="person-page-info-pic-wrap">
+                            <div className={profileClass}></div>
+                        </div>
+                        <div className="person-page-info-content">
+                            <div className="person-page-info-content-text">
+                                {this.state.name}
+                            </div>
+                            <div className="person-page-info-content-text">
+                                Age: {this.state.age}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="person-page-extra">
+                        <h1>Information</h1>
+                        <div className="person-page-extra-info">
+                            <div className="person-page-extra-info-text">
+                                Name: {this.state.name}
+                            </div>
+                            <div className="person-page-extra-info-text">
+                                Age: {this.state.age}
+                            </div>
+                            <div className="person-page-extra-info-text">
+                                Birthday: {this.state.person.birthDate}
+                            </div>
+                            <div className="person-page-extra-info-text">
+                                Status: {this.state.status}
+                            </div>
+                            <div className="person-page-extra-info-text">
+                                Mother:{' '}
+                                <Link to={`/person/${this.state.parent1id}`}>
+                                    {this.state.parent1name}
+                                </Link>
+                            </div>
+                            <div className="person-page-extra-info-text">
+                                Father:{' '}
+                                <Link to={`/person/${this.state.parent2id}`}>
+                                    {this.state.parent2name}
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );

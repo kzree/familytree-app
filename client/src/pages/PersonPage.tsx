@@ -212,7 +212,9 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                                 {this.state.docRelativesAmount}
                             </div>
                         </div>
-                        <ButtonSmallAlt text="Edit" />
+                        <div className="person-page-edit">
+                            <ButtonSmallAlt text="Edit" />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -29,5 +29,8 @@ public interface PersonDao {
     int updatePersonById(UUID id, Person person);
 
     // Selects people in a certain family
-    List<Person> selectPeopleByFamily(UUID ID);
+    List<Person> selectPeopleByFamily(UUID id);
+
+    // Selects children of person given by id
+    List<Person> selectChildren(UUID id);
 }

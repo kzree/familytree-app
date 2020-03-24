@@ -55,4 +55,10 @@ public class PersonController {
     public List<Person> getPeopleInFamily(@PathVariable("id") UUID id) {
         return personService.getPeopleByFamily(id);
     }
+
+    // Returns the children of a person
+    @GetMapping(path ="/child/{id}")
+    public List<Person> getChildren(@PathVariable("id") UUID id) {
+        return personService.getChildren(id);
+    }
 }

@@ -3,11 +3,9 @@ package com.familytree.server.dao;
 import com.familytree.server.model.Person;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository("personDao")
 public class PersonDataAccessService implements PersonDao {
@@ -71,5 +69,24 @@ public class PersonDataAccessService implements PersonDao {
     @Override
     public List<Person> selectPeopleByFamily(UUID id) {
         return DB.stream().filter(item -> item.getFamily().equals(id)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Person> selectChildren(UUID id) {
+        List<Person> children = new ArrayList<>();
+        for(Person person : DB) {
+            // Null checks
+            if(person.getParent1() != null) {
+                if(person.getParent1().equals(id)){
+                    children.add(person);
+                }
+            }
+            if(person.getParent2() != null) {
+                if(person.getParent2().equals(id)){
+                    children.add(person);
+                }
+            }
+        }
+        return children;
     }
 }

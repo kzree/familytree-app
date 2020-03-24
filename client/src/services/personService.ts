@@ -28,7 +28,7 @@ export function getById(id: string): Promise<PersonType> {
     });
 }
 
-export function getByFamiyId(id: string): Promise<Array<PersonType>> {
+export function getByFamilyId(id: string): Promise<Array<PersonType>> {
     return fetch(basePath + '/family/' + id, {
         headers: {
             'Content-Type': 'application/json'

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { PersonType } from '../types/PersonType';
-import { getById } from '../services/personService';
+import { getById, getByFamilyId } from '../services/personService';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import { ButtonSmallAlt } from '../components/Button';
 
@@ -23,6 +23,7 @@ interface StateTypes {
     parent1id: string;
     parent2id: string;
     status: string;
+    docRelativesAmount: number;
 }
 
 export default class PersonPage extends PureComponent<PropsType, StateTypes> {
@@ -47,7 +48,8 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
             parent2name: '-',
             parent1id: '',
             parent2id: '',
-            status: 'alive'
+            status: 'alive',
+            docRelativesAmount: 0
         };
     }
 
@@ -73,6 +75,7 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
             this.checkIfDead();
             this.calculateAge();
             this.getParents();
+            this.getRelatives();
         });
     };
 
@@ -88,8 +91,6 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                 status: 'Alive'
             });
         }
-
-        console.log(this.state.name);
     };
 
     calculateAge = () => {
@@ -108,6 +109,7 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
     };
 
     getParents = async () => {
+        // Check if parent exists
         if (this.state.parent1id !== null && this.state.parent1id !== '') {
             await getById(this.state.parent1id).then(data => {
                 if (data.dead) {
@@ -119,7 +121,6 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                         parent1name: data.name
                     });
                 }
-                console.log(this.state.parent1name);
             });
         } else {
             this.setState({
@@ -127,6 +128,7 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                 parent1id: this.state.personId
             });
         }
+        // Check if parent exists
         if (this.state.parent2id !== null && this.state.parent2id !== '') {
             await getById(this.state.parent2id).then(data => {
                 if (data.dead) {
@@ -138,7 +140,6 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                         parent2name: data.name
                     });
                 }
-                console.log(this.state.parent2name);
             });
         } else {
             this.setState({
@@ -146,6 +147,14 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                 parent2id: this.state.personId
             });
         }
+    };
+
+    getRelatives = async () => {
+        await getByFamilyId(this.state.person.family).then(data => {
+            this.setState({
+                docRelativesAmount: data.length
+            });
+        });
     };
 
     render() {
@@ -197,6 +206,10 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                                 <Link to={`/person/${this.state.parent2id}`}>
                                     {this.state.parent2name}
                                 </Link>
+                            </div>
+                            <div className="person-page-extra-info-text">
+                                Number of documented relatives:{' '}
+                                {this.state.docRelativesAmount}
                             </div>
                         </div>
                         <ButtonSmallAlt text="Edit" />

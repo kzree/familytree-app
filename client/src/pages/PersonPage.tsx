@@ -1,4 +1,4 @@
-import React, { PureComponent, Props } from 'react';
+import React, { PureComponent } from 'react';
 import { PersonType } from '../types/PersonType';
 import { getById } from '../services/personService';
 import { RouteComponentProps } from 'react-router-dom';
@@ -15,6 +15,7 @@ type PropsType = RouteComponentProps<PathParamsType> & {
 interface StateTypes {
     personId: string;
     person: PersonType;
+    age: number;
 }
 
 export default class PersonPage extends PureComponent<PropsType, StateTypes> {
@@ -31,7 +32,8 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                 name: '',
                 parent1: null,
                 parent2: null
-            }
+            },
+            age: 0
         };
     }
 
@@ -44,9 +46,21 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
         await getById(pId).then(data => {
             this.setState({
                 personId: data.id,
-                person: data
+                person: data,
+                age: this.calculateAge()
             });
         });
+    };
+
+    calculateAge = () => {
+        if (!this.state.person.dead) {
+            let birthday = +new Date(this.state.person.birthDate);
+            return ~~((Date.now() - birthday) / 31557600000);
+        } else {
+            let birthday = +new Date(this.state.person.birthDate);
+            let deathday = +new Date(this.state.person.deathDate);
+            return ~~((deathday - birthday) / 31557600000);
+        }
     };
 
     render() {

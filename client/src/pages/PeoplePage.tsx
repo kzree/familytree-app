@@ -16,7 +16,6 @@ const PeoplePanel = () => {
 const PeopleTable = (props: { visiblePeople: PersonType[] }) => {
     return (
         <>
-            {console.log(props.visiblePeople.length)}
             {props.visiblePeople.map((item, i) => {
                 return (
                     <Person
@@ -55,7 +54,6 @@ export default class PeoplePage extends PureComponent<{}, PeoplePageState> {
             this.items = data;
         });
 
-        console.log('DEBUG: ', this.items);
         this.setState({
             update: this.items.length
         });

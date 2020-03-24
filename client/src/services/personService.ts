@@ -27,3 +27,16 @@ export function getById(id: string): Promise<PersonType> {
         return response.json();
     });
 }
+
+export function getByFamiyId(id: string): Promise<Array<PersonType>> {
+    return fetch(basePath + '/family/' + id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(async response => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}

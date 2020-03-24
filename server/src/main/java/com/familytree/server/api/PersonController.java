@@ -49,4 +49,10 @@ public class PersonController {
     public void updatePersonById(@PathVariable("id") UUID id, @RequestBody Person updatedPerson) {
         personService.updatePerson(id, updatedPerson);
     }
+
+    // Returns a list of people who belong in a given family
+    @GetMapping(path = "/family/{id}")
+    public List<Person> getPeopleInFamily(@PathVariable("id") UUID id) {
+        return personService.getPeopleByFamily(id);
+    }
 }

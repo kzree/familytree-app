@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { PersonType } from '../types/PersonType';
 import { getById } from '../services/personService';
 import { RouteComponentProps, Link } from 'react-router-dom';
+import { ButtonSmallAlt } from '../components/Button';
 
 type PathParamsType = {
     id: string;
@@ -55,7 +56,7 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
     };
 
     componentDidUpdate = () => {
-        if (this.state.personId != this.props.match.params.id) {
+        if (this.state.personId !== this.props.match.params.id) {
             this.init();
         }
     };
@@ -198,6 +199,7 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                                 </Link>
                             </div>
                         </div>
+                        <ButtonSmallAlt text="Edit" />
                     </div>
                 </div>
             </div>

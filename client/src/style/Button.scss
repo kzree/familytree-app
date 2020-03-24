@@ -1,3 +1,4 @@
+// Big button
 %button-big-shared {
     display: flex;
     position: absolute;
@@ -41,5 +42,53 @@
     }
     &:hover {
         background-color: $app-color2;
+        .button-big-text {
+            color: #000000;
+        }
+    }
+}
+
+// Small button
+%button-small-shared {
+    display: flex;
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50px;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.button-small-wrap {
+    @extend %button-small-shared;
+    &:hover {
+        background-color: $app-color2;
+    }
+}
+
+.button-small-text {
+    position: absolute;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    transition: all 0.2s;
+}
+
+.button-small-alt-wrap {
+    @extend %button-small-shared;
+    background-color: #000000;
+    .button-small-text {
+        color: #ffffff;
+    }
+    &:hover {
+        background-color: $app-color2;
+        .button-small-text {
+            color: #000000;
+        }
     }
 }

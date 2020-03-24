@@ -46,4 +46,9 @@ public class PersonService {
     public int updatePerson(UUID id, Person person) {
         return personDao.updatePersonById(id, person);
     }
+
+    // Gets everyone in a certain family
+    public List<Person> getPeopleByFamily(UUID id) {
+        return personDao.selectPeopleByFamily(id);
+    }
 }

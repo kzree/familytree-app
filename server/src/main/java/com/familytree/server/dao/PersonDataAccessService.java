@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Repository("personDao")
 public class PersonDataAccessService implements PersonDao {
@@ -65,5 +66,10 @@ public class PersonDataAccessService implements PersonDao {
             }
             return 0;
         }).orElse(0);
+    }
+
+    @Override
+    public List<Person> selectPeopleByFamily(UUID id) {
+        return DB.stream().filter(item -> item.getFamily().equals(id)).collect(Collectors.toList());
     }
 }

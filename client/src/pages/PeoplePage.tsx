@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { PersonType } from '../types/PersonType';
 import { getAll } from '../services/personService';
-import Person, { PersonHeader } from '../components/Person';
+import { PersonHeader } from '../components/Person';
+import PeopleTable from '../components/PeopleTable';
 
 const PeoplePanel = () => {
     return (
@@ -10,29 +11,6 @@ const PeoplePanel = () => {
                 <div className="people-content-panel-head-t">List of all</div>
             </div>
         </div>
-    );
-};
-
-const PeopleTable = (props: { visiblePeople: PersonType[] }) => {
-    return (
-        <>
-            {props.visiblePeople.map((item, i) => {
-                return (
-                    <Person
-                        key={i}
-                        id={item.id}
-                        name={item.name}
-                        birthDate={item.birthDate}
-                        deathDate={item.deathDate}
-                        dead={item.dead}
-                        gender={item.gender}
-                        parent1={item.parent1}
-                        parent2={item.parent2}
-                        family={item.family}
-                    />
-                );
-            })}
-        </>
     );
 };
 

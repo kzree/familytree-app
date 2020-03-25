@@ -15,26 +15,22 @@ const PeoplePanel = () => {
 };
 
 interface PeoplePageState {
-    update: number;
+    items: PersonType[];
 }
 
 export default class PeoplePage extends PureComponent<{}, PeoplePageState> {
-    items: PersonType[];
     constructor(props: any) {
         super(props);
-        this.items = [];
         this.state = {
-            update: 1
+            items: []
         };
     }
 
     fetchAll = async () => {
         await getAll().then(data => {
-            this.items = data;
-        });
-
-        this.setState({
-            update: this.items.length
+            this.setState({
+                items: data
+            });
         });
     };
 
@@ -51,7 +47,7 @@ export default class PeoplePage extends PureComponent<{}, PeoplePageState> {
                     <PersonHeader />
 
                     <div className="people-table-wrap">
-                        <PeopleTable visiblePeople={this.items} />
+                        <PeopleTable visiblePeople={this.state.items} />
                     </div>
                 </div>
             </div>

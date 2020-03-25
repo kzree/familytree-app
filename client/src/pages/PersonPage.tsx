@@ -6,17 +6,9 @@ import {
     getChildren,
     getSiblings
 } from '../services/personService';
-import { RouteComponentProps, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ButtonSmallAlt } from '../components/Button';
-
-type PathParamsType = {
-    id: string;
-};
-
-// Your component own properties
-type PropsType = RouteComponentProps<PathParamsType> & {
-    someString: string;
-};
+import IdFromUrl from '../types/urlParamTypes';
 
 interface StateTypes {
     personId: string;
@@ -34,8 +26,8 @@ interface StateTypes {
     docRelativesAmount: number;
 }
 
-export default class PersonPage extends PureComponent<PropsType, StateTypes> {
-    constructor(props: PropsType) {
+export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
+    constructor(props: IdFromUrl) {
         super(props);
         this.state = {
             personId: null,
@@ -241,7 +233,7 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
             birthdayDates.sort((a, b) => a.getTime() - b.getTime());
             for (let i = 0; i < birthdayDates.length; i++) {
                 if (
-                    birthdayDates[i].getTime() ==
+                    birthdayDates[i].getTime() ===
                     new Date(this.state.person.birthDate).getTime()
                 ) {
                     this.setState({

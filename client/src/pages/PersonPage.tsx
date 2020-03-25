@@ -29,6 +29,7 @@ interface StateTypes {
     parent2id: string;
     children: PersonType[];
     siblings: PersonType[];
+    childNumber: number;
     status: string;
     docRelativesAmount: number;
 }
@@ -57,6 +58,7 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
             parent2id: '',
             children: [],
             siblings: [],
+            childNumber: 1,
             status: 'alive',
             docRelativesAmount: 0
         };
@@ -181,6 +183,7 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
             this.setState({
                 siblings: data
             });
+            this.getChildNumber();
         });
     };
 
@@ -221,6 +224,31 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
             );
         } else {
             return <>None</>;
+        }
+    };
+
+    getChildNumber = () => {
+        if (this.state.siblings.length === 0) {
+            this.setState({
+                childNumber: 1
+            });
+        } else {
+            let birthdayDates = [];
+            birthdayDates.push(new Date(this.state.person.birthDate));
+            this.state.siblings.forEach(sibling => {
+                birthdayDates.push(new Date(sibling.birthDate));
+            });
+            birthdayDates.sort((a, b) => a.getTime() - b.getTime());
+            for (let i = 0; i < birthdayDates.length; i++) {
+                if (
+                    birthdayDates[i].getTime() ==
+                    new Date(this.state.person.birthDate).getTime()
+                ) {
+                    this.setState({
+                        childNumber: i + 1
+                    });
+                }
+            }
         }
     };
 
@@ -273,6 +301,9 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                                 <Link to={`/person/${this.state.parent2id}`}>
                                     {this.state.parent2name}
                                 </Link>
+                            </div>
+                            <div className="person-page-extra-info-text">
+                                # child of family: {this.state.childNumber}
                             </div>
                             <div className="person-page-extra-info-text">
                                 Number of documented relatives:{' '}

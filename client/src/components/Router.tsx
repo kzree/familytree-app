@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import PeoplePage from '../pages/PeoplePage';
 import PersonPage from '../pages/PersonPage';
 import FamilyPage from '../pages/FamilyPage';
+import SearchPage from '../pages/SearchPage';
 
 export default class Router extends Component {
     render() {
@@ -16,6 +17,7 @@ export default class Router extends Component {
                     <Route path="/viewall" exact component={PeoplePage} />
                     <Route path="/person/:id" exact component={PersonPage} />
                     <Route path="/family/:id" exact component={FamilyPage} />
+                    <Route path="/search" exact component={SearchPage} />
                 </Switch>
             </BrowserRouter>
         );

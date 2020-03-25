@@ -68,7 +68,9 @@ const HomeLower = () => {
                         culpa, corporis temporibus laboriosam?
                     </div>
                 </div>
-                <ButtonBig text="Go to search" />
+                <Link to={'/search'}>
+                    <ButtonBig text="Go to search" />
+                </Link>
             </div>
         </div>
     );

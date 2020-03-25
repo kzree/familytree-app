@@ -7,6 +7,7 @@ import PersonPage from '../pages/PersonPage';
 import FamilyPage from '../pages/FamilyPage';
 import SearchPage from '../pages/SearchPage';
 import FamiliesPage from '../pages/FamiliesPage';
+import NotFoundPage from '../pages/NotFoundPage';
 
 // prettier-ignore
 export default class Router extends Component {
@@ -21,6 +22,7 @@ export default class Router extends Component {
                     <Route path="/person/:id" exact component={PersonPage} />
                     <Route path="/family/:id" exact component={FamilyPage} />
                     <Route path="/search" exact component={SearchPage} />
+                    <Route component={NotFoundPage} />
                 </Switch>
             </BrowserRouter>
         );

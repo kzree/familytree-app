@@ -56,4 +56,9 @@ public class PersonService {
     public List<Person> getChildren(UUID id) {
         return personDao.selectChildren(id);
     }
+
+    // Gets siblings of person
+    public List<Person> getSiblings(UUID id) {
+        return personDao.selectSiblings(id);
+    }
 }

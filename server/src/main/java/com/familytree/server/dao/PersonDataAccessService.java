@@ -89,4 +89,32 @@ public class PersonDataAccessService implements PersonDao {
         }
         return children;
     }
+
+    @Override
+    public List<Person> selectSiblings(UUID id) {
+        List<Person> siblings = new ArrayList<>();
+        Optional<Person> dbPerson = this.selectPersonById(id);
+        if(dbPerson.isPresent()) {
+            Person existingPerson = dbPerson.get();
+
+            for(Person person : DB) {
+                boolean p1IsParent = false;
+                boolean p2IsParent = false;
+                if(person.getParent1() != null) {
+                    if(existingPerson.getParent1().equals(person.getParent1()) && !person.getId().equals(existingPerson.getId())){
+                        p1IsParent = true;
+                    }
+                }
+                if(person.getParent2() != null) {
+                    if(existingPerson.getParent2().equals(person.getParent2())&& !person.getId().equals(existingPerson.getId())){
+                        p2IsParent = true;
+                    }
+                }
+                if(p1IsParent || p2IsParent) {
+                    siblings.add(person);
+                }
+            }
+        }
+        return siblings;
+    }
 }

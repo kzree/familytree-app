@@ -33,4 +33,7 @@ public interface PersonDao {
 
     // Selects children of person given by id
     List<Person> selectChildren(UUID id);
+
+    // Selects siblings of person given by id
+    List<Person> selectSiblings(UUID id);
 }

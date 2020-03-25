@@ -23,6 +23,7 @@ interface StateTypes {
     parent1id: string;
     parent2id: string;
     children: PersonType[];
+    siblings: PersonType[];
     status: string;
     docRelativesAmount: number;
 }
@@ -50,6 +51,7 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
             parent1id: '',
             parent2id: '',
             children: [],
+            siblings: [],
             status: 'alive',
             docRelativesAmount: 0
         };
@@ -244,11 +246,28 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                             </div>
                             <div className="person-page-extra-info-text">
                                 Children: <br />
-                                <ul>{this.renderChildren()}</ul>
+                                <div className="person-scroll-content">
+                                    <ul>{this.renderChildren()}</ul>
+                                </div>
+                            </div>
+                            <div className="person-page-extra-info-text">
+                                Siblings: <br />
+                                <div className="person-scroll-content">
+                                    <ul>{this.renderChildren()}</ul>
+                                </div>
                             </div>
                         </div>
                         <div className="person-page-edit">
                             <ButtonSmallAlt text="Edit" />
+                        </div>
+                        <div className="person-page-low-panel">
+                            <div className="person-page-extra-info-text">
+                                <Link
+                                    to={`/family/${this.state.person.family}`}
+                                >
+                                    View all relatives
+                                </Link>{' '}
+                            </div>
                         </div>
                     </div>
                 </div>

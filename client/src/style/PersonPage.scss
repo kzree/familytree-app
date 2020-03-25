@@ -1,6 +1,6 @@
 .person-page-wrap {
     width: 100%;
-    height: 100vh;
+    height: 95vh;
     display: flex;
     justify-content: center;
 }
@@ -68,6 +68,7 @@
     padding: 24px;
     width: 100%;
     height: 100%;
+    overflow-y: auto;
 }
 
 .person-page-extra-info-text {
@@ -81,4 +82,21 @@
     position: absolute;
     top: 50px;
     right: 45px;
+}
+
+.person-scroll-content {
+    height: 150px;
+    overflow-y: auto;
+}
+
+.person-page-low-panel {
+    position: absolute;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
+    padding: 24px;
+    bottom: 0;
+    right: 0;
+    height: 150px;
+    width: 100%;
 }

@@ -61,4 +61,10 @@ public class PersonController {
     public List<Person> getChildren(@PathVariable("id") UUID id) {
         return personService.getChildren(id);
     }
+
+    // Returns the siblings of a person
+    @GetMapping(path="/sibling/{id}")
+    public List<Person> getSiblings(@PathVariable("id") UUID id) {
+        return personService.getSiblings(id);
+    }
 }

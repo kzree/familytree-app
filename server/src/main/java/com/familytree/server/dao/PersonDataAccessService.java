@@ -100,12 +100,12 @@ public class PersonDataAccessService implements PersonDao {
             for(Person person : DB) {
                 boolean p1IsParent = false;
                 boolean p2IsParent = false;
-                if(person.getParent1() != null) {
+                if(person.getParent1() != null && existingPerson.getParent1() != null) {
                     if(existingPerson.getParent1().equals(person.getParent1()) && !person.getId().equals(existingPerson.getId())){
                         p1IsParent = true;
                     }
                 }
-                if(person.getParent2() != null) {
+                if(person.getParent2() != null && existingPerson.getParent1() != null) {
                     if(existingPerson.getParent2().equals(person.getParent2())&& !person.getId().equals(existingPerson.getId())){
                         p2IsParent = true;
                     }

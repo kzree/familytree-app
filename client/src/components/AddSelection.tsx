@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ButtonBigAlt } from './Button';
 
 const AddSelection = () => {
@@ -7,10 +8,14 @@ const AddSelection = () => {
             <div className="add-select-title">Select action</div>
             <div className="add-select-btns">
                 <div className="add-select-btn-wrap">
-                    <ButtonBigAlt text="Add Person" />
+                    <Link to={'/add/person'}>
+                        <ButtonBigAlt text="Add Person" />
+                    </Link>
                 </div>
                 <div className="add-select-btn-wrap">
-                    <ButtonBigAlt text="Add Family" />
+                    <Link to={'/add/family'}>
+                        <ButtonBigAlt text="Add Family" />
+                    </Link>
                 </div>
             </div>
         </div>

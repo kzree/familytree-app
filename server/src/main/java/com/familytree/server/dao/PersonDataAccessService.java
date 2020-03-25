@@ -117,4 +117,13 @@ public class PersonDataAccessService implements PersonDao {
         }
         return siblings;
     }
+
+    @Override
+    public List<Person> searchPeopleByName(String searchQuery) {
+        String cleanedSearchQuery = searchQuery.replace('+', ' ');
+        return DB.stream()
+                .filter(person -> person.getName().toLowerCase()
+                .contains(cleanedSearchQuery.toLowerCase()))
+                .collect(Collectors.toList());
+    }
 }

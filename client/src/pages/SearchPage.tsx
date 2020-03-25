@@ -29,6 +29,7 @@ export default class SearchPage extends PureComponent<{}, PeoplePageState> {
                                         name="people-search-input"
                                         id="people-search-input"
                                         className="people-search-input"
+                                        placeholder="Search..."
                                     />
                                     <div className="people-search-btn">
                                         <IoMdSearch />

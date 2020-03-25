@@ -36,4 +36,7 @@ public interface PersonDao {
 
     // Selects siblings of person given by id
     List<Person> selectSiblings(UUID id);
+
+    // Selects all who fit the given name from the database
+    List<Person> searchPeopleByName(String searchQuery);
 }

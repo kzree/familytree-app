@@ -61,4 +61,9 @@ public class PersonService {
     public List<Person> getSiblings(UUID id) {
         return personDao.selectSiblings(id);
     }
+
+    // Gets people that fit the search query
+    public List<Person> searchByQuery(String searchQuery) {
+        return personDao.searchPeopleByName(searchQuery);
+    }
 }

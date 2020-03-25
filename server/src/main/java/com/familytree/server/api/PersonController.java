@@ -67,4 +67,10 @@ public class PersonController {
     public List<Person> getSiblings(@PathVariable("id") UUID id) {
         return personService.getSiblings(id);
     }
+
+    // Returns a list of people who fit the search query
+    @GetMapping(path="/search/{query}")
+    public List<Person> getPeopleByQuery(@PathVariable("query") String searchQuery) {
+        return personService.searchByQuery(searchQuery);
+    }
 }

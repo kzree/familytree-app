@@ -66,3 +66,18 @@ export function getSiblings(id: string): Promise<Array<PersonType>> {
         return response.json();
     });
 }
+
+export function searchPeopleByQuery(
+    searchQuery: string
+): Promise<Array<PersonType>> {
+    return fetch(basePath + '/search/' + searchQuery, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(async response => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}

@@ -3,18 +3,39 @@ import { IoMdSearch } from 'react-icons/io';
 import { PersonType } from '../types/PersonType';
 import { PersonHeader } from '../components/Person';
 import PeopleTable from '../components/PeopleTable';
+import { searchPeopleByQuery } from '../services/personService';
 
 interface PeoplePageState {
     items: PersonType[];
 }
 
 export default class SearchPage extends PureComponent<{}, PeoplePageState> {
+    searchRef: React.RefObject<HTMLInputElement>;
     constructor(props: any) {
         super(props);
         this.state = {
             items: []
         };
+        this.searchRef = React.createRef();
     }
+
+    searchDatabase = async () => {
+        if (this.searchRef.current.value !== '') {
+            await searchPeopleByQuery(this.searchRef.current.value).then(
+                data => {
+                    this.setState({
+                        items: data
+                    });
+                    console.log(this.searchRef.current);
+                    console.log(this.state.items);
+                }
+            );
+        } else {
+            this.setState({
+                items: []
+            });
+        }
+    };
 
     render() {
         return (
@@ -30,8 +51,12 @@ export default class SearchPage extends PureComponent<{}, PeoplePageState> {
                                         id="people-search-input"
                                         className="people-search-input"
                                         placeholder="Search..."
+                                        ref={this.searchRef}
                                     />
-                                    <div className="people-search-btn">
+                                    <div
+                                        className="people-search-btn"
+                                        onClick={() => this.searchDatabase()}
+                                    >
                                         <IoMdSearch />
                                     </div>
                                 </div>

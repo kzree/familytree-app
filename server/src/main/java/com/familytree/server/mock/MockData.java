@@ -77,7 +77,7 @@ public class MockData {
         // Pair 10      26 with 23
         people.add(new Person(UUID.randomUUID(), "Lauren Filch", "female", "1995/03/12", false, null, null, null, UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
         // Children 10  27
-        people.add(new Person(UUID.randomUUID(), "Max Dommer", "male", "2019/08/17", false, null, people.get(26).getId(), people.get(23).getId(), UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
+        people.add(new Person(UUID.randomUUID(), "Max Dommer", "male", "2018/08/17", false, null, people.get(26).getId(), people.get(23).getId(), UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
 
         return people;
     }

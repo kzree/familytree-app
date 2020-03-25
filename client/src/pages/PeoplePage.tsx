@@ -48,8 +48,9 @@ export default class PeoplePage extends PureComponent<{}, PeoplePageState> {
             <div className="people-wrap">
                 <div className="people-content-wrap">
                     <PeoplePanel />
+                    <PersonHeader />
+
                     <div className="people-table-wrap">
-                        <PersonHeader />
                         <PeopleTable visiblePeople={this.items} />
                     </div>
                 </div>

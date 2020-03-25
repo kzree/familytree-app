@@ -27,3 +27,14 @@ export function getById(id: string): Promise<FamilyType> {
         return response.json();
     });
 }
+
+export async function newFamily(fName: string) {
+    await fetch(basePath, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: fName })
+    });
+}

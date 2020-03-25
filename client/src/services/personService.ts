@@ -53,3 +53,16 @@ export function getChildren(id: string): Promise<Array<PersonType>> {
         return response.json();
     });
 }
+
+export function getSiblings(id: string): Promise<Array<PersonType>> {
+    return fetch(basePath + '/sibling/' + id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(async response => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}

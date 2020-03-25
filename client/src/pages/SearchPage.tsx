@@ -20,14 +20,13 @@ export default class SearchPage extends PureComponent<{}, PeoplePageState> {
     }
 
     searchDatabase = async () => {
-        if (this.searchRef.current.value !== '') {
-            await searchPeopleByQuery(this.searchRef.current.value).then(
+        let searchQuery = this.searchRef.current.value.replace(/ +(?= )/g, '');
+        if (searchQuery !== '' && searchQuery !== ' ') {
+            await searchPeopleByQuery(searchQuery.replace('+', '')).then(
                 data => {
                     this.setState({
                         items: data
                     });
-                    console.log(this.searchRef.current);
-                    console.log(this.state.items);
                 }
             );
         } else {

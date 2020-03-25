@@ -2,8 +2,10 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import ButtonBig, { ButtonBigAlt } from '../components/Button';
 import '../style/Index.scss';
+import Modal from '../components/Modal';
+import AddSelection from '../components/AddSelection';
 
-const Greeting = () => {
+const Greeting = (props: { handleClick: VoidFunction }) => {
     return (
         <div className="home-greeting-wrap">
             <div className="home-greeting-img"></div>
@@ -18,7 +20,10 @@ const Greeting = () => {
                         get started!
                     </div>
                 </div>
-                <ButtonBig text="Get started" />
+                <ButtonBig
+                    text="Get started"
+                    handleClick={() => props.handleClick()}
+                />
             </div>
         </div>
     );
@@ -76,15 +81,38 @@ const HomeLower = () => {
     );
 };
 
-export default class HomePage extends PureComponent {
+interface HomePageState {
+    modalOpen: boolean;
+}
+
+export default class HomePage extends PureComponent<{}, HomePageState> {
+    constructor(props: Readonly<{}>) {
+        super(props);
+
+        this.state = {
+            modalOpen: false
+        };
+    }
+
     componentDidMount = () => {
         window.scrollTo(0, 0);
+    };
+
+    toggleModal = () => {
+        this.setState({
+            modalOpen: !this.state.modalOpen
+        });
     };
 
     render() {
         return (
             <div className="home-wrap">
-                <Greeting />
+                <Modal
+                    children={<AddSelection />}
+                    open={this.state.modalOpen}
+                    onClose={this.toggleModal}
+                />
+                <Greeting handleClick={() => this.toggleModal()} />
                 <HomeLower />
             </div>
         );

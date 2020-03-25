@@ -20,8 +20,11 @@ export default class SearchPage extends PureComponent<{}, PeoplePageState> {
     }
 
     searchDatabase = async () => {
+        // Remove unnecessary spaces
         let searchQuery = this.searchRef.current.value.replace(/ +(?= )/g, '');
+        // Error checking
         if (searchQuery !== '' && searchQuery !== ' ') {
+            // Removing error causing symbol
             await searchPeopleByQuery(searchQuery.replace('+', '')).then(
                 data => {
                     this.setState({

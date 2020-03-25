@@ -1,0 +1,29 @@
+.add-select-wrap {
+    width: 500px;
+    height: 400px;
+    &:hover {
+        .add-select-title {
+            color: $app-color1;
+        }
+    }
+}
+
+.add-select-title {
+    padding-top: 12px;
+    padding-bottom: 60px;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.add-select-btns {
+    position: absolute;
+    padding-top: 32px;
+    width: 500px;
+    height: 300px;
+}
+
+.add-select-btn-wrap {
+    height: 100px;
+}

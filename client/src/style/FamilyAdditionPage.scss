@@ -1,0 +1,56 @@
+.addition-page-wrap {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+}
+
+.addition-content-wrap {
+    position: relative;
+    width: 80%;
+    background-color: #ffffff;
+    height: 800px;
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.addition-title {
+    position: absolute;
+    padding-top: 24px;
+    width: 100%;
+    font-size: 48px;
+    text-align: center;
+}
+
+.f-addition-input-wrap {
+    position: absolute;
+    display: flex;
+    top: 200px;
+    width: 100%;
+    height: 70px;
+    padding-bottom: 48px;
+    justify-content: center;
+
+    input {
+        width: 600px;
+        height: 50px;
+        font-size: 40px;
+        border-radius: 50px;
+        border: 5px solid $app-color1;
+        transition: all 0.2s;
+        &:focus {
+            outline: none;
+            border: 5px solid $app-color2;
+        }
+    }
+
+    input[type='text'] {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
+.f-addition-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}

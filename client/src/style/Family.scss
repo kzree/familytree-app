@@ -1,0 +1,54 @@
+%shared-wrap {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    color: $app-black;
+    transition: 0.2s ease-in-out;
+}
+
+%shared-body {
+    display: flex;
+    width: auto;
+    height: 20px;
+    padding: 5px;
+    transition: 0.2s ease-in-out;
+}
+// Header for table
+.family-head-wrap {
+    @extend %shared-wrap;
+    height: 40px;
+    border-top: 1px solid #ccc;
+}
+
+.family-head-body {
+    @extend %shared-body;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+
+// Individual family
+.family-wrap {
+    @extend %shared-wrap;
+    &:hover {
+        background-color: #eeeeee;
+        cursor: pointer;
+    }
+}
+
+.family-body {
+    @extend %shared-body;
+}
+
+.family-name {
+    width: 500px;
+    padding-left: 36px;
+}
+
+.family-members {
+    width: 100px;
+    padding-left: 12px;
+}

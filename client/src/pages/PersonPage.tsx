@@ -1,6 +1,11 @@
 import React, { PureComponent } from 'react';
 import { PersonType } from '../types/PersonType';
-import { getById, getByFamilyId, getChildren } from '../services/personService';
+import {
+    getById,
+    getByFamilyId,
+    getChildren,
+    getSiblings
+} from '../services/personService';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import { ButtonSmallAlt } from '../components/Button';
 
@@ -80,7 +85,8 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
             this.calculateAge();
             this.getParents();
             this.getRelatives();
-            this.getChildren();
+            this.getPersonChildren();
+            this.getPersonSiblings();
         });
     };
 
@@ -162,10 +168,18 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
         });
     };
 
-    getChildren = async () => {
+    getPersonChildren = async () => {
         await getChildren(this.state.personId).then(data => {
             this.setState({
                 children: data
+            });
+        });
+    };
+
+    getPersonSiblings = async () => {
+        await getSiblings(this.state.personId).then(data => {
+            this.setState({
+                siblings: data
             });
         });
     };
@@ -175,6 +189,26 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
             return (
                 <>
                     {this.state.children.map((item, i) => {
+                        return (
+                            <li>
+                                <Link to={`/person/${item.id}`}>
+                                    {item.name}
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </>
+            );
+        } else {
+            return <>None</>;
+        }
+    };
+
+    renderSiblings = () => {
+        if (this.state.siblings.length > 0) {
+            return (
+                <>
+                    {this.state.siblings.map((item, i) => {
                         return (
                             <li>
                                 <Link to={`/person/${item.id}`}>
@@ -253,7 +287,7 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
                             <div className="person-page-extra-info-text">
                                 Siblings: <br />
                                 <div className="person-scroll-content">
-                                    <ul>{this.renderChildren()}</ul>
+                                    <ul>{this.renderSiblings()}</ul>
                                 </div>
                             </div>
                         </div>

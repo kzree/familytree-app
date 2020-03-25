@@ -24,6 +24,7 @@ public class MockData {
     private static List<Family> initFamilies() {
         List<Family> families = new ArrayList<>();
         families.add(new Family(UUID.fromString("7348c2f2-d7e6-404d-a4d2-c73b718ea90c"), "Hammers"));
+        families.add(new Family(UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a"), "Dommer family"));
         return families;
     }
 
@@ -57,6 +58,26 @@ public class MockData {
         people.add(new Person(UUID.randomUUID(), "Markus Locust", "male", "1996/12/23", false, null, null, null, UUID.fromString("7348c2f2-d7e6-404d-a4d2-c73b718ea90c")));
         // Children 6   15
         people.add(new Person(UUID.randomUUID(), "Sandra Locust", "female", "2017/01/21", false, null, people.get(12).getId(), people.get(14).getId(), UUID.fromString("7348c2f2-d7e6-404d-a4d2-c73b718ea90c")));
+        // Pair 7       16-17
+        people.add(new Person(UUID.randomUUID(), "John Dommer", "male", "1943/07/01", false, null, null, null, UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
+        people.add(new Person(UUID.randomUUID(), "Rosa Dommer", "female", "1945/11/19", false, null, null, null, UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
+        // Children 7   18-20
+        people.add(new Person(UUID.randomUUID(), "William Dommer", "male", "1964/07/01", false, null, people.get(17).getId(), people.get(16).getId(), UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
+        people.add(new Person(UUID.randomUUID(), "Robert Dommer", "male", "1966/05/25", true, "1994/10/17", people.get(17).getId(), people.get(16).getId(), UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
+        people.add(new Person(UUID.randomUUID(), "Kaisa Dommer", "female", "1970/11/12", false, null, people.get(17).getId(), people.get(16).getId(), UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
+        // Pair 8       21 with 18
+        people.add(new Person(UUID.randomUUID(), "Kathrine Smith", "female", "1967/09/04", false, null, null, null, UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
+        // Pair 9       22 with 20
+        people.add(new Person(UUID.randomUUID(), "Jonathan Walker", "male", "1966/05/14", false, null, null, null, UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
+        // Children 8   23
+        people.add(new Person(UUID.randomUUID(), "Percival Dommer", "male", "1994/01/24", false, null, people.get(21).getId(), people.get(18).getId(), UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
+        // Children 9   24-25
+        people.add(new Person(UUID.randomUUID(), "Michael Walker", "male", "1998/12/11", false, null, people.get(20).getId(), people.get(22).getId(), UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
+        people.add(new Person(UUID.randomUUID(), "Suzie Walker", "female", "2002/08/06", false, null, people.get(20).getId(), people.get(22).getId(), UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
+        // Pair 10      26 with 23
+        people.add(new Person(UUID.randomUUID(), "Lauren Filch", "female", "1995/03/12", false, null, null, null, UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
+        // Children 10  27
+        people.add(new Person(UUID.randomUUID(), "Max Dommer", "male", "2019/08/17", false, null, people.get(26).getId(), people.get(23).getId(), UUID.fromString("e2e5f321-f1d5-492a-968e-af80da5a3e5a")));
 
         return people;
     }

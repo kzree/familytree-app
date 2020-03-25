@@ -155,7 +155,7 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
     getRelatives = async () => {
         await getByFamilyId(this.state.person.family).then(data => {
             this.setState({
-                docRelativesAmount: data.length
+                docRelativesAmount: data.length - 1
             });
         });
     };
@@ -169,17 +169,23 @@ export default class PersonPage extends PureComponent<PropsType, StateTypes> {
     };
 
     renderChildren = () => {
-        return (
-            <>
-                {this.state.children.map((item, i) => {
-                    return (
-                        <li>
-                            <Link to={`/person/${item.id}`}>{item.name}</Link>
-                        </li>
-                    );
-                })}
-            </>
-        );
+        if (this.state.children.length > 0) {
+            return (
+                <>
+                    {this.state.children.map((item, i) => {
+                        return (
+                            <li>
+                                <Link to={`/person/${item.id}`}>
+                                    {item.name}
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </>
+            );
+        } else {
+            return <>None</>;
+        }
     };
 
     render() {

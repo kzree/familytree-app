@@ -3,10 +3,17 @@ import { PersonType } from '../types/PersonType';
 import { getAll } from '../services/personService';
 import { PersonHeader } from '../components/Person';
 import PeopleTable from '../components/PeopleTable';
+import { ButtonSmall } from '../components/Button';
+import { Link } from 'react-router-dom';
 
 const PeoplePanel = () => {
     return (
         <div className="people-content-panel">
+            <div className="people-content-panel-btn">
+                <Link to={'/viewall/families'}>
+                    <ButtonSmall text="Families" />
+                </Link>
+            </div>
             <div className="people-content-panel-head">
                 <div className="people-content-panel-head-t">List of all</div>
             </div>

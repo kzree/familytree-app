@@ -44,3 +44,13 @@
     width: 100%;
     overflow-y: auto;
 }
+
+.people-content-panel-btn {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    z-index: 2000;
+    top: 50px;
+    right: 50px;
+    transform: translateY(-50%);
+}

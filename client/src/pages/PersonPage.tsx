@@ -1,14 +1,10 @@
 import React, { PureComponent } from 'react';
 import { PersonType } from '../types/PersonType';
-import {
-    getById,
-    getByFamilyId,
-    getChildren,
-    getSiblings
-} from '../services/personService';
+import { getById, getByFamilyId, getChildren, getSiblings } from '../services/personService';
 import { Link } from 'react-router-dom';
 import { ButtonSmallAlt } from '../components/Button';
 import IdFromUrl from '../types/urlParamTypes';
+import Alert from '../components/Alert';
 
 interface StateTypes {
     personId: string;
@@ -23,6 +19,7 @@ interface StateTypes {
     siblings: PersonType[];
     childNumber: number;
     status: string;
+    alert: boolean;
     docRelativesAmount: number;
 }
 
@@ -52,6 +49,7 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
             siblings: [],
             childNumber: 1,
             status: 'alive',
+            alert: false,
             docRelativesAmount: 0
         };
     }
@@ -186,9 +184,7 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
                     {this.state.children.map((item, i) => {
                         return (
                             <li>
-                                <Link to={`/person/${item.id}`}>
-                                    {item.name}
-                                </Link>
+                                <Link to={`/person/${item.id}`}>{item.name}</Link>
                             </li>
                         );
                     })}
@@ -199,6 +195,12 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
         }
     };
 
+    toggleAlert = () => {
+        this.setState({
+            alert: !this.state.alert
+        });
+    };
+
     renderSiblings = () => {
         if (this.state.siblings.length > 0) {
             return (
@@ -206,9 +208,7 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
                     {this.state.siblings.map((item, i) => {
                         return (
                             <li>
-                                <Link to={`/person/${item.id}`}>
-                                    {item.name}
-                                </Link>
+                                <Link to={`/person/${item.id}`}>{item.name}</Link>
                             </li>
                         );
                     })}
@@ -232,10 +232,7 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
             });
             birthdayDates.sort((a, b) => a.getTime() - b.getTime());
             for (let i = 0; i < birthdayDates.length; i++) {
-                if (
-                    birthdayDates[i].getTime() ===
-                    new Date(this.state.person.birthDate).getTime()
-                ) {
+                if (birthdayDates[i].getTime() === new Date(this.state.person.birthDate).getTime()) {
                     this.setState({
                         childNumber: i + 1
                     });
@@ -253,53 +250,40 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
         }
         return (
             <div className="person-page-wrap">
+                {/*prettier-ignore*/}
+                <Alert 
+                    text="Feature not yet available" 
+                    open={this.state.alert} 
+                    handleClose={this.toggleAlert} 
+                />
                 <div className="person-page-content">
                     <div className="person-page-info">
                         <div className="person-page-info-pic-wrap">
                             <div className={profileClass}></div>
                         </div>
                         <div className="person-page-info-content">
-                            <div className="person-page-info-content-text">
-                                {this.state.name}
-                            </div>
-                            <div className="person-page-info-content-text">
-                                Age: {this.state.age}
-                            </div>
+                            <div className="person-page-info-content-text">{this.state.name}</div>
+                            <div className="person-page-info-content-text">Age: {this.state.age}</div>
                         </div>
                     </div>
                     <div className="person-page-extra">
                         <h1>Information</h1>
                         <div className="person-page-extra-info">
+                            <div className="person-page-extra-info-text">Name: {this.state.name}</div>
+                            <div className="person-page-extra-info-text">Age: {this.state.age}</div>
+                            <div className="person-page-extra-info-text">Birthday: {this.state.person.birthDate}</div>
+                            <div className="person-page-extra-info-text">Status: {this.state.status}</div>
                             <div className="person-page-extra-info-text">
-                                Name: {this.state.name}
+                                Mother: <Link to={`/person/${this.state.parent1id}`}>{this.state.parent1name}</Link>
                             </div>
                             <div className="person-page-extra-info-text">
-                                Age: {this.state.age}
-                            </div>
-                            <div className="person-page-extra-info-text">
-                                Birthday: {this.state.person.birthDate}
-                            </div>
-                            <div className="person-page-extra-info-text">
-                                Status: {this.state.status}
-                            </div>
-                            <div className="person-page-extra-info-text">
-                                Mother:{' '}
-                                <Link to={`/person/${this.state.parent1id}`}>
-                                    {this.state.parent1name}
-                                </Link>
-                            </div>
-                            <div className="person-page-extra-info-text">
-                                Father:{' '}
-                                <Link to={`/person/${this.state.parent2id}`}>
-                                    {this.state.parent2name}
-                                </Link>
+                                Father: <Link to={`/person/${this.state.parent2id}`}>{this.state.parent2name}</Link>
                             </div>
                             <div className="person-page-extra-info-text">
                                 # child of family: {this.state.childNumber}
                             </div>
                             <div className="person-page-extra-info-text">
-                                Number of documented relatives:{' '}
-                                {this.state.docRelativesAmount}
+                                Number of documented relatives: {this.state.docRelativesAmount}
                             </div>
                             <div className="person-page-extra-info-text">
                                 Children: <br />
@@ -315,15 +299,11 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
                             </div>
                         </div>
                         <div className="person-page-edit">
-                            <ButtonSmallAlt text="Edit" />
+                            <ButtonSmallAlt text="Edit" handleClick={this.toggleAlert} />
                         </div>
                         <div className="person-page-low-panel">
                             <div className="person-page-extra-info-text">
-                                <Link
-                                    to={`/family/${this.state.person.family}`}
-                                >
-                                    View all relatives
-                                </Link>{' '}
+                                <Link to={`/family/${this.state.person.family}`}>View all relatives</Link>{' '}
                             </div>
                         </div>
                     </div>

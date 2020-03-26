@@ -5,6 +5,7 @@ import { searchPeopleByQuery, getById, addPerson } from '../services/personServi
 import { getAll } from '../services/familyService';
 import { ButtonBigAlt } from '../components/Button';
 import { calculateAgeByPerson, calculateAgeByParams, getToday } from '../services/util';
+import ErrorBox from '../components/ErrorBox';
 
 interface state {
     dead: boolean;
@@ -174,7 +175,7 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
         console.log('Father', this.state.fatherId);
     };
 
-    checkForErrors = () => {
+    checkForErrors = async () => {
         let errors = [];
         // Start error checking
         const name = this.nameRef.current.value.replace(/ +(?= )/g, '');
@@ -219,21 +220,22 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
         // Check father
         if (this.state.hasFather) {
             if (this.state.fatherId === '') {
-                errors.push(6); // Error == Father cannot be empty
+                errors.push(8); // Error == Father cannot be empty
             } else {
                 if (age >= this.state.fatherAge) {
-                    errors.push(7); // Error == Parent cannot be younger than child
+                    errors.push(9); // Error == Parent cannot be younger than child
                 }
             }
         }
-        this.setState({
-            errorCodes: errors
-        });
+        this.setState(
+            {
+                errorCodes: errors
+            },
+            () => this.postData()
+        );
     };
 
-    submitData = async () => {
-        this.logData();
-        this.checkForErrors();
+    postData = () => {
         if (this.state.errorCodes.length === 0) {
             let name = this.nameRef.current.value;
             let gender = this.state.gender;
@@ -264,8 +266,16 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
         }
     };
 
+    submitData = () => {
+        this.logData();
+        this.checkForErrors();
+    };
+
     componentDidMount = () => {
         this.fetchFamilyList();
+        this.setState({
+            errorCodes: []
+        });
     };
 
     render() {
@@ -434,6 +444,7 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                         <div className="p-addition-btn">
                             <ButtonBigAlt text="Submit" handleClick={this.submitData} />
                         </div>
+                        <ErrorBox errors={this.state.errorCodes} />
                     </div>
                 </div>
             </div>

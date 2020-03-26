@@ -4,11 +4,7 @@ import { FamilyType } from '../types/FamilyType';
 import { searchPeopleByQuery, getById } from '../services/personService';
 import { getAll } from '../services/familyService';
 import { ButtonBigAlt } from '../components/Button';
-import {
-    calculateAgeByPerson,
-    calculateAgeByParams,
-    getToday
-} from '../services/util';
+import { calculateAgeByPerson, calculateAgeByParams, getToday } from '../services/util';
 
 interface state {
     dead: boolean;
@@ -88,19 +84,17 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
         // Error checking
         if (searchQuery !== '' && searchQuery !== ' ' && allowed) {
             // Removing error causing symbol
-            await searchPeopleByQuery(searchQuery.replace('+', '')).then(
-                data => {
-                    if (mother) {
-                        this.setState({
-                            possibleMothers: data
-                        });
-                    } else {
-                        this.setState({
-                            possibleFathers: data
-                        });
-                    }
+            await searchPeopleByQuery(searchQuery.replace('+', '')).then(data => {
+                if (mother) {
+                    this.setState({
+                        possibleMothers: data
+                    });
+                } else {
+                    this.setState({
+                        possibleFathers: data
+                    });
                 }
-            );
+            });
         } else {
             if (mother) {
                 this.setState({
@@ -185,23 +179,44 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
             this.deathDateRef.current.value,
             this.state.dead
         );
+        // Check birthdate
+        if (new Date(this.birthDateRef.current.value) > new Date(getToday())) {
+            errors.push(1); // Error == Birthdate can not be bigger than the date today
+        }
+        if (this.birthDateRef.current.value === '') {
+            errors.push(2);
+        }
+        // Check deathdate
+        if (this.state.dead) {
+            if (new Date(this.birthDateRef.current.value) > new Date(this.deathDateRef.current.value)) {
+                errors.push(3); // Error == Deathdate can not be bigger than the birthdate
+            }
+            if (new Date(this.deathDateRef.current.value) > new Date(getToday())) {
+                errors.push(4); // Error == Deathdate can not be bigger than the date today
+            }
+            if (this.deathDateRef.current.value === '') {
+                errors.push(5);
+            }
+        }
+        // Check mother
         if (this.state.hasMother) {
             if (this.state.motherId === '') {
-                errors.push(1); // Error == Mother cannot be empty
+                errors.push(6); // Error == Mother cannot be empty
             } else {
                 this.getParentAge(this.state.motherId);
                 if (age >= this.state.motherAge) {
-                    errors.push(2); // Error == Parent cannot be younger than child
+                    errors.push(7); // Error == Parent cannot be younger than child
                 }
             }
         }
+        // Check father
         if (this.state.hasFather) {
             if (this.state.fatherId === '') {
-                errors.push(1); // Error == Father cannot be empty
+                errors.push(6); // Error == Father cannot be empty
             } else {
                 this.getParentAge(this.state.fatherId);
                 if (age >= this.state.fatherAge) {
-                    errors.push(2); // Error == Parent cannot be younger than child
+                    errors.push(7); // Error == Parent cannot be younger than child
                 }
             }
         }
@@ -307,10 +322,7 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                             <div className="addition-person-input-label">
                                 <label>Family</label>
                             </div>
-                            <FamilyDropdown
-                                families={this.state.families}
-                                handleChange={this.familyValueHandler}
-                            />
+                            <FamilyDropdown families={this.state.families} handleChange={this.familyValueHandler} />
                         </div>
                         <div className="addition-person-input-wrap">
                             <div className="addition-person-input-label">
@@ -336,12 +348,7 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                                 className="addition-person-input"
                                 placeholder="Search..."
                                 ref={this.motherRef}
-                                onChange={() =>
-                                    this.handleParentSearch(
-                                        true,
-                                        this.state.hasMother
-                                    )
-                                }
+                                onChange={() => this.handleParentSearch(true, this.state.hasMother)}
                             />
                             <br />
                         </div>
@@ -377,12 +384,7 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                                 className="addition-person-input"
                                 placeholder="Search..."
                                 ref={this.fatherRef}
-                                onChange={() =>
-                                    this.handleParentSearch(
-                                        false,
-                                        this.state.hasFather
-                                    )
-                                }
+                                onChange={() => this.handleParentSearch(false, this.state.hasFather)}
                             />
                         </div>
                         <div className="addition-person-input-wrap">
@@ -394,10 +396,7 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                             />
                         </div>
                         <div className="p-addition-btn">
-                            <ButtonBigAlt
-                                text="Submit"
-                                handleClick={this.submitData}
-                            />
+                            <ButtonBigAlt text="Submit" handleClick={this.submitData} />
                         </div>
                     </div>
                 </div>
@@ -427,12 +426,7 @@ const FamilyDropdown = (props: familyDropdownProps) => {
     );
 };
 
-const ParentDropdown = (props: {
-    parents: PersonType[];
-    onChange: any;
-    familiyId: string;
-    gender: string;
-}) => {
+const ParentDropdown = (props: { parents: PersonType[]; onChange: any; familiyId: string; gender: string }) => {
     if (props.parents.length > 0) {
         return (
             <>
@@ -443,10 +437,7 @@ const ParentDropdown = (props: {
                     <option value="">Please select</option>
                     {props.parents.map((item, i) => {
                         const age = calculateAgeByPerson(item);
-                        if (
-                            props.familiyId === item.family &&
-                            props.gender === item.gender
-                        ) {
+                        if (props.familiyId === item.family && props.gender === item.gender) {
                             return (
                                 <option value={item.id} key={i}>
                                     {item.name}

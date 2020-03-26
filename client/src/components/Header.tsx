@@ -11,14 +11,6 @@ const HeaderLogo = () => {
     );
 };
 
-const HeaderItem = (props: { text: string; link: string }) => {
-    return (
-        <div className="header-item-wrap">
-            <Link to={props.link}>{props.text}</Link>
-        </div>
-    );
-};
-
 const HeaderDeco = () => {
     return (
         <div className="header-deco-wrap">
@@ -34,7 +26,6 @@ export default class Header extends Component {
             <div className="header-wrap">
                 <div className="header-content">
                     <HeaderLogo />
-                    {/* <HeaderItem text="List" link="/all" /> */}
                 </div>
                 <HeaderDeco />
             </div>

@@ -3,9 +3,6 @@
     height: 60px;
     background-color: $app-black;
     display: flex;
-    /*     a:link {
-        text-decoration: none;
-    } */
 }
 
 .header-content {
@@ -25,7 +22,11 @@
     height: 100%;
     font-size: 50px;
     text-align: center;
+    transition: all 0.2s;
     cursor: pointer;
+    &:hover {
+        animation: anim 2s alternate infinite ease-in-out;
+    }
 }
 
 /* Item */
@@ -72,4 +73,15 @@
 .header-deco-f {
     width: 60px;
     background-color: $app-color2;
+}
+
+// Animation
+
+@keyframes anim {
+    from {
+        color: $app-color1;
+    }
+    to {
+        color: $app-color2;
+    }
 }

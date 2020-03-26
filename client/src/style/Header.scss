@@ -25,7 +25,7 @@
     transition: all 0.2s;
     cursor: pointer;
     &:hover {
-        animation: anim 2s alternate infinite ease-in-out;
+        animation: start-anim 1s 0s ease-in, anim 2s 1s alternate infinite ease-in-out;
     }
 }
 
@@ -76,6 +76,15 @@
 }
 
 // Animation
+
+@keyframes start-anim {
+    from {
+        color: #ffffff;
+    }
+    to {
+        color: $app-color1;
+    }
+}
 
 @keyframes anim {
     from {

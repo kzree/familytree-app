@@ -7,6 +7,7 @@ import { ButtonBigAlt } from '../components/Button';
 import { calculateAgeByPerson, calculateAgeByParams, getToday } from '../services/util';
 import ErrorBox from '../components/ErrorBox';
 import { Redirect } from 'react-router-dom';
+import Alert from '../components/Alert';
 
 interface state {
     dead: boolean;
@@ -23,6 +24,7 @@ interface state {
     gender: string;
     errorCodes: number[];
     redirect: boolean;
+    alert: boolean;
 }
 
 export default class PersonAdditionPage extends PureComponent<{}, state> {
@@ -55,7 +57,8 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
             fatherAge: 0,
             gender: 'male',
             errorCodes: [],
-            redirect: false
+            redirect: false,
+            alert: false
         };
     }
 
@@ -267,9 +270,15 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
             }
             addPerson(name, gender, bday, dead, dday, family, mother, father);
             this.setState({
-                redirect: true
+                alert: true
             });
         }
+    };
+
+    redirect = () => {
+        this.setState({
+            redirect: true
+        });
     };
 
     submitData = () => {
@@ -296,6 +305,7 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
         }
         return (
             <div className="addition-page-wrap">
+                <Alert text="Person added successfully" open={this.state.alert} handleClose={this.redirect} />
                 <div className="addition-content-wrap">
                     <div className="addition-title">Add new person</div>
                     <div className="addition-person-wrap">

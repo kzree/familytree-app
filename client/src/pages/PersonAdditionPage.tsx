@@ -287,12 +287,12 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                             <input
                                 type="text"
                                 name="addition-person-input"
-                                id="addition-person-input"
+                                id="addition-person-input-1"
                                 className="addition-person-input"
                                 ref={this.nameRef}
                             />
                         </div>
-                        <div className="addition-person-input-wrap">
+                        <div className="addition-person-input-wrap person-input-radio">
                             <input
                                 type="radio"
                                 id="male"
@@ -321,14 +321,14 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                             <input
                                 type="date"
                                 name="addition-person-bday"
-                                id="addition-person-input"
+                                id="addition-person-input-2"
                                 className="addition-person-input"
                                 max={getToday()}
                                 defaultValue={getToday()}
                                 ref={this.birthDateRef}
                             />
                         </div>
-                        <div className="addition-person-input-wrap">
+                        <div className="addition-person-input-wrap person-input-check">
                             <div className="addition-person-input-label">
                                 <label>Dead</label>
                             </div>
@@ -348,7 +348,7 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                             <input
                                 type="date"
                                 name="addition-person-dday"
-                                id="addition-person-input"
+                                id="addition-person-input-3"
                                 className="addition-person-input"
                                 max={getToday()}
                                 ref={this.deathDateRef}
@@ -360,14 +360,14 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                             </div>
                             <FamilyDropdown families={this.state.families} handleChange={this.familyValueHandler} />
                         </div>
-                        <div className="addition-person-input-wrap">
+                        <div className="addition-person-input-wrap person-input-check">
                             <div className="addition-person-input-label">
                                 <label>Mother known</label>
                             </div>
                             <input
                                 type="checkbox"
                                 name="addition-person-checkbox"
-                                id="addition-person-checkbox"
+                                id="addition-person-checkbox-4"
                                 className="addition-person-checkbox"
                                 checked={this.state.hasMother}
                                 onClick={this.toggleMother}
@@ -380,7 +380,7 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                             <input
                                 type="text"
                                 name="addition-person-input"
-                                id="addition-person-input"
+                                id="addition-person-input-5"
                                 className="addition-person-input"
                                 placeholder="Search..."
                                 ref={this.motherRef}
@@ -396,14 +396,14 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                                 gender="female"
                             />
                         </div>
-                        <div className="addition-person-input-wrap">
+                        <div className="addition-person-input-wrap person-input-check">
                             <div className="addition-person-input-label">
                                 <label>Father known</label>
                             </div>
                             <input
                                 type="checkbox"
                                 name="addition-person-checkbox"
-                                id="addition-person-checkbox"
+                                id="addition-person-checkbox-6"
                                 className="addition-person-checkbox"
                                 checked={this.state.hasFather}
                                 onClick={this.toggleFather}
@@ -416,7 +416,7 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                             <input
                                 type="text"
                                 name="addition-person-input"
-                                id="addition-person-input"
+                                id="addition-person-input-7"
                                 className="addition-person-input"
                                 placeholder="Search..."
                                 ref={this.fatherRef}

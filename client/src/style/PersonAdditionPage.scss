@@ -46,6 +46,16 @@
     &.death-day {
         display: none;
     }
+    &.person-input-radio {
+        input {
+            width: 80px;
+        }
+    }
+    &.person-input-check {
+        input {
+            width: 224px;
+        }
+    }
 }
 
 .addition-person-checkbox {

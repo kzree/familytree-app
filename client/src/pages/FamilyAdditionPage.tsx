@@ -2,9 +2,11 @@ import React, { PureComponent } from 'react';
 import { ButtonBigAlt } from '../components/Button';
 import { newFamily } from '../services/familyService';
 import { Redirect } from 'react-router-dom';
+import Alert from '../components/Alert';
 
 interface state {
     redirect: boolean;
+    alert: boolean;
 }
 
 export default class FamilyAdditionPage extends PureComponent<{}, state> {
@@ -14,25 +16,29 @@ export default class FamilyAdditionPage extends PureComponent<{}, state> {
         this.newFamily = React.createRef();
 
         this.state = {
-            redirect: false
+            redirect: false,
+            alert: false
         };
     }
 
     submitNewFamily = async () => {
         // TODO: Put this into an utility file
         // Remove unnecessary spaces
-        let newFamilyName = this.newFamily.current.value.replace(
-            / +(?= )/g,
-            ''
-        );
+        let newFamilyName = this.newFamily.current.value.replace(/ +(?= )/g, '');
         // Error checking
         if (newFamilyName !== '' && newFamilyName !== ' ') {
             newFamily(this.newFamily.current.value).then(() =>
                 this.setState({
-                    redirect: true
+                    alert: true
                 })
             );
         }
+    };
+
+    redirect = () => {
+        this.setState({
+            redirect: true
+        });
     };
 
     render() {
@@ -41,6 +47,7 @@ export default class FamilyAdditionPage extends PureComponent<{}, state> {
         }
         return (
             <div className="addition-page-wrap">
+                <Alert text="Family added successfully" open={this.state.alert} handleClose={this.redirect} />
                 <div className="addition-content-wrap">
                     <div className="addition-title">Add new family</div>
                     <div className="f-addition-input-wrap">
@@ -54,10 +61,7 @@ export default class FamilyAdditionPage extends PureComponent<{}, state> {
                         />
                     </div>
                     <div className="f-addition-btn">
-                        <ButtonBigAlt
-                            text="Submit"
-                            handleClick={this.submitNewFamily}
-                        />
+                        <ButtonBigAlt text="Submit" handleClick={this.submitNewFamily} />
                     </div>
                 </div>
             </div>

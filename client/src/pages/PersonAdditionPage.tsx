@@ -119,7 +119,9 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
 
     familyValueHandler = (e: React.FormEvent<HTMLSelectElement>) => {
         this.setState({
-            familyId: e.currentTarget.value
+            familyId: e.currentTarget.value,
+            motherId: '',
+            fatherId: ''
         });
     };
 
@@ -127,12 +129,18 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
         this.setState({
             motherId: e.currentTarget.value
         });
+        if (e.currentTarget.value !== '') {
+            this.getParentAge(e.currentTarget.value);
+        }
     };
 
     fatherValueHandler = (e: React.FormEvent<HTMLSelectElement>) => {
         this.setState({
             fatherId: e.currentTarget.value
         });
+        if (e.currentTarget.value !== '') {
+            this.getParentAge(e.currentTarget.value);
+        }
     };
 
     genderValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -167,7 +175,7 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
     };
 
     checkForErrors = () => {
-        let errors = [];
+        let errors: number[] = [];
         // Start error checking
         const name = this.nameRef.current.value.replace(/ +(?= )/g, '');
         if (name.length === 0 || name === ' ') {
@@ -203,7 +211,6 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
             if (this.state.motherId === '') {
                 errors.push(6); // Error == Mother cannot be empty
             } else {
-                this.getParentAge(this.state.motherId);
                 if (age >= this.state.motherAge) {
                     errors.push(7); // Error == Parent cannot be younger than child
                 }
@@ -214,18 +221,21 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
             if (this.state.fatherId === '') {
                 errors.push(6); // Error == Father cannot be empty
             } else {
-                this.getParentAge(this.state.fatherId);
                 if (age >= this.state.fatherAge) {
                     errors.push(7); // Error == Parent cannot be younger than child
                 }
             }
         }
-        console.log(errors);
+        this.setState({
+            errorCodes: errors
+        });
+        return errors;
     };
 
     submitData = async () => {
         this.logData();
-        this.checkForErrors();
+        if (this.checkForErrors.length === 0) {
+        }
     };
 
     componentDidMount = () => {

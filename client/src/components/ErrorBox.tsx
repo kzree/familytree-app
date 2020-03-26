@@ -31,10 +31,12 @@ export default class ErrorBox extends PureComponent<ErrorBoxProps, ErrorBoxState
     };
 
     init = () => {
-        this.setState({
-            errorCodes: this.props.errors
-        });
-        this.buildMessage();
+        this.setState(
+            {
+                errorCodes: this.props.errors
+            },
+            () => this.buildMessage()
+        );
     };
 
     componentDidMount = () => {

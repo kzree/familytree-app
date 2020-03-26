@@ -6,6 +6,7 @@ import { getAll } from '../services/familyService';
 import { ButtonBigAlt } from '../components/Button';
 import { calculateAgeByPerson, calculateAgeByParams, getToday } from '../services/util';
 import ErrorBox from '../components/ErrorBox';
+import { Redirect } from 'react-router-dom';
 
 interface state {
     dead: boolean;
@@ -21,6 +22,7 @@ interface state {
     fatherAge: number;
     gender: string;
     errorCodes: number[];
+    redirect: boolean;
 }
 
 export default class PersonAdditionPage extends PureComponent<{}, state> {
@@ -52,7 +54,8 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
             motherAge: 0,
             fatherAge: 0,
             gender: 'male',
-            errorCodes: []
+            errorCodes: [],
+            redirect: false
         };
     }
 
@@ -263,6 +266,9 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                 mother = null;
             }
             addPerson(name, gender, bday, dead, dday, family, mother, father);
+            this.setState({
+                redirect: true
+            });
         }
     };
 
@@ -284,6 +290,9 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
             deathdayClass = 'addition-person-input-wrap';
         } else {
             deathdayClass = 'addition-person-input-wrap death-day';
+        }
+        if (this.state.redirect) {
+            return <Redirect to="/viewall" />;
         }
         return (
             <div className="addition-page-wrap">
@@ -444,7 +453,9 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
                         <div className="p-addition-btn">
                             <ButtonBigAlt text="Submit" handleClick={this.submitData} />
                         </div>
-                        <ErrorBox errors={this.state.errorCodes} />
+                        <div className="p-addition-error">
+                            <ErrorBox errors={this.state.errorCodes} />
+                        </div>
                     </div>
                 </div>
             </div>

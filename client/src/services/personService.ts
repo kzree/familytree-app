@@ -67,9 +67,7 @@ export function getSiblings(id: string): Promise<Array<PersonType>> {
     });
 }
 
-export function searchPeopleByQuery(
-    searchQuery: string
-): Promise<Array<PersonType>> {
+export function searchPeopleByQuery(searchQuery: string): Promise<Array<PersonType>> {
     return fetch(basePath + '/search/' + searchQuery, {
         headers: {
             'Content-Type': 'application/json'
@@ -79,5 +77,34 @@ export function searchPeopleByQuery(
             throw new Error(response.statusText);
         }
         return response.json();
+    });
+}
+
+export async function addPerson(
+    name: string,
+    gender: string,
+    bday: string,
+    dead: boolean,
+    dday: string,
+    family: string,
+    mother: string,
+    father: string
+) {
+    await fetch(basePath, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            gender: gender,
+            birthDate: bday,
+            dead: dead,
+            deathDate: dday,
+            parent1: mother,
+            parent2: father,
+            family: family
+        })
     });
 }

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { PersonType } from '../types/PersonType';
 import { FamilyType } from '../types/FamilyType';
-import { searchPeopleByQuery, getById } from '../services/personService';
+import { searchPeopleByQuery, getById, addPerson } from '../services/personService';
 import { getAll } from '../services/familyService';
 import { ButtonBigAlt } from '../components/Button';
 import { calculateAgeByPerson, calculateAgeByParams, getToday } from '../services/util';
@@ -175,7 +175,7 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
     };
 
     checkForErrors = () => {
-        let errors: number[] = [];
+        let errors = [];
         // Start error checking
         const name = this.nameRef.current.value.replace(/ +(?= )/g, '');
         if (name.length === 0 || name === ' ') {
@@ -229,12 +229,38 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
         this.setState({
             errorCodes: errors
         });
-        return errors;
     };
 
     submitData = async () => {
         this.logData();
-        if (this.checkForErrors.length === 0) {
+        this.checkForErrors();
+        if (this.state.errorCodes.length === 0) {
+            let name = this.nameRef.current.value;
+            let gender = this.state.gender;
+            let bday = this.birthDateRef.current.value.replace(/-/g, '/');
+            let dead;
+            let dday;
+            let family = this.state.familyId;
+            let mother;
+            let father;
+            if (this.state.dead) {
+                dead = true;
+                dday = this.deathDateRef.current.value.replace(/-/g, '/');
+            } else {
+                dead = false;
+                dday = null;
+            }
+            if (this.state.hasMother) {
+                mother = this.state.motherId;
+            } else {
+                mother = null;
+            }
+            if (this.state.hasFather) {
+                father = this.state.fatherId;
+            } else {
+                mother = null;
+            }
+            addPerson(name, gender, bday, dead, dday, family, mother, father);
         }
     };
 

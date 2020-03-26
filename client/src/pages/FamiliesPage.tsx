@@ -24,7 +24,6 @@ export default class FamiliesPage extends PureComponent<{}, FamiliesPageState> {
             this.setState({
                 items: data
             });
-            console.log(this.state.items);
         });
     };
 

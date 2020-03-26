@@ -37,7 +37,7 @@ export default class FamilyAdditionPage extends PureComponent<{}, state> {
 
     render() {
         if (this.state.redirect) {
-            return <Redirect to="/" />;
+            return <Redirect to="/viewall/families" />;
         }
         return (
             <div className="addition-page-wrap">

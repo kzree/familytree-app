@@ -179,4 +179,50 @@ public class PersonDataAccessService implements PersonDao {
 
         return personToSend;
     }
+
+    @Override
+    public Person findYoungestUncle() {
+        Person personToSend = null;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
+
+        for(Person person : DB) {
+            // Find if person has siblings
+            List<Person> siblings = selectSiblings(person.getId());
+            if(siblings.size() > 0) {
+                boolean isPersonUncle = false;
+                for(Person person1 : siblings) {
+                    List<Person> children = selectChildren(person1.getId());
+                    if(children.size() > 0) {
+                        isPersonUncle = true;
+                        break;
+
+                    }
+                }
+                if(isPersonUncle) {
+                    if(personToSend == null) {
+                        personToSend = person;
+                    } else {
+                        Date current = null;
+                        Date challenger = null;
+                        try {
+                            current = dateFormat.parse(personToSend.getBirthDate());
+                            challenger = dateFormat.parse(person.getBirthDate());
+
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        if(challenger != null && current != null) {
+                            if(challenger.compareTo(current) > 0) {
+                                personToSend = person;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return personToSend;
+    }
+
+
 }

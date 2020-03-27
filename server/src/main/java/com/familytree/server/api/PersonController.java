@@ -85,4 +85,10 @@ public class PersonController {
     public Person findOldestPerson() {
         return personService.findOldestPerson();
     }
+
+    // Returns the youngest aunt/uncle in the database
+    @GetMapping(path="/youngest/uncle")
+    public Person findYoungestUncle() {
+        return personService.findYoungestUncle();
+    }
 }

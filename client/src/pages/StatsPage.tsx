@@ -106,6 +106,7 @@ export default class StatsPage extends PureComponent<{}, StatsPageState> {
             <div className="people-wrap">
                 <div className="people-content-wrap">
                     <div className="stats-content">
+                        <h1>Statistics</h1>
                         <div className="stats-text">
                             Total amount of people: <Link to={'/viewall'}>{this.state.totalPeople}</Link>
                         </div>

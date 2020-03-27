@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { PersonType } from '../types/PersonType';
-import { getAll, getYoungestPerson, getOldestPerson } from '../services/personService';
+import { getAll, getYoungestPerson, getOldestPerson, getYoungestUncle } from '../services/personService';
 import { getAll as getAllFamilies } from '../services/familyService';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +9,7 @@ interface StatsPageState {
     totalFamilies: number;
     youngestPerson: PersonType;
     oldestPerson: PersonType;
+    youngestUncle: PersonType;
 }
 
 export default class StatsPage extends PureComponent<{}, StatsPageState> {
@@ -19,7 +20,8 @@ export default class StatsPage extends PureComponent<{}, StatsPageState> {
             totalPeople: 0,
             totalFamilies: 0,
             youngestPerson: null,
-            oldestPerson: null
+            oldestPerson: null,
+            youngestUncle: null
         };
     }
 
@@ -32,6 +34,7 @@ export default class StatsPage extends PureComponent<{}, StatsPageState> {
         this.getTotalFamiliesAmount();
         this.getTheYoungestPerson();
         this.getTheOldestPerson();
+        this.getTheYoungestUncle();
     };
 
     getTotalPeopleAmount = async () => {
@@ -66,6 +69,14 @@ export default class StatsPage extends PureComponent<{}, StatsPageState> {
         });
     };
 
+    getTheYoungestUncle = async () => {
+        await getYoungestUncle().then(data => {
+            this.setState({
+                youngestUncle: data
+            });
+        });
+    };
+
     renderYoungest = () => {
         if (this.state.youngestPerson != null) {
             return <Link to={`/person/${this.state.youngestPerson.id}`}>{this.state.youngestPerson.name}</Link>;
@@ -77,6 +88,14 @@ export default class StatsPage extends PureComponent<{}, StatsPageState> {
     renderOldest = () => {
         if (this.state.oldestPerson != null) {
             return <Link to={`/person/${this.state.oldestPerson.id}`}>{this.state.oldestPerson.name}</Link>;
+        } else {
+            return <>-</>;
+        }
+    };
+
+    renderYoungestUncle = () => {
+        if (this.state.youngestUncle != null) {
+            return <Link to={`/person/${this.state.youngestUncle.id}`}>{this.state.youngestUncle.name}</Link>;
         } else {
             return <>-</>;
         }
@@ -98,6 +117,9 @@ export default class StatsPage extends PureComponent<{}, StatsPageState> {
                         </div>
                         <div className="stats-text">
                             Oldest person: <this.renderOldest />
+                        </div>
+                        <div className="stats-text">
+                            Youngest aunt/uncle: <this.renderYoungestUncle />
                         </div>
                     </div>
                 </div>

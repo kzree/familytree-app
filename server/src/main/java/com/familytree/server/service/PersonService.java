@@ -71,4 +71,9 @@ public class PersonService {
     public Person findYoungestPerson() {
         return personDao.findYoungestPerson();
     }
+
+    // Gets the oldest person in the database
+    public Person findOldestPerson() {
+        return personDao.findOldestPerson();
+    }
 }

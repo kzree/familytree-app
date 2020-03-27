@@ -154,4 +154,29 @@ public class PersonDataAccessService implements PersonDao {
 
         return personToSend;
     }
+
+    @Override
+    public Person findOldestPerson() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
+        Person personToSend = DB.get(0);
+
+        for(Person person : DB) {
+            Date current = null;
+            Date challenger = null;
+            try {
+                current = dateFormat.parse(personToSend.getBirthDate());
+                challenger = dateFormat.parse(person.getBirthDate());
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if(challenger != null && current != null) {
+                if(challenger.compareTo(current) < 0) {
+                    personToSend = person;
+                }
+            }
+        }
+
+        return personToSend;
+    }
 }

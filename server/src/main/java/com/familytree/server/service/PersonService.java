@@ -66,4 +66,9 @@ public class PersonService {
     public List<Person> searchByQuery(String searchQuery) {
         return personDao.searchPeopleByName(searchQuery);
     }
+
+    // Gets the youngest person in the database
+    public Person findYoungestPerson() {
+        return personDao.findYoungestPerson();
+    }
 }

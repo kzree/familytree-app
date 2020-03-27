@@ -3,6 +3,9 @@ package com.familytree.server.dao;
 import com.familytree.server.model.Person;
 import org.springframework.stereotype.Repository;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -125,5 +128,30 @@ public class PersonDataAccessService implements PersonDao {
                 .filter(person -> person.getName().toLowerCase()
                 .contains(cleanedSearchQuery.toLowerCase()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Person findYoungestPerson() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
+        Person personToSend = DB.get(0);
+
+        for(Person person : DB) {
+            Date current = null;
+            Date challenger = null;
+            try {
+                current = dateFormat.parse(personToSend.getBirthDate());
+                challenger = dateFormat.parse(person.getBirthDate());
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if(challenger != null && current != null) {
+                if(challenger.compareTo(current) > 0) {
+                    personToSend = person;
+                }
+            }
+        }
+
+        return personToSend;
     }
 }

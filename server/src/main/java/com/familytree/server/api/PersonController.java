@@ -73,4 +73,10 @@ public class PersonController {
     public List<Person> getPeopleByQuery(@PathVariable("query") String searchQuery) {
         return personService.searchByQuery(searchQuery);
     }
+
+    // Returns the youngest person in the database
+    @GetMapping(path="/youngest")
+    public Person findYoungestPerson() {
+        return personService.findYoungestPerson();
+    }
 }

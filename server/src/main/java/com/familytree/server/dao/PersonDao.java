@@ -2,6 +2,7 @@ package com.familytree.server.dao;
 
 import com.familytree.server.model.Person;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -39,4 +40,7 @@ public interface PersonDao {
 
     // Selects all who fit the given name from the database
     List<Person> searchPeopleByName(String searchQuery);
+
+    // Selects the youngest person from the database
+    Person findYoungestPerson();
 }

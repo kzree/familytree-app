@@ -108,3 +108,29 @@ export async function addPerson(
         })
     });
 }
+
+export async function getYoungestPerson(): Promise<PersonType> {
+    return fetch(basePath + '/youngest', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(async response => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}
+
+export async function getOldestPerson(): Promise<PersonType> {
+    return fetch(basePath + '/oldest', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(async response => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}

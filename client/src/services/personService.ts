@@ -134,3 +134,16 @@ export async function getOldestPerson(): Promise<PersonType> {
         return response.json();
     });
 }
+
+export async function getYoungestUncle(): Promise<PersonType> {
+    return fetch(basePath + '/youngest/uncle', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(async response => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}

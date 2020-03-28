@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { ButtonSmallAlt } from '../components/Button';
 import IdFromUrl from '../types/urlParamTypes';
 import Alert from '../components/Alert';
+import { calculateAgeByPerson } from '../services/util';
 
 interface StateTypes {
     personId: string;
@@ -97,17 +98,8 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
     };
 
     calculateAge = () => {
-        let newAge = 0;
-        if (!this.state.person.dead) {
-            let birthday = +new Date(this.state.person.birthDate);
-            newAge = ~~((Date.now() - birthday) / 31557600000);
-        } else {
-            let birthday = +new Date(this.state.person.birthDate);
-            let deathday = +new Date(this.state.person.deathDate);
-            newAge = ~~((deathday - birthday) / 31557600000);
-        }
         this.setState({
-            age: newAge
+            age: calculateAgeByPerson(this.state.person)
         });
     };
 

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { PersonInterface } from '../types/PersonType';
+import { calculateAgeByPerson, calculateAgeByParams } from '../services/util';
 
 interface state {
     id: string;
@@ -18,17 +19,6 @@ export default class Person extends PureComponent<PersonInterface, state> {
         };
     }
 
-    calculateAge = () => {
-        if (!this.props.dead) {
-            let birthday = +new Date(this.props.birthDate);
-            return ~~((Date.now() - birthday) / 31557600000);
-        } else {
-            let birthday = +new Date(this.props.birthDate);
-            let deathday = +new Date(this.props.deathDate);
-            return ~~((deathday - birthday) / 31557600000);
-        }
-    };
-
     checkIfDead = () => {
         if (this.props.dead) {
             return '✝' + this.props.name;
@@ -40,7 +30,7 @@ export default class Person extends PureComponent<PersonInterface, state> {
     init = () => {
         this.setState({
             id: this.props.id,
-            age: this.calculateAge(),
+            age: calculateAgeByParams(this.props.birthDate, this.props.deathDate, this.props.dead),
             name: this.checkIfDead()
         });
     };
@@ -60,16 +50,10 @@ export default class Person extends PureComponent<PersonInterface, state> {
             <Link to={`/person/${this.props.id}`}>
                 <div className="person-wrap">
                     <div className="person-body">
-                        <div className="person-body-name">
-                            {this.state.name}
-                        </div>
-                        <div className="person-body-gender">
-                            {this.props.gender}
-                        </div>
+                        <div className="person-body-name">{this.state.name}</div>
+                        <div className="person-body-gender">{this.props.gender}</div>
                         <div className="person-body-age">{this.state.age}</div>
-                        <div className="person-body-birthday">
-                            {this.props.birthDate}
-                        </div>
+                        <div className="person-body-birthday">{this.props.birthDate}</div>
                     </div>
                 </div>
             </Link>

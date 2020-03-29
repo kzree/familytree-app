@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { PersonType } from '../types/PersonType';
-import { getById, getByFamilyId, getChildren, getSiblings } from '../services/personService';
-import { Link } from 'react-router-dom';
+import { getById, getByFamilyId, getChildren, getSiblings, deleteById } from '../services/personService';
+import { Link, Redirect } from 'react-router-dom';
 import { ButtonSmallAlt } from '../components/Button';
 import IdFromUrl from '../types/urlParamTypes';
 import Alert from '../components/Alert';
@@ -23,6 +23,7 @@ interface StateTypes {
     status: string;
     alert: boolean;
     confirm: boolean;
+    redirect: number;
     docRelativesAmount: number;
 }
 
@@ -54,6 +55,7 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
             status: 'alive',
             alert: false,
             confirm: false,
+            redirect: 0,
             docRelativesAmount: 0
         };
     }
@@ -190,18 +192,6 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
         }
     };
 
-    toggleAlert = () => {
-        this.setState({
-            alert: !this.state.alert
-        });
-    };
-
-    toggleConfirm = () => {
-        this.setState({
-            confirm: !this.state.confirm
-        });
-    };
-
     renderSiblings = () => {
         if (this.state.siblings.length > 0) {
             return (
@@ -218,6 +208,18 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
         } else {
             return <>None</>;
         }
+    };
+
+    toggleAlert = () => {
+        this.setState({
+            alert: !this.state.alert
+        });
+    };
+
+    toggleConfirm = () => {
+        this.setState({
+            confirm: !this.state.confirm
+        });
     };
 
     getChildNumber = () => {
@@ -242,12 +244,22 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
         }
     };
 
+    deleteThisPerson = () => {
+        deleteById(this.state.person.id);
+        this.setState({
+            redirect: 1
+        });
+    };
+
     render() {
         let profileClass = '';
         if (this.state.person.gender === 'male') {
             profileClass = 'person-page-info-pic-male';
         } else {
             profileClass = 'person-page-info-pic-female';
+        }
+        if (this.state.redirect) {
+            return <Redirect to="/viewall" />;
         }
         return (
             <div className="person-page-wrap">
@@ -260,6 +272,7 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
                 <Confirmation
                     text="Are you sure you want to delete this person"
                     handleClose={this.toggleConfirm}
+                    handleOk={this.deleteThisPerson}
                     open={this.state.confirm}
                 />
                 <div className="person-page-content">

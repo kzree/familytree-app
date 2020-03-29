@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RequestMapping("/api/v1/person")
@@ -88,7 +89,7 @@ public class PersonController {
 
     // Returns the youngest aunt/uncle in the database
     @GetMapping(path="/youngest/uncle")
-    public Person findYoungestUncle() {
+    public Optional<Person> findYoungestUncle() {
         return personService.findYoungestUncle();
     }
 }

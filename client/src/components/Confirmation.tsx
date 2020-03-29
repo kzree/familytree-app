@@ -21,7 +21,7 @@ const Confirmation = (props: ConfirmationProps) => {
                         <ButtonSmallAlt text="No" handleClick={props.handleClose} />
                     </div>
                     <div className="confirmation-box-btn-cont">
-                        <ButtonSmallAlt text="Yes" handleClick={props.handleClose} />
+                        <ButtonSmallAlt text="Yes" handleClick={props.handleOk} />
                     </div>
                 </div>
             </div>

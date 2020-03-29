@@ -48,5 +48,5 @@ public interface PersonDao {
     Person findOldestPerson();
 
     // Selects the youngest aunt/uncle
-    Person findYoungestUncle();
+    Optional<Person> findYoungestUncle();
 }

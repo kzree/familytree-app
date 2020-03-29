@@ -78,7 +78,7 @@ public class PersonService {
     }
 
     // Gets the youngest aunt/uncle
-    public Person findYoungestUncle() {
+    public Optional<Person> findYoungestUncle() {
         return personDao.findYoungestUncle();
     }
 }

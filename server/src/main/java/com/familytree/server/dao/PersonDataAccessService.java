@@ -181,7 +181,7 @@ public class PersonDataAccessService implements PersonDao {
     }
 
     @Override
-    public Person findYoungestUncle() {
+    public Optional<Person> findYoungestUncle() {
         Person personToSend = null;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
 
@@ -220,7 +220,7 @@ public class PersonDataAccessService implements PersonDao {
             }
         }
 
-        return personToSend;
+        return Optional.ofNullable(personToSend);
     }
 
 

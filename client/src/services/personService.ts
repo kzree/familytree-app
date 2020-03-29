@@ -154,10 +154,5 @@ export function deleteById(id: string) {
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(async response => {
-        if (!response.ok) {
-            throw new Error(response.statusText);
-        }
-        return response.json();
     });
 }

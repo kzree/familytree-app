@@ -195,7 +195,6 @@ public class PersonDataAccessService implements PersonDao {
                     if(children.size() > 0) {
                         isPersonUncle = true;
                         break;
-
                     }
                 }
                 if(isPersonUncle) {

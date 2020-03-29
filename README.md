@@ -35,3 +35,24 @@ Andmed otsustasin jätta seekord väga lihtsana: üks list inimeste jaoks ja ük
 Oma frontend rakenduses otsustasin kasutada Reacti koos typescriptiga. Olin eelnevalt tuttav Reactiga ja olin hiljuti alustanud typescripti õppimist ehk tundus nagu hea ülesanne, kus oma oskusi arendada.
 
 Suurem osa ajast kulus frontendi peale. Pole siiani veel CSSiga sinapeale saanud ning palju aega kulus just selle peale. Kui frontendis oli vaja serverist midagi kätte saada, tegin kiiresti serverisse vajalikud funktsioonid ja otspunktid.
+
+## Heroku
+
+Laadisin ka valminud lahenduse üles Heroku keskkonda. Olin sunnitud backendi ja frontendi eraldi serveritesse laadima, seega jõudlus pole kõige kiirem.
+
+### Frontend
+
+https://fierce-tor-36058.herokuapp.com/
+
+### Backend
+
+https://blooming-ocean-33098.herokuapp.com/
+
+## Kasutatud tehnoloogiad
+
+-   Visual Studi Code - Frontend töö
+-   Intellij IDEA - Backend töö
+-   Postman - Backend testimine
+-   Spring Boot 2.2.6 - Backend
+-   ReactJS, Typescript - Frontend
+-   Heroku - Hosting

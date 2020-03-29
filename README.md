@@ -54,5 +54,5 @@ https://blooming-ocean-33098.herokuapp.com/
 -   Intellij IDEA - Backend töö
 -   Postman - Backend testimine
 -   Spring Boot 2.2.6 - Backend
--   ReactJS, Typescript - Frontend
+-   ReactJS, Typescript, Sass - Frontend
 -   Heroku - Hosting

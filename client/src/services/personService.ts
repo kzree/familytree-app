@@ -147,3 +147,17 @@ export async function getYoungestUncle(): Promise<PersonType> {
         return response.json();
     });
 }
+
+export function deleteById(id: string) {
+    return fetch(basePath + '/' + id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(async response => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}

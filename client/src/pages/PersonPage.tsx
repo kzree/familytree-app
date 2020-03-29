@@ -22,6 +22,7 @@ interface StateTypes {
     childNumber: number;
     status: string;
     alert: boolean;
+    confirm: boolean;
     docRelativesAmount: number;
 }
 
@@ -52,6 +53,7 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
             childNumber: 1,
             status: 'alive',
             alert: false,
+            confirm: false,
             docRelativesAmount: 0
         };
     }
@@ -194,6 +196,12 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
         });
     };
 
+    toggleConfirm = () => {
+        this.setState({
+            confirm: !this.state.confirm
+        });
+    };
+
     renderSiblings = () => {
         if (this.state.siblings.length > 0) {
             return (
@@ -244,15 +252,15 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
         return (
             <div className="person-page-wrap">
                 {/*prettier-ignore*/}
-                {/* <Alert 
+                <Alert 
                     text="Feature not yet available" 
                     open={this.state.alert} 
                     handleClose={this.toggleAlert} 
-                /> */}
+                />
                 <Confirmation
                     text="Are you sure you want to delete this person"
-                    handleClose={this.toggleAlert}
-                    open={this.state.alert}
+                    handleClose={this.toggleConfirm}
+                    open={this.state.confirm}
                 />
                 <div className="person-page-content">
                     <div className="person-page-info">
@@ -300,7 +308,7 @@ export default class PersonPage extends PureComponent<IdFromUrl, StateTypes> {
                             <ButtonSmallAlt text="Edit" handleClick={this.toggleAlert} />
                         </div>
                         <div className="person-page-delete">
-                            <ButtonSmallAlt text="Delete" handleClick={this.toggleAlert} />
+                            <ButtonSmallAlt text="Delete" handleClick={this.toggleConfirm} />
                         </div>
                         <div className="person-page-low-panel">
                             <div className="person-page-extra-info-text">

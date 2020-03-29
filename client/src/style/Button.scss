@@ -93,4 +93,13 @@
             color: #000000;
         }
     }
+
+    &.negative-btn {
+        &:hover {
+            background-color: $app-color1;
+            .button-small-text {
+                color: #ffffff;
+            }
+        }
+    }
 }

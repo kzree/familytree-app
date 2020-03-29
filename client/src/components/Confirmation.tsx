@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { ButtonSmallAlt } from './Button';
+import { ButtonSmallAlt, ButtonSmallAltNegative } from './Button';
 
 interface ConfirmationProps {
     text: string;
@@ -18,7 +18,7 @@ const Confirmation = (props: ConfirmationProps) => {
                 <div className="alert-box-text">{props.text}</div>
                 <div className="confirmation-box-btn">
                     <div className="confirmation-box-btn-cont">
-                        <ButtonSmallAlt text="No" handleClick={props.handleClose} />
+                        <ButtonSmallAltNegative text="No" handleClick={props.handleClose} />
                     </div>
                     <div className="confirmation-box-btn-cont">
                         <ButtonSmallAlt text="Yes" handleClick={props.handleOk} />

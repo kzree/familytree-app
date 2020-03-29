@@ -54,7 +54,7 @@ export default class PeoplePage extends PureComponent<{}, PeoplePageState> {
                     <PersonHeader />
 
                     <div className="people-table-wrap">
-                        <PeopleTable visiblePeople={this.state.items} />
+                        <PeopleTable visiblePeople={this.state.items.sort((a, b) => a.name.localeCompare(b.name))} />
                     </div>
                 </div>
             </div>

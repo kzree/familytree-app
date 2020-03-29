@@ -42,14 +42,12 @@ export default class FamiliesPage extends PureComponent<{}, FamiliesPageState> {
                             </Link>
                         </div>
                         <div className="people-content-panel-head">
-                            <div className="people-content-panel-head-t">
-                                Families
-                            </div>
+                            <div className="people-content-panel-head-t">Families</div>
                         </div>
                     </div>
                     <FamilyHeader />
                     <div className="people-table-wrap">
-                        <FamilyTable visibleFamilies={this.state.items} />
+                        <FamilyTable visibleFamilies={this.state.items.sort((a, b) => a.name.localeCompare(b.name))} />
                     </div>
                 </div>
             </div>

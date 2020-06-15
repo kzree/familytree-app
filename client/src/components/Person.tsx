@@ -1,64 +1,31 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PersonInterface } from '../types/PersonType';
-import { calculateAgeByPerson, calculateAgeByParams } from '../services/util';
+import { calculateAgeByParams } from '../services/util';
 
-interface state {
-    id: string;
-    age: number;
-    name: string;
-}
 
-export default class Person extends PureComponent<PersonInterface, state> {
-    constructor(props: PersonInterface) {
-        super(props);
-        this.state = {
-            id: '',
-            age: 0,
-            name: ''
-        };
-    }
 
-    checkIfDead = () => {
-        if (this.props.dead) {
-            return '✝' + this.props.name;
-        } else {
-            return this.props.name;
-        }
-    };
+const Person = (props: PersonInterface) => {
+    const [id, setId] = useState('');
+    const [age, setAge] = useState(0);
 
-    init = () => {
-        this.setState({
-            id: this.props.id,
-            age: calculateAgeByParams(this.props.birthDate, this.props.deathDate, this.props.dead),
-            name: this.checkIfDead()
-        });
-    };
+    useEffect(() => {
+        setId(props.id);
+        setAge(calculateAgeByParams(props.birthDate, props.deathDate, props.dead))
+    }, [props.birthDate, props.dead, props.deathDate, props.id])
 
-    componentDidMount = () => {
-        this.init();
-    };
-
-    componentDidUpdate = () => {
-        if (this.state.id !== this.props.id) {
-            this.init();
-        }
-    };
-
-    render() {
-        return (
-            <Link to={`/person/${this.props.id}`}>
-                <div className="person-wrap">
-                    <div className="person-body">
-                        <div className="person-body-name">{this.state.name}</div>
-                        <div className="person-body-gender">{this.props.gender}</div>
-                        <div className="person-body-age">{this.state.age}</div>
-                        <div className="person-body-birthday">{this.props.birthDate}</div>
-                    </div>
+    return (
+        <Link to={`/person/${id}`}>
+            <div className="person-wrap">
+                <div className="person-body">
+                    <div className="person-body-name">{props.name}</div>
+                    <div className="person-body-gender">{props.gender}</div>
+                    <div className="person-body-age">{age}</div>
+                    <div className="person-body-birthday">{props.birthDate}</div>
                 </div>
-            </Link>
-        );
-    }
+            </div>
+        </Link>
+    );
 }
 
 export const PersonHeader = () => {
@@ -73,3 +40,5 @@ export const PersonHeader = () => {
         </div>
     );
 };
+
+export default Person;

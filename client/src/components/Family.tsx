@@ -3,13 +3,6 @@ import { FamilyInterface } from '../types/FamilyType';
 import { Link } from 'react-router-dom';
 import { getByFamilyId } from '../services/personService';
 
-interface state {
-    id: string;
-    name: string;
-    members: number;
-}
-
-
 export const Family = (props: FamilyInterface) => {
     const [id, setId] = useState('');
     const [name, setName] = useState('');

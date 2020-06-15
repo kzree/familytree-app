@@ -1,6 +1,6 @@
 import { FamilyType } from '../types/FamilyType';
 
-const basePath = 'http://localhost:8080/api/v1/family';
+const basePath = 'https://blooming-ocean-33098.herokuapp.com/api/v1/family';
 
 export function getAll(): Promise<Array<FamilyType>> {
     return fetch(basePath + '/all', {

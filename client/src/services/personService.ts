@@ -1,6 +1,6 @@
 import { PersonType } from '../types/PersonType';
 
-const basePath = 'http://localhost:8080/api/v1/person';
+const basePath = 'https://blooming-ocean-33098.herokuapp.com/api/v1/person';
 
 export function getAll(): Promise<Array<PersonType>> {
     return fetch(basePath + '/all', {

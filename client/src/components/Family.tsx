@@ -1,4 +1,4 @@
-import React, { PureComponent, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FamilyInterface } from '../types/FamilyType';
 import { Link } from 'react-router-dom';
 import { getByFamilyId } from '../services/personService';
@@ -9,54 +9,8 @@ interface state {
     members: number;
 }
 
-export default class Family extends PureComponent<FamilyInterface, state> {
-    constructor(props: FamilyInterface) {
-        super(props);
 
-        this.state = {
-            id: '',
-            name: '',
-            members: 0
-        };
-    }
-
-    init = async () => {
-        await getByFamilyId(this.props.id).then(data => {
-            this.setState({
-                id: this.props.id,
-                name: this.props.name,
-                members: data.length
-            });
-        });
-    };
-
-    componentDidMount = () => {
-        this.init();
-    };
-
-    componentDidUpdate = () => {
-        if (this.state.id !== this.props.id) {
-            this.init();
-        }
-    };
-
-    render() {
-        return (
-            <Link to={`/family/${this.state.id}`}>
-                <div className="family-wrap">
-                    <div className="family-body">
-                        <div className="family-name">{this.state.name}</div>
-                        <div className="family-members">
-                            {this.state.members}
-                        </div>
-                    </div>
-                </div>
-            </Link>
-        );
-    }
-}
-
-export const FamilyHook = (props: FamilyInterface) => {
+export const Family = (props: FamilyInterface) => {
     const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [members, setMembers] = useState(0);
@@ -98,3 +52,5 @@ export const FamilyHeader = () => {
         </div>
     );
 };
+
+export default Family;

@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { PersonInterface } from '../types/PersonType';
 import { calculateAgeByParams } from '../services/util';
 
-
-
 const Person = (props: PersonInterface) => {
     const [id, setId] = useState('');
     const [age, setAge] = useState(0);

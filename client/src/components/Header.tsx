@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const HeaderLogo = () => {
@@ -20,8 +20,8 @@ const HeaderDeco = () => {
     );
 };
 
-export default class Header extends Component {
-    render() {
+export const Header = () => {
+
         return (
             <div className="header-wrap">
                 <div className="header-content">
@@ -30,5 +30,6 @@ export default class Header extends Component {
                 <HeaderDeco />
             </div>
         );
-    }
 }
+
+export default Header;

@@ -282,7 +282,7 @@ export default class PersonAdditionPage extends PureComponent<{}, state> {
     };
 
     submitData = () => {
-        this.logData();
+        //this.logData();
         this.checkForErrors();
     };
 

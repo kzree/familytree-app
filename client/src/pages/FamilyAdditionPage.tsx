@@ -1,70 +1,47 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useState } from 'react';
 import { ButtonBigAlt } from '../components/Button';
 import { newFamily } from '../services/familyService';
 import { Redirect } from 'react-router-dom';
 import Alert from '../components/Alert';
 
-interface state {
-    redirect: boolean;
-    alert: boolean;
-}
+export const FamilyAdditionPage = () => {
+    const createdFamily: React.RefObject<HTMLInputElement> = React.createRef();
 
-export default class FamilyAdditionPage extends PureComponent<{}, state> {
-    newFamily: React.RefObject<HTMLInputElement>;
-    constructor(props: Readonly<{}>) {
-        super(props);
-        this.newFamily = React.createRef();
+    const [redirect, setRedirect] = useState<boolean>(false);
+    const [alert, setAlert] = useState<boolean>(false);
 
-        this.state = {
-            redirect: false,
-            alert: false
-        };
-    }
-
-    submitNewFamily = async () => {
-        // TODO: Put this into an utility file
-        // Remove unnecessary spaces
-        let newFamilyName = this.newFamily.current.value.replace(/ +(?= )/g, '');
+    const submitNewFamily = async () => {
+        let newFamilyName = createdFamily.current.value.replace(/ +(?= )/g, '');
         // Error checking
         if (newFamilyName !== '' && newFamilyName !== ' ') {
-            newFamily(this.newFamily.current.value).then(() =>
-                this.setState({
-                    alert: true
-                })
+            newFamily(createdFamily.current.value).then(() =>
+                setAlert(true)
             );
         }
     };
 
-    redirect = () => {
-        this.setState({
-            redirect: true
-        });
-    };
-
-    render() {
-        if (this.state.redirect) {
-            return <Redirect to="/viewall/families" />;
-        }
-        return (
-            <div className="addition-page-wrap">
-                <Alert text="Family added successfully" open={this.state.alert} handleClose={this.redirect} />
-                <div className="addition-content-wrap">
-                    <div className="addition-title">Add new family</div>
-                    <div className="f-addition-input-wrap">
-                        <input
-                            type="text"
-                            name="addition-input"
-                            id="addition-input"
-                            className="addition-input"
-                            placeholder="Enter family name..."
-                            ref={this.newFamily}
-                        />
-                    </div>
-                    <div className="f-addition-btn">
-                        <ButtonBigAlt text="Submit" handleClick={this.submitNewFamily} />
-                    </div>
+    return (
+        <div className="addition-page-wrap">
+            <Alert text="Family added successfully" open={alert} handleClose={() => setRedirect(true)} />
+            <div className="addition-content-wrap">
+                <div className="addition-title">Add new family</div>
+                <div className="f-addition-input-wrap">
+                    <input
+                        type="text"
+                        name="addition-input"
+                        id="addition-input"
+                        className="addition-input"
+                        placeholder="Enter family name..."
+                        ref={createdFamily}
+                    />
+                </div>
+                <div className="f-addition-btn">
+                    <ButtonBigAlt text="Submit" handleClick={submitNewFamily} />
                 </div>
             </div>
-        );
-    }
+            {redirect && <Redirect to="/viewall/families" />}
+        </div>
+    );
 }
+
+export default FamilyAdditionPage;

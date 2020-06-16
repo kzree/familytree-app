@@ -1,4 +1,4 @@
-import React, { PureComponent, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ButtonBig, { ButtonBigAlt } from '../components/Button';
 import '../style/Index.scss';

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PersonType } from '../types/PersonType';
 import { getAll } from '../services/personService';
 import { PersonHeader } from '../components/Person';
@@ -21,43 +21,32 @@ const PeoplePanel = () => {
     );
 };
 
-interface PeoplePageState {
-    items: PersonType[];
-}
+export const PeoplePage = () => {
+    const [items, setItems] = useState<PersonType[]>([]);
 
-export default class PeoplePage extends PureComponent<{}, PeoplePageState> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            items: []
-        };
-    }
-
-    fetchAll = async () => {
-        await getAll().then(data => {
-            this.setState({
-                items: data
-            });
+    const fetchAll = async () => {
+        window.scrollTo(0, 0);
+        await getAll().then((data) => {
+            setItems(data);
         });
     };
 
-    componentDidMount() {
-        window.scrollTo(0, 0);
-        this.fetchAll();
-    }
+    useEffect(() => {
+        if (items.length === 0) fetchAll();
+    }, [items]);
 
-    render() {
-        return (
-            <div className="people-wrap">
-                <div className="people-content-wrap">
-                    <PeoplePanel />
-                    <PersonHeader />
+    return (
+        <div className="people-wrap">
+            <div className="people-content-wrap">
+                <PeoplePanel />
+                <PersonHeader />
 
-                    <div className="people-table-wrap">
-                        <PeopleTable visiblePeople={this.state.items.sort((a, b) => a.name.localeCompare(b.name))} />
-                    </div>
+                <div className="people-table-wrap">
+                    <PeopleTable visiblePeople={items.sort((a, b) => a.name.localeCompare(b.name))} />
                 </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
+
+export default PeoplePage;

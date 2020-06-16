@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ButtonBig, { ButtonBigAlt } from '../components/Button';
 import '../style/Index.scss';
@@ -69,36 +69,16 @@ const HomeLower = () => {
     );
 };
 
-interface HomePageState {
-    modalOpen: boolean;
-}
+export const HomePage = () => {
+    const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-export default class HomePage extends PureComponent<{}, HomePageState> {
-    constructor(props: Readonly<{}>) {
-        super(props);
+    return (
+        <div className="home-wrap">
+            <Modal children={<AddSelection />} open={modalOpen} onClose={() => setModalOpen(false)} />
+            <Greeting handleClick={() => setModalOpen(true)} />
+            <HomeLower />
+        </div>
+    );
+};
 
-        this.state = {
-            modalOpen: false
-        };
-    }
-
-    componentDidMount = () => {
-        window.scrollTo(0, 0);
-    };
-
-    toggleModal = () => {
-        this.setState({
-            modalOpen: !this.state.modalOpen
-        });
-    };
-
-    render() {
-        return (
-            <div className="home-wrap">
-                <Modal children={<AddSelection />} open={this.state.modalOpen} onClose={this.toggleModal} />
-                <Greeting handleClick={() => this.toggleModal()} />
-                <HomeLower />
-            </div>
-        );
-    }
-}
+export default HomePage;

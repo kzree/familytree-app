@@ -11,11 +11,7 @@ export const calculateAgeByPerson = (person: PersonType) => {
     }
 };
 
-export const calculateAgeByParams = (
-    birthDate: string,
-    deathDate: string,
-    dead: boolean
-) => {
+export const calculateAgeByParams = (birthDate: string, deathDate: string, dead: boolean) => {
     if (!dead) {
         let birthday = +new Date(birthDate);
         return ~~((Date.now() - birthday) / 31557600000);
@@ -37,4 +33,20 @@ export const getToday = () => {
     if (((day as unknown) as number) < 10) day = '0' + day;
 
     return year + '-' + month + '-' + day;
+};
+
+export const createEmptyPerson = () => {
+    let person: PersonType = {
+        id: '',
+        name: '',
+        gender: 'male',
+        birthDate: '',
+        dead: false,
+        deathDate: '',
+        parent1: '',
+        parent2: '',
+        family: '',
+    };
+
+    return person;
 };

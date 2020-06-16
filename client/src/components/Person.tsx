@@ -5,10 +5,19 @@ import { calculateAgeByParams } from '../services/util';
 
 const Person = (props: PersonInterface) => {
     const [id, setId] = useState('');
+    const [name, setName] = useState('');
     const [age, setAge] = useState(0);
 
     useEffect(() => {
+        const checkIfDead = () => {
+            if (props.dead) {
+                return '✝' + props.name;
+            } else {
+                return props.name;
+            }
+        };
         setId(props.id);
+        setName(checkIfDead());
         setAge(calculateAgeByParams(props.birthDate, props.deathDate, props.dead))
     }, [props.birthDate, props.dead, props.deathDate, props.id])
 
@@ -16,7 +25,7 @@ const Person = (props: PersonInterface) => {
         <Link to={`/person/${id}`}>
             <div className="person-wrap">
                 <div className="person-body">
-                    <div className="person-body-name">{props.name}</div>
+                    <div className="person-body-name">{name}</div>
                     <div className="person-body-gender">{props.gender}</div>
                     <div className="person-body-age">{age}</div>
                     <div className="person-body-birthday">{props.birthDate}</div>

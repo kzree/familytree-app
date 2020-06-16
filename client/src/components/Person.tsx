@@ -18,8 +18,8 @@ const Person = (props: PersonInterface) => {
         };
         setId(props.id);
         setName(checkIfDead());
-        setAge(calculateAgeByParams(props.birthDate, props.deathDate, props.dead))
-    }, [props.birthDate, props.dead, props.deathDate, props.id])
+        setAge(calculateAgeByParams(props.birthDate, props.deathDate, props.dead));
+    }, [props.birthDate, props.dead, props.deathDate, props.id, props.name]);
 
     return (
         <Link to={`/person/${id}`}>
@@ -33,7 +33,7 @@ const Person = (props: PersonInterface) => {
             </div>
         </Link>
     );
-}
+};
 
 export const PersonHeader = () => {
     return (

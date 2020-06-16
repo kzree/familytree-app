@@ -1,4 +1,4 @@
-import React, { PureComponent, useState } from 'react';
+import React, { useState } from 'react';
 import { ButtonBigAlt } from '../components/Button';
 import { newFamily } from '../services/familyService';
 import { Redirect } from 'react-router-dom';
@@ -14,9 +14,7 @@ export const FamilyAdditionPage = () => {
         let newFamilyName = createdFamily.current.value.replace(/ +(?= )/g, '');
         // Error checking
         if (newFamilyName !== '' && newFamilyName !== ' ') {
-            newFamily(createdFamily.current.value).then(() =>
-                setAlert(true)
-            );
+            newFamily(createdFamily.current.value).then(() => setAlert(true));
         }
     };
 
@@ -42,6 +40,6 @@ export const FamilyAdditionPage = () => {
             {redirect && <Redirect to="/viewall/families" />}
         </div>
     );
-}
+};
 
 export default FamilyAdditionPage;

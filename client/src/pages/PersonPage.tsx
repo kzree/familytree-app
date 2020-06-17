@@ -9,6 +9,7 @@ import { createEmptyPerson, calculateAgeByParams } from '../services/util';
 import Confirmation from '../components/Confirmation';
 
 export const PersonPage = (props: IdFromUrl) => {
+    const [key, setKey] = useState<string>('');
     const [person, setPerson] = useState<PersonType>(createEmptyPerson());
     const [age, setAge] = useState<number>(null);
     const [parent1, setParent1] = useState<PersonType>(createEmptyPerson());
@@ -27,6 +28,7 @@ export const PersonPage = (props: IdFromUrl) => {
         getById(pId).then((data) => {
             setPerson(data);
         });
+        console.log('why');
     };
 
     const deleteThisPerson = () => {
@@ -61,7 +63,7 @@ export const PersonPage = (props: IdFromUrl) => {
         const getParents = async () => {
             // Check if parent exists
             if (person !== null) {
-                if (person.parent1 !== '') {
+                if (person.parent1 !== '' && person.parent1 !== null) {
                     await getById(person.parent1).then((data) => {
                         setParent1(data);
                         if (parent1.dead) {
@@ -70,6 +72,11 @@ export const PersonPage = (props: IdFromUrl) => {
                             setParent1(tempPerson);
                         }
                     });
+                } else {
+                    const tempPerson: PersonType = createEmptyPerson();
+                    tempPerson.name = '-';
+                    tempPerson.id = person.id;
+                    setParent1(tempPerson);
                 }
             } else {
                 const tempPerson: PersonType = createEmptyPerson();
@@ -79,7 +86,7 @@ export const PersonPage = (props: IdFromUrl) => {
             }
             // Check if parent exists
             if (person !== null) {
-                if (person.parent2 !== '') {
+                if (person.parent2 !== '' && person.parent2 !== null) {
                     await getById(person.parent2).then((data) => {
                         if (data.dead) {
                             if (parent2.dead) {
@@ -89,6 +96,11 @@ export const PersonPage = (props: IdFromUrl) => {
                             }
                         }
                     });
+                } else {
+                    const tempPerson: PersonType = createEmptyPerson();
+                    tempPerson.name = '-';
+                    tempPerson.id = person.id;
+                    setParent2(tempPerson);
                 }
             } else {
                 const tempPerson: PersonType = createEmptyPerson();
@@ -141,15 +153,17 @@ export const PersonPage = (props: IdFromUrl) => {
             }
         };
 
-        if (age === null) {
+        if (key !== person.id) {
             checkIfDead();
             getParents();
             getRelatives();
             getPersonChildren();
             getPersonSiblings();
             calculateAge();
+            setKey(person.id);
+            console.log('work');
         }
-    }, [age, parent1, parent2, person, person.id, props.match.params.id, siblings]);
+    }, [age, key, parent1, parent2, person, person.id, props.match.params.id, siblings]);
 
     const renderChildren = () => {
         if (children.length > 0) {

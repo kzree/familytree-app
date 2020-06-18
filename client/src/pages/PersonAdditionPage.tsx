@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { PersonType } from '../types/PersonType';
 import { FamilyType } from '../types/FamilyType';
 import { searchPeopleByQuery, getById, addPerson } from '../services/personService';
 import { getAll } from '../services/familyService';
@@ -28,16 +27,10 @@ export const PersonAdditionPage = () => {
     const [redirect, setRedirect] = useState<boolean>(false);
     const [alert, setAlert] = useState<boolean>(false);
 
-    const handleParentSearch = async (mother: boolean, allowed: boolean) => {
-        let searchQuery;
-        // Remove unnecessary spaces
-        if (mother) {
-            searchQuery = personFormOptions.motherQuery.replace(/ +(?= )/g, '');
-        } else {
-            searchQuery = personFormOptions.fatherQuery.replace(/ +(?= )/g, '');
-        }
+    const parentValueHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        let searchQuery = e.currentTarget.value;
         // Error checking
-        if (searchQuery && searchQuery !== ' ' && allowed) {
+        /*         if (searchQuery && searchQuery !== ' ') {
             // Removing error causing symbol
             await searchPeopleByQuery(searchQuery.replace('+', '')).then((data) => {
                 mother
@@ -48,7 +41,7 @@ export const PersonAdditionPage = () => {
             mother
                 ? setPersonFormOptions({ ...personFormOptions, possibleMothers: [] })
                 : setPersonFormOptions({ ...personFormOptions, possibleFathers: [] });
-        }
+        } */
     };
 
     const familyValueHandler = (e: React.FormEvent<HTMLSelectElement>) => {
@@ -74,6 +67,12 @@ export const PersonAdditionPage = () => {
         setPersonFormInput({ ...personFormInput, gender: e.currentTarget.value });
     };
 
+    const birthDateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPersonFormInput({ ...personFormInput, birthDate: e.currentTarget.value });
+    };
+
+    const motherQueryHandler = (query: string) => {};
+
     const getParentAge = async (id: string) => {
         await getById(id).then((data) => {
             data.gender === 'male'
@@ -82,12 +81,7 @@ export const PersonAdditionPage = () => {
         });
     };
 
-    const logData = () => {
-        console.log('input ', personFormInput);
-        console.log('options ', personFormOptions);
-    };
-
-    const checkForErrors = async () => {
+    const checkForErrors = () => {
         let errors = [];
         // Start error checking
         const name = personFormInput.name.replace(/ +(?= )/g, '');
@@ -176,7 +170,6 @@ export const PersonAdditionPage = () => {
 
     const submitData = () => {
         checkForErrors();
-        logData();
     };
 
     useEffect(() => {
@@ -193,9 +186,10 @@ export const PersonAdditionPage = () => {
     }, [families, personFormInput]);
 
     useEffect(() => {
-        console.log('In', personFormInput);
-        console.log('Out', personFormOptions);
+        console.log('input ', personFormInput);
+        console.log('options ', personFormOptions);
     }, [personFormInput, personFormOptions]);
+
     let deathdayClass;
     if (personFormInput.isDead) {
         deathdayClass = 'addition-person-input-wrap';
@@ -251,8 +245,8 @@ export const PersonAdditionPage = () => {
                             id="addition-person-input-2"
                             className="addition-person-input"
                             max={getToday()}
-                            defaultValue={getToday()}
                             value={personFormInput.birthDate}
+                            onChange={birthDateHandler}
                         />
                     </div>
                     <div className="addition-person-input-wrap person-input-check">
@@ -264,7 +258,7 @@ export const PersonAdditionPage = () => {
                             id="addition-person-checkbox"
                             className="addition-person-checkbox"
                             checked={personFormInput.isDead}
-                            onClick={() => setPersonFormInput({ ...personFormInput, isDead: !personFormInput.isDead })}
+                            onChange={() => setPersonFormInput({ ...personFormInput, isDead: !personFormInput.isDead })}
                         />
                     </div>
                     <div className={deathdayClass}>
@@ -304,8 +298,9 @@ export const PersonAdditionPage = () => {
                             id="addition-person-input-5"
                             className="addition-person-input"
                             placeholder="Search..."
+                            name="mother-search"
                             value={personFormOptions.motherQuery}
-                            onChange={() => handleParentSearch(true, personFormOptions.hasMother)}
+                            onChange={parentValueHandler}
                         />
                         <br />
                     </div>
@@ -340,8 +335,9 @@ export const PersonAdditionPage = () => {
                             id="addition-person-input-7"
                             className="addition-person-input"
                             placeholder="Search..."
+                            name="father-search"
                             value={personFormOptions.fatherQuery}
-                            onChange={() => handleParentSearch(false, personFormOptions.hasFather)}
+                            onChange={parentValueHandler}
                         />
                     </div>
                     <div className="addition-person-input-wrap">

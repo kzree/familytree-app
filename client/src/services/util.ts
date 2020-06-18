@@ -1,5 +1,7 @@
 import { PersonType } from '../types/PersonType';
 import PersonPageData from '../types/PersonPageData';
+import PersonAdditionForm from '../types/PersonAdditionForm';
+import PersonAdditonFormOptions from '../types/PersonAdditionFormOptions';
 
 export const calculateAgeByPerson = (person: PersonType) => {
     if (!person.dead) {
@@ -63,4 +65,35 @@ export const initPersonPageData = () => {
     };
 
     return personPageData;
+};
+
+export const initPersonFormInput = () => {
+    const personFormInput: PersonAdditionForm = {
+        name: '',
+        gender: '',
+        birthDate: '',
+        deathDate: '',
+        isDead: false,
+        familyId: '',
+        motherId: '',
+        fatherId: '',
+    };
+
+    return personFormInput;
+};
+
+export const initPersonFormOptions = () => {
+    const personFormOptions: PersonAdditonFormOptions = {
+        hasMother: false,
+        hasFather: false,
+        motherQuery: '',
+        fatherQuery: '',
+        motherAge: 0,
+        fatherAge: 0,
+        families: [],
+        possibleMothers: [],
+        possibleFathers: [],
+    };
+
+    return personFormOptions;
 };

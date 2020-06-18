@@ -74,7 +74,9 @@ export const HomePage = () => {
 
     return (
         <div className="home-wrap">
-            <Modal children={<AddSelection />} open={modalOpen} onClose={() => setModalOpen(false)} />
+            <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
+                <AddSelection />
+            </Modal>
             <Greeting handleClick={() => setModalOpen(true)} />
             <HomeLower />
         </div>

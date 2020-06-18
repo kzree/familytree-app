@@ -1,4 +1,5 @@
 import { PersonType } from '../types/PersonType';
+import PersonPageData from '../types/PersonPageData';
 
 export const calculateAgeByPerson = (person: PersonType) => {
     if (!person.dead) {
@@ -36,7 +37,7 @@ export const getToday = () => {
 };
 
 export const createEmptyPerson = () => {
-    let person: PersonType = {
+    const person: PersonType = {
         id: '',
         name: '',
         gender: 'male',
@@ -49,4 +50,17 @@ export const createEmptyPerson = () => {
     };
 
     return person;
+};
+
+export const initPersonPageData = () => {
+    const personPageData: PersonPageData = {
+        parent1: createEmptyPerson(),
+        parent2: createEmptyPerson(),
+        children: [],
+        siblings: [],
+        childNumber: 0,
+        relativesAmount: 0,
+    };
+
+    return personPageData;
 };

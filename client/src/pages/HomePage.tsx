@@ -27,7 +27,7 @@ const HomeLower = () => (
             <div className="home-lower-panel-t-wrap">
                 <div className="home-lower-panel-t-head">Statistics</div>
                 <div className="home-lower-panel-t-body">
-                    m ipsum dolor sit amet consectetur adipisicing elit.Doloremque neque beatae quos repellat atque
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloremque neque beatae quos repellat atque
                     iste, quibusdam reiciendis?Debitis, quis cupiditate rem nihil cum itaque, natus dolorem sed
                     obcaecati quam culpa, corporis temporibus laboriosam?
                 </div>
@@ -40,7 +40,7 @@ const HomeLower = () => (
             <div className="home-lower-panel-t-wrap">
                 <div className="home-lower-panel-t-head">Population</div>
                 <div className="home-lower-panel-t-body">
-                    m ipsum dolor sit amet consectetur adipisicing elit.Doloremque neque beatae quos repellat atque
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloremque neque beatae quos repellat atque
                     iste, quibusdam reiciendis?Debitis, quis cupiditate rem nihil cum itaque, natus dolorem sed
                     obcaecati quam culpa, corporis temporibus laboriosam?
                 </div>
@@ -53,7 +53,7 @@ const HomeLower = () => (
             <div className="home-lower-panel-t-wrap">
                 <div className="home-lower-panel-t-head">Find someone you know</div>
                 <div className="home-lower-panel-t-body">
-                    m ipsum dolor sit amet consectetur adipisicing elit.Doloremque neque beatae quos repellat atque
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloremque neque beatae quos repellat atque
                     iste, quibusdam reiciendis?Debitis, quis cupiditate rem nihil cum itaque, natus dolorem sed
                     obcaecati quam culpa, corporis temporibus laboriosam?
                 </div>

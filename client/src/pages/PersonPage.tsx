@@ -12,7 +12,7 @@ import ChildrenList from '../components/ChildrenList';
 import SiblingsList from '../components/SiblingsList';
 
 export const PersonPage = (props: IdFromUrl) => {
-    const [key, setKey] = useState<string>('');
+    const [key, setKey] = useState<string>(null);
     const [person, setPerson] = useState<PersonType>(createEmptyPerson());
     const [personPageData, setPersonPageData] = useState<PersonPageData>(initPersonPageData());
     const [alert, setAlert] = useState<boolean>(false);
@@ -117,8 +117,9 @@ export const PersonPage = (props: IdFromUrl) => {
 
     useEffect(() => {
         if (key !== person.id) {
-            setKey(person.id);
             getPersonInformation();
+            setKey(person.id);
+            console.log('ye');
         }
     }, [getPersonInformation, key, person.id]);
 
@@ -134,8 +135,6 @@ export const PersonPage = (props: IdFromUrl) => {
 
     return (
         <div className="person-page-wrap">
-            {/*prettier-ignore*/}
-            {personPageData.parent1.name}
             <Alert text="Feature not yet available" open={alert} handleClose={() => setAlert(!alert)} />
             <Confirmation
                 text="Are you sure you want to delete this person"

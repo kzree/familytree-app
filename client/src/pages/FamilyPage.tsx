@@ -5,15 +5,13 @@ import { PersonType } from '../types/PersonType';
 import IdFromUrl from '../types/urlParamTypes';
 import { getByFamilyId } from '../services/personService';
 
-const FamilyPanel = () => {
-    return (
-        <div className="people-content-panel">
-            <div className="people-content-panel-head">
-                <div className="people-content-panel-head-t">List of family</div>
-            </div>
+const FamilyPanel = () => (
+    <div className="people-content-panel">
+        <div className="people-content-panel-head">
+            <div className="people-content-panel-head-t">List of family</div>
         </div>
-    );
-};
+    </div>
+);
 
 export const FamilyPage = (props: IdFromUrl) => {
     const [items, setItems] = useState<PersonType[]>([]);

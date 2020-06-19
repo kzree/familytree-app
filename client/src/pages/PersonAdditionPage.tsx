@@ -21,7 +21,6 @@ export const PersonAdditionPage = () => {
     // Hooks
     const [personFormInput, setPersonFormInput] = useState<PersonAdditionForm>(initPersonFormInput);
     const [personFormOptions, setPersonFormOptions] = useState<PersonAdditonFormOptions>(initPersonFormOptions);
-
     const [families, setFamilies] = useState<FamilyType[]>([]);
     const [errorCodes, setErrorCodes] = useState<number[]>([]);
     const [redirect, setRedirect] = useState<boolean>(false);

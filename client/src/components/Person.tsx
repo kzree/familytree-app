@@ -35,17 +35,15 @@ const Person = (props: PersonInterface) => {
     );
 };
 
-export const PersonHeader = () => {
-    return (
-        <div className="person-head-wrap">
-            <div className="person-head-body">
-                <div className="person-body-name">Name</div>
-                <div className="person-body-gender">Gender</div>
-                <div className="person-body-age">Age</div>
-                <div className="person-body-birthday">Birthday</div>
-            </div>
+export const PersonHeader = () => (
+    <div className="person-head-wrap">
+        <div className="person-head-body">
+            <div className="person-body-name">Name</div>
+            <div className="person-body-gender">Gender</div>
+            <div className="person-body-age">Age</div>
+            <div className="person-body-birthday">Birthday</div>
         </div>
-    );
-};
+    </div>
+);
 
 export default Person;

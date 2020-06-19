@@ -32,8 +32,8 @@ export const PeoplePage = () => {
     };
 
     useEffect(() => {
-        if (items.length === 0) fetchAll();
-    }, [items]);
+        fetchAll();
+    }, []);
 
     return (
         <div className="people-wrap">

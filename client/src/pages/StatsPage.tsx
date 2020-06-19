@@ -13,10 +13,6 @@ const StatsPage = () => {
     const [oldestPerson, setOldestPerson] = useState<PersonType>(createEmptyPerson());
     const [youngestUncle, setYoungestUncle] = useState<PersonType>(createEmptyPerson());
 
-    /* componentDidMount = () => {
-        this.init();
-    }; */
-
     const getTotalPeopleAmount = async () => {
         await getAll().then((data) => {
             setTotalPeople(data.length);

@@ -24,9 +24,7 @@ export const PersonPage = (props: IdFromUrl) => {
         setRedirect(true);
     };
 
-    const calculatePersonAge = () => {
-        return calculateAgeByPerson(person);
-    };
+    const calculatePersonAge = () => calculateAgeByPerson(person);
 
     useEffect(() => {
         getById(props.match.params.id).then((data) => {

@@ -8,24 +8,22 @@ interface familyDropdownProps {
     handleChange: any;
 }
 
-export const FamilyDropdown = (props: familyDropdownProps) => {
-    return (
-        <>
-            <div className="addition-person-input-label">
-                <label htmlFor="families">Family</label>
-            </div>
-            <select id="families" onChange={props.handleChange}>
-                {props.families.map((item, i) => {
-                    return (
-                        <option value={item.id} key={i}>
-                            {item.name}
-                        </option>
-                    );
-                })}
-            </select>
-        </>
-    );
-};
+export const FamilyDropdown = (props: familyDropdownProps) => (
+    <>
+        <div className="addition-person-input-label">
+            <label htmlFor="families">Family</label>
+        </div>
+        <select id="families" onChange={props.handleChange}>
+            {props.families.map((item, i) => {
+                return (
+                    <option value={item.id} key={i}>
+                        {item.name}
+                    </option>
+                );
+            })}
+        </select>
+    </>
+);
 
 export const ParentDropdown = (props: { parents: PersonType[]; onChange: any; familiyId: string; gender: string }) => {
     if (props.parents.length > 0) {

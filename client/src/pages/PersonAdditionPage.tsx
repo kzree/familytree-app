@@ -11,7 +11,7 @@ import {
     cleanFormPerson,
 } from '../services/util';
 import ErrorBox from '../components/ErrorBox';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Alert from '../components/Alert';
 import { FamilyDropdown, ParentDropdown } from '../components/Dropdowns';
 import PersonAdditionForm from '../types/PersonAdditionForm';
@@ -23,8 +23,8 @@ export const PersonAdditionPage = () => {
     const [personFormOptions, setPersonFormOptions] = useState<PersonAdditonFormOptions>(initPersonFormOptions);
     const [families, setFamilies] = useState<FamilyType[]>([]);
     const [errorCodes, setErrorCodes] = useState<number[]>([]);
-    const [redirect, setRedirect] = useState<boolean>(false);
     const [alert, setAlert] = useState<boolean>(false);
+    const history = useHistory();
 
     const familyValueHandler = (e: React.FormEvent<HTMLSelectElement>) => {
         setPersonFormInput({ ...personFormInput, familyId: e.currentTarget.value });
@@ -130,8 +130,7 @@ export const PersonAdditionPage = () => {
 
     return (
         <div className="addition-page-wrap">
-            {redirect && <Redirect to="/viewall" />}
-            <Alert text="Person added successfully" open={alert} handleClose={() => setRedirect(true)} />
+            <Alert text="Person added successfully" open={alert} handleClose={() => history.push('/viewall')} />
             <div className="addition-content-wrap">
                 <div className="addition-title">Add new person</div>
                 <div className="addition-person-wrap">

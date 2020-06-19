@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { ButtonBigAlt } from '../components/Button';
 import { newFamily } from '../services/familyService';
-import { Redirect } from 'react-router-dom';
 import Alert from '../components/Alert';
+import { useHistory } from 'react-router';
 
 export const FamilyAdditionPage = () => {
     const createdFamily: React.RefObject<HTMLInputElement> = React.createRef();
-
-    const [redirect, setRedirect] = useState<boolean>(false);
     const [alert, setAlert] = useState<boolean>(false);
+    const history = useHistory();
 
     const submitNewFamily = async () => {
         let newFamilyName = createdFamily.current.value.replace(/ +(?= )/g, '');
@@ -20,7 +19,11 @@ export const FamilyAdditionPage = () => {
 
     return (
         <div className="addition-page-wrap">
-            <Alert text="Family added successfully" open={alert} handleClose={() => setRedirect(true)} />
+            <Alert
+                text="Family added successfully"
+                open={alert}
+                handleClose={() => history.push('/viewall/families')}
+            />
             <div className="addition-content-wrap">
                 <div className="addition-title">Add new family</div>
                 <div className="f-addition-input-wrap">
@@ -37,7 +40,6 @@ export const FamilyAdditionPage = () => {
                     <ButtonBigAlt text="Submit" handleClick={submitNewFamily} />
                 </div>
             </div>
-            {redirect && <Redirect to="/viewall/families" />}
         </div>
     );
 };

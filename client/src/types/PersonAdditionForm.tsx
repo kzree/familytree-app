@@ -2,8 +2,8 @@ interface PersonAdditionForm {
     name: string;
     gender: string;
     birthDate: string;
-    deathDate: string;
     isDead: boolean;
+    deathDate: string;
     familyId: string;
     motherId: string;
     fatherId: string;

@@ -73,3 +73,28 @@
     justify-content: center;
     margin-top: -80px;
 }
+
+.btn--submit {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 60px;
+    background-color: $app-color2;
+    color: $app-black;
+    border: none;
+    border-radius: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    transition: all 0.2s;
+
+    &:hover {
+        background-color: $app-black;
+        color: #ffffff;
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}

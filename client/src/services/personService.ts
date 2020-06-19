@@ -1,4 +1,5 @@
 import { PersonType } from '../types/PersonType';
+import PersonAdditionForm from '../types/PersonAdditionForm';
 
 const basePath = 'https://blooming-ocean-33098.herokuapp.com/api/v1/person';
 
@@ -80,16 +81,7 @@ export function searchPeopleByQuery(searchQuery: string): Promise<Array<PersonTy
     });
 }
 
-export async function addPerson(
-    name: string,
-    gender: string,
-    bday: string,
-    dead: boolean,
-    dday: string,
-    family: string,
-    mother: string,
-    father: string
-) {
+export async function addPerson(personToSend: PersonAdditionForm) {
     await fetch(basePath, {
         method: 'POST',
         headers: {
@@ -97,14 +89,14 @@ export async function addPerson(
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            name: name,
-            gender: gender,
-            birthDate: bday,
-            dead: dead,
-            deathDate: dday,
-            parent1: mother,
-            parent2: father,
-            family: family,
+            name: personToSend.name,
+            gender: personToSend.gender,
+            birthDate: personToSend.birthDate,
+            dead: personToSend.isDead,
+            deathDate: personToSend.deathDate,
+            parent1: personToSend.motherId,
+            parent2: personToSend.fatherId,
+            family: personToSend.familyId,
         }),
     });
 }

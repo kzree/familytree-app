@@ -103,7 +103,6 @@ export const PersonAdditionPage = () => {
         if (checkForErrors(personFormInput, personFormOptions).length === 0) {
             const personToSend: PersonAdditionForm = personFormInput;
             cleanFormPerson(personToSend);
-            console.log('personToSend', personToSend);
 
             addPerson(personToSend);
             setAlert(true);
@@ -122,11 +121,6 @@ export const PersonAdditionPage = () => {
             fetchFamilyList();
         }
     }, [families, personFormInput]);
-
-    useEffect(() => {
-        console.log('input ', personFormInput);
-        console.log('options ', personFormOptions);
-    }, [personFormInput, personFormOptions]);
 
     let deathdayClass;
     if (personFormInput.isDead) {
@@ -297,9 +291,6 @@ export const PersonAdditionPage = () => {
                                 gender="male"
                             />
                         </div>
-                        {/* <div className="p-addition-btn">
-                            <ButtonBigAlt text="Submit" handleClick={} />
-                        </div> */}
                         <div className="p-addition-btn">
                             <input type="submit" className="btn--submit"></input>
                         </div>

@@ -1,7 +1,20 @@
 import { PersonType } from '../types/PersonType';
 import PersonAdditionForm from '../types/PersonAdditionForm';
 
-const basePath = 'https://blooming-ocean-33098.herokuapp.com/api/v1/person';
+const basePath = '/api/v1/person';
+
+export function getPersonFromServer(path: string): Promise<PersonType> {
+    return fetch(path, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}
 
 export function getAll(): Promise<Array<PersonType>> {
     return fetch(basePath + '/all', {

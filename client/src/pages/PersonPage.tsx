@@ -8,6 +8,8 @@ import Alert from '../components/Alert';
 import { createEmptyPerson, calculateAgeByPerson, initPersonPageData } from '../services/util';
 import Confirmation from '../components/Confirmation';
 import PersonPageData from '../types/PersonPageData';
+import ChildrenList from '../components/ChildrenList';
+import SiblingsList from '../components/SiblingsList';
 
 export const PersonPage = (props: IdFromUrl) => {
     const [key, setKey] = useState<string>('');
@@ -44,9 +46,9 @@ export const PersonPage = (props: IdFromUrl) => {
     );
 
     const getPersonChildren = useCallback(
-        async (personPageDataTemp: PersonPageData) => {
+        (personPageDataTemp: PersonPageData) => {
             if (person.id) {
-                await getChildren(person.id).then((data) => {
+                getChildren(person.id).then((data) => {
                     personPageDataTemp.children = data;
                 });
             }
@@ -108,8 +110,8 @@ export const PersonPage = (props: IdFromUrl) => {
 
             getRelatives(personPageDataTemp);
             getPersonSiblings(personPageDataTemp);
-            getChildNumber(personPageDataTemp);
             getPersonChildren(personPageDataTemp);
+            getChildNumber(personPageDataTemp);
         }
 
         setPersonPageData(personPageDataTemp);
@@ -117,47 +119,10 @@ export const PersonPage = (props: IdFromUrl) => {
 
     useEffect(() => {
         if (key !== person.id) {
-            getPersonInformation();
             setKey(person.id);
-            console.log('hello');
+            getPersonInformation();
         }
     }, [getPersonInformation, key, person.id]);
-
-    const renderChildren = () => {
-        if (personPageData.children.length > 0) {
-            return (
-                <>
-                    {personPageData.children.map((item, i) => {
-                        return (
-                            <li key={i + 'child'}>
-                                <Link to={`/person/${item.id}`}>{item.name}</Link>
-                            </li>
-                        );
-                    })}
-                </>
-            );
-        } else {
-            return <>None</>;
-        }
-    };
-
-    const renderSiblings = () => {
-        if (personPageData.siblings.length > 0) {
-            return (
-                <>
-                    {personPageData.siblings.map((item, i) => {
-                        return (
-                            <li key={i + 'sib'}>
-                                <Link to={`/person/${item.id}`}>{item.name}</Link>
-                            </li>
-                        );
-                    })}
-                </>
-            );
-        } else {
-            return <>None</>;
-        }
-    };
 
     let profileClass = '';
     if (person.gender === 'male') {
@@ -168,7 +133,7 @@ export const PersonPage = (props: IdFromUrl) => {
     if (redirect) {
         return <Redirect to="/viewall" />;
     }
-    console.log(personPageData);
+
     return (
         <div className="person-page-wrap">
             {/*prettier-ignore*/}
@@ -228,13 +193,13 @@ export const PersonPage = (props: IdFromUrl) => {
                         <div className="person-page-extra-info-text">
                             Children: <br />
                             <div className="person-scroll-content">
-                                <ul>{renderChildren()}</ul>
+                                <ChildrenList personPageData={personPageData} />
                             </div>
                         </div>
                         <div className="person-page-extra-info-text">
                             Siblings: <br />
                             <div className="person-scroll-content">
-                                <ul>{renderSiblings()}</ul>
+                                <SiblingsList personPageData={personPageData} />
                             </div>
                         </div>
                     </div>

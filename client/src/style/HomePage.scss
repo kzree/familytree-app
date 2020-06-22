@@ -16,41 +16,54 @@ body {
     width: 100%;
     max-width: 1920px;
     height: 600px;
-}
 
-// Greeting image
-.greeting-img {
-    position: absolute;
-    width: 100%;
-    height: 600px;
-    /* Picture taken from https://www.pinterest.ie/pin/341992165438078832/ */
-    background-image: url(https://i.pinimg.com/originals/85/36/d4/8536d4935c6fc6fb4fa03d7c715c5e05.jpg);
-    background-size: cover;
-    background-position: 0 50%;
+    &__img {
+        position: absolute;
+        width: 100%;
+        height: 600px;
+        /* Picture taken from https://www.pinterest.ie/pin/341992165438078832/ */
+        background-image: url(https://i.pinimg.com/originals/85/36/d4/8536d4935c6fc6fb4fa03d7c715c5e05.jpg);
+        background-size: cover;
+        background-position: 0 50%;
+    }
+
+    &__container {
+        position: absolute;
+        left: 10%;
+        width: 400px;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75);
+
+        &__text {
+            width: 100%;
+            height: 450px;
+
+            &__head {
+                color: white;
+                font-size: 36px;
+                text-align: center;
+                padding: 12px;
+                padding-top: 24px;
+                padding-bottom: 32px;
+            }
+
+            &__body {
+                position: absolute;
+                width: 90%;
+                color: white;
+                font-size: 22px;
+                padding: 12px;
+                text-align: justify;
+                text-justify: inter-word;
+                left: 50%;
+                -ms-transform: translateX(-50%);
+                transform: translateX(-50%);
+            }
+        }
+    }
 }
 
 // Greeting text
-.home-greeting-text-container {
-    position: absolute;
-    left: 10%;
-    width: 400px;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
-}
-
-.home-greeting-text-container-t-wrap {
-    width: 100%;
-    height: 450px;
-}
-
-.home-greeting-text-container-t-head {
-    color: white;
-    font-size: 36px;
-    text-align: center;
-    padding: 12px;
-    padding-top: 24px;
-    padding-bottom: 32px;
-}
 
 .home-greeting-text-container-t-body {
     position: absolute;

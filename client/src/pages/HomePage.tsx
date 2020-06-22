@@ -7,12 +7,12 @@ import HomePagePanel from '../components/HomePagePanel';
 
 const Greeting = (props: { handleClick: VoidFunction }) => (
     <div className="home-greeting">
-        <div className="greeting-img"></div>
-        <div className="home-greeting-text-container">
-            <div className="home-greeting-text-container-t-wrap">
-                <div className="home-greeting-text-container-t-head">Document your history</div>
-                <div className="home-greeting-text-container-t-body">
-                    Join thousands other users in documenting your family history.It is easy and takes less than ten
+        <div className="home-greeting__img"></div>
+        <div className="home-greeting__container">
+            <div className="home-greeting__container__text">
+                <div className="home-greeting__container__text__head">Document your history</div>
+                <div className="home-greeting__container__text__body">
+                    Join thousands other users in documenting your family history. It is easy and takes only a couple of
                     minutes to get started!
                 </div>
             </div>

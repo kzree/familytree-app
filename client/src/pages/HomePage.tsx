@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import ButtonBig, { ButtonBigAlt } from '../components/Button';
+import ButtonBig from '../components/Button';
 import '../style/Index.scss';
 import Modal from '../components/Modal';
 import AddSelection from '../components/AddSelection';
+import HomePagePanel from '../components/HomePagePanel';
 
 const Greeting = (props: { handleClick: VoidFunction }) => (
     <div className="home-greeting-wrap">
@@ -22,46 +22,10 @@ const Greeting = (props: { handleClick: VoidFunction }) => (
 );
 
 const HomeLower = () => (
-    <div className="home-lower-wrap">
-        <div className="home-lower-panel-a">
-            <div className="home-lower-panel-t-wrap">
-                <div className="home-lower-panel-t-head">Statistics</div>
-                <div className="home-lower-panel-t-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloremque neque beatae quos repellat atque
-                    iste, quibusdam reiciendis?Debitis, quis cupiditate rem nihil cum itaque, natus dolorem sed
-                    obcaecati quam culpa, corporis temporibus laboriosam?
-                </div>
-            </div>
-            <Link to={'/statistics'}>
-                <ButtonBig text="View statistics" />
-            </Link>
-        </div>
-        <div className="home-lower-panel-b">
-            <div className="home-lower-panel-t-wrap">
-                <div className="home-lower-panel-t-head">Population</div>
-                <div className="home-lower-panel-t-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloremque neque beatae quos repellat atque
-                    iste, quibusdam reiciendis?Debitis, quis cupiditate rem nihil cum itaque, natus dolorem sed
-                    obcaecati quam culpa, corporis temporibus laboriosam?
-                </div>
-            </div>
-            <Link to={'/viewall'}>
-                <ButtonBigAlt text="View list of all" />
-            </Link>
-        </div>
-        <div className="home-lower-panel-a">
-            <div className="home-lower-panel-t-wrap">
-                <div className="home-lower-panel-t-head">Find someone you know</div>
-                <div className="home-lower-panel-t-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloremque neque beatae quos repellat atque
-                    iste, quibusdam reiciendis?Debitis, quis cupiditate rem nihil cum itaque, natus dolorem sed
-                    obcaecati quam culpa, corporis temporibus laboriosam?
-                </div>
-            </div>
-            <Link to={'/search'}>
-                <ButtonBig text="Go to search" />
-            </Link>
-        </div>
+    <div className="home--lower-panels">
+        <HomePagePanel title="Population" path="/viewall" buttonText="View statistics" theme={1} />
+        <HomePagePanel title="Statistics" path="/statistics" buttonText="View list of all" theme={0} />
+        <HomePagePanel title="Population" path="/viewall" buttonText="View statistics" theme={1} />
     </div>
 );
 

@@ -6,9 +6,9 @@ import IdFromUrl from '../types/urlParamTypes';
 import { getByFamilyId } from '../services/personService';
 
 const FamilyPanel = () => (
-    <div className="people-content-panel">
-        <div className="people-content-panel-head">
-            <div className="people-content-panel-head-t">List of family</div>
+    <div className="list-panel">
+        <div className="list-panel__head">
+            <div className="list-panel__head__text">List of family</div>
         </div>
     </div>
 );
@@ -30,12 +30,12 @@ export const FamilyPage = (props: IdFromUrl) => {
     }, [familyid, props.match.params.id]);
 
     return (
-        <div className="people-wrap">
-            <div className="people-content-wrap">
+        <div className="list-page">
+            <div className="list-page__content">
                 <FamilyPanel />
                 <PersonHeader />
 
-                <div className="people-table-wrap">
+                <div className="list-page__content__table">
                     <PeopleTable visiblePeople={items} />
                 </div>
             </div>

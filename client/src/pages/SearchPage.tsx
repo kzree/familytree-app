@@ -25,27 +25,20 @@ export const SearchPage = () => {
 
     return (
         <div>
-            <div className="people-wrap">
-                <div className="people-content-wrap">
-                    <div className="people-search-panel">
-                        <div className="people-search-panel-input-wrap">
-                            <div className="people-search-body">
-                                <input
-                                    type="text"
-                                    name="people-search-input"
-                                    id="people-search-input"
-                                    className="people-search-input"
-                                    placeholder="Search..."
-                                    ref={searchRef}
-                                />
-                                <div className="people-search-btn" onClick={() => searchDatabase()}>
+            <div className="list-page">
+                <div className="list-page__content">
+                    <div className="search-panel">
+                        <div className="search-panel__input">
+                            <div className="search-panel__input__body">
+                                <input type="text" placeholder="Search..." ref={searchRef} />
+                                <div className="search-panel__input__btn" onClick={() => searchDatabase()}>
                                     <IoMdSearch />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <PersonHeader />
-                    <div className="people-table-wrap">
+                    <div className="list-page__table">
                         <PeopleTable visiblePeople={items} />
                     </div>
                 </div>

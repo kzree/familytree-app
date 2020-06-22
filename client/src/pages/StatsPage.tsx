@@ -59,23 +59,23 @@ const StatsPage = () => {
     }, [loaded]);
 
     return (
-        <div className="people-wrap">
-            <div className="people-content-wrap">
-                <div className="stats-content">
+        <div className="list-page">
+            <div className="list-page__content">
+                <div className="stats">
                     <h1>Statistics</h1>
-                    <div className="stats-text">
+                    <div className="stats__text">
                         Total amount of people: <Link to={'/viewall'}>{totalPeople}</Link>
                     </div>
-                    <div className="stats-text">
+                    <div className="stats__text">
                         Total amount of families: <Link to={'/viewall/families'}>{totalFamilies}</Link>
                     </div>
-                    <div className="stats-text">
+                    <div className="stats__text">
                         Youngest person: <Link to={`/person/${youngestPerson.id}`}>{youngestPerson.name}</Link>
                     </div>
-                    <div className="stats-text">
+                    <div className="stats__text">
                         Oldest person: <Link to={`/person/${oldestPerson.id}`}>{oldestPerson.name}</Link>
                     </div>
-                    <div className="stats-text">
+                    <div className="stats__text">
                         Youngest aunt/uncle: <Link to={`/person/${youngestUncle.id}`}>{youngestUncle.name}</Link>
                     </div>
                 </div>

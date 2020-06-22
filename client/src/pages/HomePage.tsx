@@ -25,7 +25,7 @@ const HomeLower = () => (
     <div className="lower-panels">
         <HomePagePanel title="Population" path="/viewall" buttonText="View statistics" theme={1} />
         <HomePagePanel title="Statistics" path="/statistics" buttonText="View list of all" theme={0} />
-        <HomePagePanel title="Population" path="/viewall" buttonText="View statistics" theme={1} />
+        <HomePagePanel title="Search relatives" path="/search" buttonText="Search" theme={1} />
     </div>
 );
 

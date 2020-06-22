@@ -119,22 +119,21 @@ export const PersonPage = (props: IdFromUrl) => {
         if (key !== person.id) {
             getPersonInformation();
             setKey(person.id);
-            console.log('ye');
         }
     }, [getPersonInformation, key, person.id]);
 
     let profileClass = '';
     if (person.gender === 'male') {
-        profileClass = 'person-page-info-pic-male';
+        profileClass = 'person-info__img__content person-info__img__content--male';
     } else {
-        profileClass = 'person-page-info-pic-female';
+        profileClass = 'person-info__img__content person-info__img__content--female';
     }
     if (redirect) {
         return <Redirect to="/viewall" />;
     }
 
     return (
-        <div className="person-page-wrap">
+        <div className="person-page">
             <Alert text="Feature not yet available" open={alert} handleClose={() => setAlert(!alert)} />
             <Confirmation
                 text="Are you sure you want to delete this person"
@@ -142,30 +141,30 @@ export const PersonPage = (props: IdFromUrl) => {
                 handleOk={deleteThisPerson}
                 open={confirm}
             />
-            <div className="person-page-content">
-                <div className="person-page-info">
-                    <div className="person-page-info-pic-wrap">
+            <div className="person-page__content">
+                <div className="person-info">
+                    <div className="person-info__img">
                         <div className={profileClass}></div>
                     </div>
-                    <div className="person-page-info-content">
-                        <div className="person-page-info-content-text">
+                    <div className="person-info__content">
+                        <div className="person-info__content__text">
                             {person.dead ? `✝ ${person.name}` : person.name}
                         </div>
-                        <div className="person-page-info-content-text">Age: {calculatePersonAge()}</div>
+                        <div className="person-info__content__text">Age: {calculatePersonAge()}</div>
                     </div>
                 </div>
-                <div className="person-page-extra">
+                <div className="person-extra">
                     <h1>Information</h1>
-                    <div className="person-page-extra-info">
-                        <div className="person-page-extra-info-text">
+                    <div className="person-extra__info">
+                        <div className="person-extra__info__text">
                             Name: {person.dead ? `✝ ${person.name}` : person.name}
                         </div>
-                        <div className="person-page-extra-info-text">Age: {calculatePersonAge()}</div>
-                        <div className="person-page-extra-info-text">Birthday: {person.birthDate}</div>
-                        <div className="person-page-extra-info-text">
+                        <div className="person-extra__info__text">Age: {calculatePersonAge()}</div>
+                        <div className="person-extra__info__text">Birthday: {person.birthDate}</div>
+                        <div className="person-extra__info__text">
                             Status: {person.dead ? `Deceased (${person.deathDate})` : 'Alive'}
                         </div>
-                        <div className="person-page-extra-info-text">
+                        <div className="person-extra__info__text">
                             Mother:{' '}
                             <Link to={`/person/${personPageData.parent1.id}`}>
                                 {personPageData.parent1.dead
@@ -173,7 +172,7 @@ export const PersonPage = (props: IdFromUrl) => {
                                     : personPageData.parent1.name}
                             </Link>
                         </div>
-                        <div className="person-page-extra-info-text">
+                        <div className="person-extra__info__text">
                             Father:{' '}
                             <Link to={`/person/${personPageData.parent2.id}`}>
                                 {personPageData.parent1.dead
@@ -181,33 +180,31 @@ export const PersonPage = (props: IdFromUrl) => {
                                     : personPageData.parent2.name}
                             </Link>
                         </div>
-                        <div className="person-page-extra-info-text">
-                            # child of family: {personPageData.childNumber}
-                        </div>
-                        <div className="person-page-extra-info-text">
+                        <div className="person-extra__info__text"># child of family: {personPageData.childNumber}</div>
+                        <div className="person-extra__info__text">
                             Number of documented relatives: {personPageData.relativesAmount}
                         </div>
-                        <div className="person-page-extra-info-text">
+                        <div className="person-extra__info__text">
                             Children: <br />
-                            <div className="person-scroll-content">
+                            <div className="person-extra__info__list">
                                 <ChildrenList personPageData={personPageData} />
                             </div>
                         </div>
-                        <div className="person-page-extra-info-text">
+                        <div className="person-extra__info__text">
                             Siblings: <br />
-                            <div className="person-scroll-content">
+                            <div className="person-extra__info__list">
                                 <SiblingsList personPageData={personPageData} />
                             </div>
                         </div>
                     </div>
-                    <div className="person-page-edit">
+                    <div className="person-page__btn person-page__btn--edit">
                         <ButtonSmallAlt text="Edit" handleClick={() => setAlert(!alert)} />
                     </div>
-                    <div className="person-page-delete">
+                    <div className="person-page__btn person-page__btn--del">
                         <ButtonSmallAlt text="Delete" handleClick={() => setConfirm(!confirm)} />
                     </div>
-                    <div className="person-page-low-panel">
-                        <div className="person-page-extra-info-text">
+                    <div className="person-extra__footer">
+                        <div className="person-extra__info__text">
                             <Link to={`/family/${person.family}`}>View all relatives</Link>{' '}
                         </div>
                     </div>

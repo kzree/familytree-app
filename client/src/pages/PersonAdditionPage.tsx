@@ -126,22 +126,22 @@ export const PersonAdditionPage = () => {
 
     let deathdayClass;
     if (personFormInput.isDead) {
-        deathdayClass = 'addition-person-input-wrap';
+        deathdayClass = 'person-form__input';
     } else {
-        deathdayClass = 'addition-person-input-wrap not-dead ';
+        deathdayClass = 'person-form__input person-form__input--not-dead ';
     }
 
     return (
-        <div className="addition-page-wrap">
+        <div className="addition-page">
             <Alert text="Person added successfully" open={alert} handleClose={() => history.push('/viewall')} />
-            <div className="addition-content-wrap">
+            <div className="addition-page__content">
                 <h2>Add new person</h2>
                 <form onSubmit={postData} className="person-form">
-                    <div className="addition-person-input-wrap">
+                    <div className="person-form__input">
                         <label htmlFor="name-input">Name</label>
                         <input id="name-input" value={personFormInput.name} onChange={nameValueHandler} />
                     </div>
-                    <div className="addition-person-input-wrap person-input-radio">
+                    <div className="person-form__input person-form__input--radio">
                         <input
                             type="radio"
                             id="male"
@@ -154,7 +154,7 @@ export const PersonAdditionPage = () => {
                         <input type="radio" id="female" name="gender" value="female" onChange={genderValueHandler} />
                         <label htmlFor="female">Female</label>
                     </div>
-                    <div className="addition-person-input-wrap">
+                    <div className="person-form__input">
                         <label htmlFor="date-input">Birthday</label>
                         <input
                             type="date"
@@ -164,12 +164,11 @@ export const PersonAdditionPage = () => {
                             onChange={birthDateHandler}
                         />
                     </div>
-                    <div className="addition-person-input-wrap person-input-check">
+                    <div className="person-form__input person-form__input--check">
                         <label htmlFor="isdead">Dead</label>
                         <input
                             type="checkbox"
                             id="isdead"
-                            className="addition-person-checkbox"
                             checked={personFormInput.isDead}
                             onChange={() => setPersonFormInput({ ...personFormInput, isDead: !personFormInput.isDead })}
                         />
@@ -184,15 +183,14 @@ export const PersonAdditionPage = () => {
                             onChange={deathDayValueHandler}
                         />
                     </div>
-                    <div className="addition-person-input-wrap">
+                    <div className="person-form__input">
                         <FamilyDropdown families={families} handleChange={familyValueHandler} />
                     </div>
-                    <div className="addition-person-input-wrap person-input-check">
+                    <div className="person-form__input person-form__input--check">
                         <label htmlFor="hasmother-input">Mother known</label>
                         <input
                             type="checkbox"
                             id="hasmother-input"
-                            className="addition-person-checkbox"
                             checked={personFormOptions.hasMother}
                             onClick={() =>
                                 setPersonFormOptions({
@@ -202,7 +200,7 @@ export const PersonAdditionPage = () => {
                             }
                         />
                     </div>
-                    <div className="addition-person-input-wrap extra-pad">
+                    <div className="person-form__input extra-pad">
                         <label htmlFor="mother-search">Mother</label>
                         <input
                             id="mother-search"
@@ -214,7 +212,7 @@ export const PersonAdditionPage = () => {
                             <IoMdSearch />
                         </div>
                     </div>
-                    <div className="addition-person-input-wrap">
+                    <div className="person-form__input">
                         <ParentDropdown
                             familiyId={personFormInput.familyId}
                             parents={personFormOptions.possibleMothers}
@@ -222,11 +220,10 @@ export const PersonAdditionPage = () => {
                             gender="female"
                         />
                     </div>
-                    <div className="addition-person-input-wrap person-input-check">
+                    <div className="person-form__input person-form__input--check">
                         <label htmlFor="hasfather-input">Father known</label>
                         <input
                             type="checkbox"
-                            name="addition-person-checkbox"
                             id="hasfather-input"
                             checked={personFormOptions.hasFather}
                             onClick={() =>
@@ -237,7 +234,7 @@ export const PersonAdditionPage = () => {
                             }
                         />
                     </div>
-                    <div className="addition-person-input-wrap  extra-pad">
+                    <div className="person-form__input extra-pad">
                         <label htmlFor="father-search">Father</label>
                         <input
                             id="father-search"
@@ -250,7 +247,7 @@ export const PersonAdditionPage = () => {
                             <IoMdSearch />
                         </div>
                     </div>
-                    <div className="addition-person-input-wrap">
+                    <div className="person-form__input">
                         <ParentDropdown
                             familiyId={personFormInput.familyId}
                             parents={personFormOptions.possibleFathers}

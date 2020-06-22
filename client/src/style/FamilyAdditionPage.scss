@@ -5,51 +5,59 @@
     justify-content: center;
 }
 
-.addition-content-wrap {
-    position: relative;
-    width: 80%;
-    background-color: #ffffff;
-    height: 800px;
-    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
-}
-
-.addition-title {
-    position: absolute;
+.addition-page {
     width: 100%;
-    font-size: 48px;
-    text-align: center;
-}
-
-.f-addition-input-wrap {
-    position: absolute;
+    height: 90vh;
     display: flex;
-    top: 200px;
-    width: 100%;
-    height: 70px;
-    padding-bottom: 48px;
     justify-content: center;
 
-    input {
-        width: 600px;
-        height: 50px;
-        font-size: 40px;
-        border-radius: 50px;
-        border: 5px solid $app-color1;
-        transition: all 0.2s;
-        &:focus {
-            outline: none;
-            border: 5px solid $app-color2;
+    &__content {
+        position: relative;
+        width: 80%;
+        background-color: #ffffff;
+        height: 800px;
+        box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.family-form {
+    position: absolute;
+    top: 36%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 200px;
+
+    &__input {
+        display: flex;
+        width: 100%;
+        height: 60px;
+        margin-top: 10px;
+        margin-bottom: 30px;
+        justify-content: center;
+
+        input[type='text'] {
+            width: 80%;
+            height: 90%;
+            border-radius: 6px;
+            border: 3px solid $app-black;
+            transition: all 0.4s;
+            padding-left: 12px;
+            padding-right: 12px;
+            font-size: 20px;
+
+            &:hover {
+                width: 100%;
+            }
+
+            &:focus {
+                outline: none;
+                width: 100%;
+            }
         }
     }
 
-    input[type='text'] {
-        padding-left: 12px;
-        padding-right: 12px;
+    &__submit {
+        margin-top: 100px;
     }
-}
-
-.f-addition-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
 }

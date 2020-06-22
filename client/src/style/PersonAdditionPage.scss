@@ -1,10 +1,19 @@
 .addition-person-wrap {
     position: absolute;
     display: block;
-    top: 100px;
+    top: 120px;
     width: 100%;
     height: 670px;
     overflow-y: auto;
+}
+
+.addition-content-wrap {
+    h2 {
+        position: absolute;
+        width: 100%;
+        font-size: 42px;
+        text-align: center;
+    }
 }
 
 .addition-person-input-wrap {
@@ -16,6 +25,7 @@
         position: relative;
         padding-right: 12px;
         width: 80px;
+        text-align: left;
         label {
             position: absolute;
             top: 50%;
@@ -26,14 +36,14 @@
         width: 200px;
         height: 24px;
         font-size: 20px;
-        border-radius: 50px;
-        border: 5px solid $app-color1;
+        border-radius: 6px;
+        border: 3px solid $app-black;
         transition: all 0.2s;
         padding-left: 12px;
         padding-right: 12px;
         &:focus {
             outline: none;
-            border: 5px solid $app-color2;
+            border: 3px solid $app-color2;
         }
     }
     select {
@@ -43,7 +53,7 @@
         padding-left: 12px;
         padding-right: 12px;
     }
-    &.death-day {
+    &.not-dead {
         display: none;
     }
     &.person-input-radio {
@@ -63,18 +73,38 @@
     padding-right: 12px;
 }
 
-.p-addition-btn {
+.submit-wrap {
     margin-top: 100px;
 }
 
-.p-addition-error {
+.error-wrap {
     display: flex;
     width: 100%;
     justify-content: center;
     margin-top: -80px;
 }
 
-.btn--submit {
+.parent-search-btn {
+    svg {
+        width: 32px;
+        height: 32px;
+        fill: $app-black;
+        transition: all 0.2s;
+    }
+
+    &:hover {
+        svg {
+            opacity: 0.6;
+            cursor: pointer;
+        }
+    }
+}
+
+.extra-pad {
+    padding-left: 32px;
+}
+
+.submitbtn {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

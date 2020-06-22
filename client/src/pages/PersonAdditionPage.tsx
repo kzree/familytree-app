@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FormEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FamilyType } from '../types/FamilyType';
 import { searchPeopleByQuery, getById, addPerson } from '../services/personService';
 import { getAll } from '../services/familyService';
@@ -16,6 +16,7 @@ import Alert from '../components/Alert';
 import { FamilyDropdown, ParentDropdown } from '../components/Dropdowns';
 import PersonAdditionForm from '../types/PersonAdditionForm';
 import PersonAdditonFormOptions from '../types/PersonAdditionFormOptions';
+import { IoMdSearch } from 'react-icons/io';
 
 export const PersonAdditionPage = () => {
     // Hooks
@@ -62,28 +63,30 @@ export const PersonAdditionPage = () => {
     };
 
     const motherQueryHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (personFormOptions.hasMother) parentValueHandler('mother', e.currentTarget.value);
+        setPersonFormOptions({ ...personFormOptions, motherQuery: e.currentTarget.value });
     };
 
     const fatherQueryHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (personFormOptions.hasFather) parentValueHandler('father', e.currentTarget.value);
+        setPersonFormOptions({ ...personFormOptions, fatherQuery: e.currentTarget.value });
     };
 
-    const parentValueHandler = async (parent: string, searchQuery: string) => {
-        if (parent === 'mother' && personFormOptions.hasMother && searchQuery) {
+    const parentValueHandler = async (parent: string) => {
+        if (parent === 'mother' && personFormOptions.hasMother && personFormOptions.motherQuery) {
+            let searchQuery = personFormOptions.motherQuery;
             await searchPeopleByQuery(searchQuery.replace('+', '')).then((data) => {
-                setPersonFormOptions({ ...personFormOptions, possibleMothers: data, motherQuery: searchQuery });
+                setPersonFormOptions({ ...personFormOptions, possibleMothers: data });
             });
-        } else if (parent === 'mother' && personFormOptions.hasMother && !searchQuery) {
-            setPersonFormOptions({ ...personFormOptions, possibleMothers: [], motherQuery: searchQuery });
+        } else if (parent === 'mother' && personFormOptions.hasMother && !personFormOptions.motherQuery) {
+            setPersonFormOptions({ ...personFormOptions, possibleMothers: [] });
         }
 
-        if (parent === 'father' && personFormOptions.hasFather && searchQuery) {
+        if (parent === 'father' && personFormOptions.hasFather && personFormOptions.fatherQuery) {
+            let searchQuery = personFormOptions.fatherQuery;
             await searchPeopleByQuery(searchQuery.replace('+', '')).then((data) => {
                 setPersonFormOptions({ ...personFormOptions, possibleFathers: data, fatherQuery: searchQuery });
             });
-        } else if (parent === 'father' && personFormOptions.hasFather && !searchQuery) {
-            setPersonFormOptions({ ...personFormOptions, possibleFathers: [], fatherQuery: searchQuery });
+        } else if (parent === 'father' && personFormOptions.hasFather && !personFormOptions.fatherQuery) {
+            setPersonFormOptions({ ...personFormOptions, possibleFathers: [] });
         }
     };
 
@@ -125,14 +128,14 @@ export const PersonAdditionPage = () => {
     if (personFormInput.isDead) {
         deathdayClass = 'addition-person-input-wrap';
     } else {
-        deathdayClass = 'addition-person-input-wrap death-day';
+        deathdayClass = 'addition-person-input-wrap not-dead ';
     }
 
     return (
         <div className="addition-page-wrap">
             <Alert text="Person added successfully" open={alert} handleClose={() => history.push('/viewall')} />
             <div className="addition-content-wrap">
-                <div className="addition-title">Add new person</div>
+                <h2>Add new person</h2>
                 <div className="addition-person-wrap">
                     <form onSubmit={postData}>
                         <div className="addition-person-input-wrap">
@@ -166,7 +169,6 @@ export const PersonAdditionPage = () => {
                                 onChange={genderValueHandler}
                             />
                             <label htmlFor="female">Female</label>
-                            <br />
                         </div>
                         <div className="addition-person-input-wrap">
                             <div className="addition-person-input-label">
@@ -228,7 +230,7 @@ export const PersonAdditionPage = () => {
                                 }
                             />
                         </div>
-                        <div className="addition-person-input-wrap">
+                        <div className="addition-person-input-wrap extra-pad">
                             <div className="addition-person-input-label">
                                 <label htmlFor="addition-person-input-5">Mother</label>
                             </div>
@@ -240,7 +242,9 @@ export const PersonAdditionPage = () => {
                                 value={personFormOptions.motherQuery}
                                 onChange={motherQueryHandler}
                             />
-                            <br />
+                            <div className="parent-search-btn" onClick={() => parentValueHandler('mother')}>
+                                <IoMdSearch />
+                            </div>
                         </div>
                         <div className="addition-person-input-wrap">
                             <ParentDropdown
@@ -268,7 +272,7 @@ export const PersonAdditionPage = () => {
                                 }
                             />
                         </div>
-                        <div className="addition-person-input-wrap">
+                        <div className="addition-person-input-wrap  extra-pad">
                             <div className="addition-person-input-label">
                                 <label htmlFor="addition-person-input-7">Father</label>
                             </div>
@@ -280,7 +284,11 @@ export const PersonAdditionPage = () => {
                                 value={personFormOptions.fatherQuery}
                                 onChange={fatherQueryHandler}
                             />
+                            <div className="parent-search-btn" onClick={() => parentValueHandler('father')}>
+                                <IoMdSearch />
+                            </div>
                         </div>
+
                         <div className="addition-person-input-wrap">
                             <ParentDropdown
                                 familiyId={personFormInput.familyId}
@@ -289,10 +297,10 @@ export const PersonAdditionPage = () => {
                                 gender="male"
                             />
                         </div>
-                        <div className="p-addition-btn">
-                            <input type="submit" className="btn--submit"></input>
+                        <div className="submit-wrap">
+                            <input type="submit" className="submitbtn"></input>
                         </div>
-                        <div className="p-addition-error">
+                        <div className="error-wrap">
                             <ErrorBox errors={errorCodes} />
                         </div>
                     </form>

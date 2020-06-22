@@ -17,24 +17,23 @@ export const FamiliesPage = () => {
         };
 
         if (items.length === 0) fetchData();
-
     }, [items]);
 
     return (
-        <div className="people-wrap">
-            <div className="people-content-wrap">
-                <div className="people-content-panel">
-                    <div className="people-content-panel-btn">
+        <div className="list-page">
+            <div className="list-page__content">
+                <div className="list-panel">
+                    <div className="list-panel__btn">
                         <Link to={'/viewall'}>
                             <ButtonSmall text="People" />
                         </Link>
                     </div>
-                    <div className="people-content-panel-head">
-                        <div className="people-content-panel-head-t">Families</div>
+                    <div className="list-panel__head">
+                        <div className="list-panel__head__text">Families</div>
                     </div>
                 </div>
                 <FamilyHeader />
-                <div className="people-table-wrap">
+                <div className="list-page__content__table">
                     <FamilyTable visibleFamilies={items.sort((a, b) => a.name.localeCompare(b.name))} />
                 </div>
             </div>

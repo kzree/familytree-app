@@ -7,14 +7,14 @@ import { ButtonSmall } from '../components/Button';
 import { Link } from 'react-router-dom';
 
 const PeoplePanel = () => (
-    <div className="people-content-panel">
-        <div className="people-content-panel-btn">
+    <div className="list-panel">
+        <div className="list-panel__btn">
             <Link to={'/viewall/families'}>
                 <ButtonSmall text="Families" />
             </Link>
         </div>
-        <div className="people-content-panel-head">
-            <div className="people-content-panel-head-t">List of all</div>
+        <div className="list-panel__head">
+            <div className="list-panel__head__text">List of all</div>
         </div>
     </div>
 );
@@ -34,12 +34,12 @@ export const PeoplePage = () => {
     }, []);
 
     return (
-        <div className="people-wrap">
-            <div className="people-content-wrap">
+        <div className="list-page">
+            <div className="list-page__content">
                 <PeoplePanel />
                 <PersonHeader />
 
-                <div className="people-table-wrap">
+                <div className="list-page__content__table">
                     <PeopleTable visiblePeople={items.sort((a, b) => a.name.localeCompare(b.name))} />
                 </div>
             </div>

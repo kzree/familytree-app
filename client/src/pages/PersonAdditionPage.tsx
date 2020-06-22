@@ -136,175 +136,135 @@ export const PersonAdditionPage = () => {
             <Alert text="Person added successfully" open={alert} handleClose={() => history.push('/viewall')} />
             <div className="addition-content-wrap">
                 <h2>Add new person</h2>
-                <div className="addition-person-wrap">
-                    <form onSubmit={postData}>
-                        <div className="addition-person-input-wrap">
-                            <div className="addition-person-input-label">
-                                <label htmlFor="addition-person-input-1">Name</label>
-                            </div>
-                            <input
-                                id="addition-person-input-1"
-                                className="addition-person-input"
-                                value={personFormInput.name}
-                                onChange={nameValueHandler}
-                            />
+                <form onSubmit={postData} className="person-form">
+                    <div className="addition-person-input-wrap">
+                        <label htmlFor="name-input">Name</label>
+                        <input id="name-input" value={personFormInput.name} onChange={nameValueHandler} />
+                    </div>
+                    <div className="addition-person-input-wrap person-input-radio">
+                        <input
+                            type="radio"
+                            id="male"
+                            name="gender"
+                            value="male"
+                            onChange={genderValueHandler}
+                            defaultChecked
+                        />
+                        <label htmlFor="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="female" onChange={genderValueHandler} />
+                        <label htmlFor="female">Female</label>
+                    </div>
+                    <div className="addition-person-input-wrap">
+                        <label htmlFor="date-input">Birthday</label>
+                        <input
+                            type="date"
+                            id="date-input"
+                            max={getToday()}
+                            value={personFormInput.birthDate}
+                            onChange={birthDateHandler}
+                        />
+                    </div>
+                    <div className="addition-person-input-wrap person-input-check">
+                        <label htmlFor="isdead">Dead</label>
+                        <input
+                            type="checkbox"
+                            id="isdead"
+                            className="addition-person-checkbox"
+                            checked={personFormInput.isDead}
+                            onChange={() => setPersonFormInput({ ...personFormInput, isDead: !personFormInput.isDead })}
+                        />
+                    </div>
+                    <div className={deathdayClass}>
+                        <label htmlFor="deathday-input">Deathday</label>
+                        <input
+                            type="date"
+                            id="deathday-input"
+                            max={getToday()}
+                            value={personFormInput.deathDate}
+                            onChange={deathDayValueHandler}
+                        />
+                    </div>
+                    <div className="addition-person-input-wrap">
+                        <FamilyDropdown families={families} handleChange={familyValueHandler} />
+                    </div>
+                    <div className="addition-person-input-wrap person-input-check">
+                        <label htmlFor="hasmother-input">Mother known</label>
+                        <input
+                            type="checkbox"
+                            id="hasmother-input"
+                            className="addition-person-checkbox"
+                            checked={personFormOptions.hasMother}
+                            onClick={() =>
+                                setPersonFormOptions({
+                                    ...personFormOptions,
+                                    hasMother: !personFormOptions.hasMother,
+                                })
+                            }
+                        />
+                    </div>
+                    <div className="addition-person-input-wrap extra-pad">
+                        <label htmlFor="mother-search">Mother</label>
+                        <input
+                            id="mother-search"
+                            placeholder="Search..."
+                            value={personFormOptions.motherQuery}
+                            onChange={motherQueryHandler}
+                        />
+                        <div className="parent-searchbtn" onClick={() => parentValueHandler('mother')}>
+                            <IoMdSearch />
                         </div>
-                        <div className="addition-person-input-wrap person-input-radio">
-                            <input
-                                type="radio"
-                                id="male"
-                                className="person-radio"
-                                name="gender"
-                                value="male"
-                                onChange={genderValueHandler}
-                                defaultChecked
-                            />
-                            <label htmlFor="male">Male</label>
-                            <input
-                                type="radio"
-                                id="female"
-                                className="person-radio"
-                                name="gender"
-                                value="female"
-                                onChange={genderValueHandler}
-                            />
-                            <label htmlFor="female">Female</label>
+                    </div>
+                    <div className="addition-person-input-wrap">
+                        <ParentDropdown
+                            familiyId={personFormInput.familyId}
+                            parents={personFormOptions.possibleMothers}
+                            onChange={motherIdValueHandler}
+                            gender="female"
+                        />
+                    </div>
+                    <div className="addition-person-input-wrap person-input-check">
+                        <label htmlFor="hasfather-input">Father known</label>
+                        <input
+                            type="checkbox"
+                            name="addition-person-checkbox"
+                            id="hasfather-input"
+                            checked={personFormOptions.hasFather}
+                            onClick={() =>
+                                setPersonFormOptions({
+                                    ...personFormOptions,
+                                    hasFather: !personFormOptions.hasFather,
+                                })
+                            }
+                        />
+                    </div>
+                    <div className="addition-person-input-wrap  extra-pad">
+                        <label htmlFor="father-search">Father</label>
+                        <input
+                            id="father-search"
+                            placeholder="Search..."
+                            name="father-input"
+                            value={personFormOptions.fatherQuery}
+                            onChange={fatherQueryHandler}
+                        />
+                        <div className="parent-searchbtn" onClick={() => parentValueHandler('father')}>
+                            <IoMdSearch />
                         </div>
-                        <div className="addition-person-input-wrap">
-                            <div className="addition-person-input-label">
-                                <label htmlFor="addition-person-input-2">Birthday</label>
-                            </div>
-                            <input
-                                type="date"
-                                id="addition-person-input-2"
-                                className="addition-person-input"
-                                max={getToday()}
-                                value={personFormInput.birthDate}
-                                onChange={birthDateHandler}
-                            />
-                        </div>
-                        <div className="addition-person-input-wrap person-input-check">
-                            <div className="addition-person-input-label">
-                                <label htmlFor="addition-person-checkbox">Dead</label>
-                            </div>
-                            <input
-                                type="checkbox"
-                                id="addition-person-checkbox"
-                                className="addition-person-checkbox"
-                                checked={personFormInput.isDead}
-                                onChange={() =>
-                                    setPersonFormInput({ ...personFormInput, isDead: !personFormInput.isDead })
-                                }
-                            />
-                        </div>
-                        <div className={deathdayClass}>
-                            <div className="addition-person-input-label">
-                                <label htmlFor="addition-person-input-3">Deathday</label>
-                            </div>
-                            <input
-                                type="date"
-                                id="addition-person-input-3"
-                                className="addition-person-input"
-                                max={getToday()}
-                                value={personFormInput.deathDate}
-                                onChange={deathDayValueHandler}
-                            />
-                        </div>
-                        <div className="addition-person-input-wrap">
-                            <FamilyDropdown families={families} handleChange={familyValueHandler} />
-                        </div>
-                        <div className="addition-person-input-wrap person-input-check">
-                            <div className="addition-person-input-label">
-                                <label htmlFor="addition-person-checkbox-4">Mother known</label>
-                            </div>
-                            <input
-                                type="checkbox"
-                                id="addition-person-checkbox-4"
-                                className="addition-person-checkbox"
-                                checked={personFormOptions.hasMother}
-                                onClick={() =>
-                                    setPersonFormOptions({
-                                        ...personFormOptions,
-                                        hasMother: !personFormOptions.hasMother,
-                                    })
-                                }
-                            />
-                        </div>
-                        <div className="addition-person-input-wrap extra-pad">
-                            <div className="addition-person-input-label">
-                                <label htmlFor="addition-person-input-5">Mother</label>
-                            </div>
-                            <input
-                                id="addition-person-input-5"
-                                className="addition-person-input"
-                                placeholder="Search..."
-                                name="mother-input"
-                                value={personFormOptions.motherQuery}
-                                onChange={motherQueryHandler}
-                            />
-                            <div className="parent-search-btn" onClick={() => parentValueHandler('mother')}>
-                                <IoMdSearch />
-                            </div>
-                        </div>
-                        <div className="addition-person-input-wrap">
-                            <ParentDropdown
-                                familiyId={personFormInput.familyId}
-                                parents={personFormOptions.possibleMothers}
-                                onChange={motherIdValueHandler}
-                                gender="female"
-                            />
-                        </div>
-                        <div className="addition-person-input-wrap person-input-check">
-                            <div className="addition-person-input-label">
-                                <label htmlFor="addition-person-checkbox-6">Father known</label>
-                            </div>
-                            <input
-                                type="checkbox"
-                                name="addition-person-checkbox"
-                                id="addition-person-checkbox-6"
-                                className="addition-person-checkbox"
-                                checked={personFormOptions.hasFather}
-                                onClick={() =>
-                                    setPersonFormOptions({
-                                        ...personFormOptions,
-                                        hasFather: !personFormOptions.hasFather,
-                                    })
-                                }
-                            />
-                        </div>
-                        <div className="addition-person-input-wrap  extra-pad">
-                            <div className="addition-person-input-label">
-                                <label htmlFor="addition-person-input-7">Father</label>
-                            </div>
-                            <input
-                                id="addition-person-input-7"
-                                className="addition-person-input"
-                                placeholder="Search..."
-                                name="father-input"
-                                value={personFormOptions.fatherQuery}
-                                onChange={fatherQueryHandler}
-                            />
-                            <div className="parent-search-btn" onClick={() => parentValueHandler('father')}>
-                                <IoMdSearch />
-                            </div>
-                        </div>
-
-                        <div className="addition-person-input-wrap">
-                            <ParentDropdown
-                                familiyId={personFormInput.familyId}
-                                parents={personFormOptions.possibleFathers}
-                                onChange={fatherIdValueHandler}
-                                gender="male"
-                            />
-                        </div>
-                        <div className="submit-wrap">
-                            <input type="submit" className="submitbtn"></input>
-                        </div>
-                        <div className="error-wrap">
-                            <ErrorBox errors={errorCodes} />
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div className="addition-person-input-wrap">
+                        <ParentDropdown
+                            familiyId={personFormInput.familyId}
+                            parents={personFormOptions.possibleFathers}
+                            onChange={fatherIdValueHandler}
+                            gender="male"
+                        />
+                    </div>
+                    <div className="submit-wrap">
+                        <input type="submit" className="submitbtn"></input>
+                    </div>
+                    <div className="error-wrap">
+                        <ErrorBox errors={errorCodes} />
+                    </div>
+                </form>
             </div>
         </div>
     );

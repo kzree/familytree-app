@@ -19,7 +19,7 @@
     &:hover {
         background-color: $app-color2;
         .button-big-text {
-            color: white;
+            color: $app-black;
         }
     }
 }
@@ -29,7 +29,7 @@
     font-size: 32px;
     text-align: center;
     top: 50%;
-    color: #000000;
+    color: $app-black;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     transition: all 0.2s;
@@ -37,7 +37,7 @@
 
 .button-big-alt-wrap {
     @extend %button-big-shared;
-    background-color: black;
+    background-color: $app-black;
     .button-big-text {
         color: white;
     }

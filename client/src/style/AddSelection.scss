@@ -1,11 +1,6 @@
 .add-select-wrap {
     width: 500px;
     height: 400px;
-    &:hover {
-        .add-select-title {
-            color: $app-color1;
-        }
-    }
 }
 
 .add-select-title {

@@ -1,4 +1,4 @@
-.addition-person-wrap {
+.person-form {
     position: absolute;
     display: block;
     top: 120px;
@@ -32,6 +32,12 @@
             transform: translateY(-50%);
         }
     }
+
+    label {
+        padding-right: 12px;
+        width: 80px;
+    }
+
     input {
         width: 200px;
         height: 24px;
@@ -84,7 +90,7 @@
     margin-top: -80px;
 }
 
-.parent-search-btn {
+.parent-searchbtn {
     svg {
         width: 32px;
         height: 32px;

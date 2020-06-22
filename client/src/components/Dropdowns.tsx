@@ -10,7 +10,7 @@ interface familyDropdownProps {
 
 export const FamilyDropdown = (props: familyDropdownProps) => (
     <>
-        <div className="addition-person-input-label">
+        <div className="person-form__input">
             <label htmlFor="families">Family</label>
         </div>
         <select id="families" onChange={props.handleChange}>
@@ -29,7 +29,7 @@ export const ParentDropdown = (props: { parents: PersonType[]; onChange: any; fa
     if (props.parents.length > 0) {
         return (
             <>
-                <div className="addition-person-input-label">
+                <div className="person-form__input">
                     <label>Select</label>
                 </div>
                 <select id="parents" onChange={props.onChange}>

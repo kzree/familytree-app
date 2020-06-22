@@ -1,4 +1,4 @@
-%shared-wrap {
+.person {
     display: flex;
     width: 100%;
     height: 30px;
@@ -7,59 +7,50 @@
     font-weight: bold;
     color: $app-black;
     transition: 0.2s ease-in-out;
-}
 
-%shared-body {
-    display: flex;
-    width: auto;
-    height: 20px;
-    padding: 5px;
-    transition: 0.2s ease-in-out;
-}
-
-// Header for table
-.person-head-wrap {
-    @extend %shared-wrap;
-    height: 40px;
-    border-top: 1px solid #ccc;
-}
-
-.person-head-body {
-    @extend %shared-body;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 20px;
-}
-
-// Individual person
-.person-wrap {
-    @extend %shared-wrap;
-    &:hover {
-        background-color: #eeeeee;
-        cursor: pointer;
+    &--header {
+        height: 40px;
+        border-top: 1px solid #ccc;
     }
-}
 
-.person-body {
-    @extend %shared-body;
-}
+    &--item {
+        &:hover {
+            background-color: #eeeeee;
+            cursor: pointer;
+        }
+    }
 
-.person-body-name {
-    width: 300px;
-    padding-left: 36px;
-}
+    &__body {
+        display: flex;
+        width: auto;
+        height: 20px;
+        padding: 5px;
+        transition: 0.2s ease-in-out;
 
-.person-body-gender {
-    width: 80px;
-    padding-left: 12px;
-}
+        &__name {
+            width: 300px;
+            padding-left: 36px;
+        }
 
-.person-body-age {
-    width: 50px;
-    padding-left: 12px;
-}
+        &__gender {
+            width: 80px;
+            padding-left: 12px;
+        }
 
-.person-body-birthday {
-    width: 120px;
-    padding-left: 12px;
+        &__age {
+            width: 50px;
+            padding-left: 12px;
+        }
+
+        &__birthday {
+            width: 120px;
+            padding-left: 12px;
+        }
+
+        &--header {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 20px;
+        }
+    }
 }

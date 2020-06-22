@@ -10,7 +10,6 @@ export const ErrorBox = (props: ErrorBoxProps) => {
     const [message, setMessage] = useState('');
     const [errorCodes, setErrorCodes] = useState<number[]>([]);
 
-
     useEffect(() => {
         setErrorCodes(props.errors);
 
@@ -24,14 +23,13 @@ export const ErrorBox = (props: ErrorBoxProps) => {
         };
 
         buildMessage();
-
-    }, [errorCodes, props.errors])
+    }, [errorCodes, props.errors]);
 
     return (
-        <div className="error-box-wrap">
-            <div className="error-box-error">{message}</div>
+        <div className="error-box">
+            <div>{message}</div>
         </div>
     );
-}
+};
 
 export default ErrorBox;

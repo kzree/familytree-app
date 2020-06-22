@@ -13,14 +13,14 @@ const Confirmation = (props: ConfirmationProps) => {
     let open = props.open;
     return (
         <div className={cx('alert-box', { open })}>
-            <div className="alert-box-inner">
-                <div className="alert-box-title">Confirm</div>
-                <div className="alert-box-text">{props.text}</div>
-                <div className="confirmation-box-btn">
-                    <div className="confirmation-box-btn-cont">
+            <div className="alert-box__inner">
+                <div className="alert-box__inner__title">Confirm</div>
+                <div className="alert-box__inner__text">{props.text}</div>
+                <div className="confirmation-box__btn-container">
+                    <div className="confirmation-box__btn">
                         <ButtonSmallAltNegative text="No" handleClick={props.handleClose} />
                     </div>
-                    <div className="confirmation-box-btn-cont">
+                    <div className="confirmation-box-btn">
                         <ButtonSmallAlt text="Yes" handleClick={props.handleOk} />
                     </div>
                 </div>

@@ -11,12 +11,12 @@ interface PropTypes {
 
 const HomePagePanel = (props: PropTypes) => {
     let panelTheme;
-    props.theme ? (panelTheme = 'home--lower-panel__a') : (panelTheme = 'home--lower-panel__b');
+    props.theme ? (panelTheme = 'lower-panel--a') : (panelTheme = 'lower-panel--b');
     return (
         <div className={panelTheme}>
-            <div className="home-lower-panel-t-wrap">
-                <div className="home-lower-panel-t-head">{props.title}</div>
-                <div className="home-lower-panel-t-body">
+            <div className="lower-panel__text-area">
+                <div className="lower-panel__text-area__head">{props.title}</div>
+                <div className="lower-panel__text-area__body">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloremque neque beatae quos repellat atque
                     iste, quibusdam reiciendis?Debitis, quis cupiditate rem nihil cum itaque, natus dolorem sed
                     obcaecati quam culpa, corporis temporibus laboriosam?

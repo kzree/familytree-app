@@ -14,7 +14,7 @@ const PeoplePanel = () => (
             </Link>
         </div>
         <div className="list-panel__head">
-            <div className="list-panel__head__text">List of all</div>
+            <div className="list-panel__text">List of all</div>
         </div>
     </div>
 );
@@ -39,7 +39,7 @@ export const PeoplePage = () => {
                 <PeoplePanel />
                 <PersonHeader />
 
-                <div className="list-page__content__table">
+                <div className="list-page__table">
                     <PeopleTable visiblePeople={items.sort((a, b) => a.name.localeCompare(b.name))} />
                 </div>
             </div>

@@ -28,10 +28,10 @@ export const SearchPage = () => {
             <div className="list-page">
                 <div className="list-page__content">
                     <div className="search-panel">
-                        <div className="search-panel__input">
-                            <div className="search-panel__input__body">
+                        <div className="search-panel__input-wrap">
+                            <div className="search-panel__input">
                                 <input type="text" placeholder="Search..." ref={searchRef} />
-                                <div className="search-panel__input__btn" onClick={() => searchDatabase()}>
+                                <div className="search-panel__search-btn" onClick={() => searchDatabase()}>
                                     <IoMdSearch />
                                 </div>
                             </div>

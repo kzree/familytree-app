@@ -10,13 +10,13 @@
         background-color: #ffffff;
         height: 800px;
         box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+    }
 
-        &__table {
-            position: absolute;
-            height: 650px;
-            width: 100%;
-            overflow-y: auto;
-        }
+    &__table {
+        position: absolute;
+        height: 650px;
+        width: 100%;
+        overflow-y: auto;
     }
 }
 
@@ -33,15 +33,15 @@
         font-size: 42px;
         background-color: $app-color1;
         color: #ffffff;
+    }
 
-        &__text {
-            width: 100%;
-            position: absolute;
-            text-align: center;
-            top: 50%;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-        }
+    &__text {
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
     }
 
     &__btn {

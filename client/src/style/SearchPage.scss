@@ -5,55 +5,55 @@
     background-color: $app-black;
     border-bottom: 1px solid #ccc;
 
-    &__input {
+    &__input-wrap {
         position: relative;
         width: 700px;
         height: 100%;
+    }
 
-        &__body {
-            padding-left: 24px;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            justify-content: space-between;
-            width: 700px;
-            height: 62;
+    &__input {
+        padding-left: 24px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        width: 700px;
+        height: 62;
 
-            input {
-                width: 600px;
-                height: 50px;
-                font-size: 40px;
-                border-radius: 50px;
-                border: 5px solid $app-color1;
-                transition: all 0.2s;
-                &:focus {
-                    outline: none;
-                    border: 5px solid $app-color2;
-                }
-            }
-
-            input[type='text'] {
-                padding-left: 12px;
-                padding-right: 12px;
+        input {
+            width: 600px;
+            height: 50px;
+            font-size: 40px;
+            border-radius: 50px;
+            border: 5px solid $app-color1;
+            transition: all 0.2s;
+            &:focus {
+                outline: none;
+                border: 5px solid $app-color2;
             }
         }
 
-        &__btn {
+        input[type='text'] {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+    }
+
+    &__search-btn {
+        width: 62px;
+        height: 62px;
+        cursor: pointer;
+        transition: all 0.2s;
+        svg {
             width: 62px;
             height: 62px;
-            cursor: pointer;
+            fill: #ffffff;
             transition: all 0.2s;
+        }
+        &:hover {
             svg {
-                width: 62px;
-                height: 62px;
-                fill: #ffffff;
-                transition: all 0.2s;
-            }
-            &:hover {
-                svg {
-                    fill: $app-color1;
-                }
+                fill: $app-color1;
             }
         }
     }

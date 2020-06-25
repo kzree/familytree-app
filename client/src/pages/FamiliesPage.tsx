@@ -29,11 +29,11 @@ export const FamiliesPage = () => {
                         </Link>
                     </div>
                     <div className="list-panel__head">
-                        <div className="list-panel__head__text">Families</div>
+                        <div className="list-panel__text">Families</div>
                     </div>
                 </div>
                 <FamilyHeader />
-                <div className="list-page__content__table">
+                <div className="list-page__table">
                     <FamilyTable visibleFamilies={items.sort((a, b) => a.name.localeCompare(b.name))} />
                 </div>
             </div>

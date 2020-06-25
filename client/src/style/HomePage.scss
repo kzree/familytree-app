@@ -66,21 +66,6 @@ body {
     }
 }
 
-// Greeting text
-
-.home-greeting-text-container-t-body {
-    position: absolute;
-    width: 90%;
-    color: white;
-    font-size: 22px;
-    padding: 12px;
-    text-align: justify;
-    text-justify: inter-word;
-    left: 50%;
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-}
-
 // Lower panel
 .lower-panels {
     display: flex;

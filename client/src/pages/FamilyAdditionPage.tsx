@@ -28,7 +28,7 @@ export const FamilyAdditionPage = () => {
                 <h2>Add new family</h2>
                 <form onSubmit={submitNewFamily} className="family-form">
                     <div className="family-form__input">
-                        <input type="text" placeholder="Enter family name..." ref={createdFamily} />
+                        <input type="text" placeholder="Enter family name..." ref={createdFamily} required/>
                     </div>
                     <div className="family-form__input family-form__submit">
                         <input type="submit" value="Submit" className="submitbtn" />

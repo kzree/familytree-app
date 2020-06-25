@@ -15,8 +15,8 @@ const HomePagePanel = (props: PropTypes) => {
     return (
         <div className={panelTheme}>
             <div className="lower-panel__text-area">
-                <div className="lower-panel__text-area__head">{props.title}</div>
-                <div className="lower-panel__text-area__body">
+                <div className="lower-panel__header">{props.title}</div>
+                <div className="lower-panel__body">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloremque neque beatae quos repellat atque
                     iste, quibusdam reiciendis?Debitis, quis cupiditate rem nihil cum itaque, natus dolorem sed
                     obcaecati quam culpa, corporis temporibus laboriosam?

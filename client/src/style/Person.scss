@@ -27,30 +27,30 @@
         padding: 5px;
         transition: 0.2s ease-in-out;
 
-        &__name {
-            width: 300px;
-            padding-left: 36px;
-        }
-
-        &__gender {
-            width: 80px;
-            padding-left: 12px;
-        }
-
-        &__age {
-            width: 50px;
-            padding-left: 12px;
-        }
-
-        &__birthday {
-            width: 120px;
-            padding-left: 12px;
-        }
-
         &--header {
             padding-top: 10px;
             padding-bottom: 10px;
             font-size: 20px;
         }
+    }
+    
+    &__name {
+        width: 300px;
+        padding-left: 36px;
+    }
+
+    &__gender {
+        width: 80px;
+        padding-left: 12px;
+    }
+
+    &__age {
+        width: 50px;
+        padding-left: 12px;
+    }
+
+    &__birthday {
+        width: 120px;
+        padding-left: 12px;
     }
 }

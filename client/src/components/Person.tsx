@@ -25,10 +25,10 @@ const Person = (props: PersonInterface) => {
         <Link to={`/person/${id}`}>
             <div className="person person--item">
                 <div className="person__body">
-                    <div className="person__body__name">{name}</div>
-                    <div className="person__body__gender">{props.gender}</div>
-                    <div className="person__body__age">{age}</div>
-                    <div className="person__body__birthday">{props.birthDate}</div>
+                    <div className="person__name">{name}</div>
+                    <div className="person__gender">{props.gender}</div>
+                    <div className="person__age">{age}</div>
+                    <div className="person__birthday">{props.birthDate}</div>
                 </div>
             </div>
         </Link>
@@ -38,10 +38,10 @@ const Person = (props: PersonInterface) => {
 export const PersonHeader = () => (
     <div className="person person--header">
         <div className="person__body person__body--header">
-            <div className="person__body__name">Name</div>
-            <div className="person__body__gender">Gender</div>
-            <div className="person__body__age">Age</div>
-            <div className="person__body__birthday">Birthday</div>
+            <div className="person__name">Name</div>
+            <div className="person__gender">Gender</div>
+            <div className="person__age">Age</div>
+            <div className="person__birthday">Birthday</div>
         </div>
     </div>
 );

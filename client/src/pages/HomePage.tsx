@@ -9,9 +9,9 @@ const Greeting = (props: { handleClick: VoidFunction }) => (
     <div className="home-greeting">
         <div className="home-greeting__img"></div>
         <div className="home-greeting__container">
-            <div className="home-greeting__container__text">
-                <div className="home-greeting__container__text__head">Document your history</div>
-                <div className="home-greeting__container__text__body">
+            <div className="home-greeting__text-area">
+                <div className="home-greeting__text home-greeting__text--header">Document your history</div>
+                <div className="home-greeting__text home-greeting__text--body">
                     Join thousands other users in documenting your family history. It is easy and takes only a couple of
                     minutes to get started!
                 </div>

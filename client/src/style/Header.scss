@@ -23,6 +23,7 @@
         text-align: center;
         transition: all 0.2s;
         cursor: pointer;
+        
         &:hover {
             animation: start-anim 1s 0s ease-in, anim 2s 1s alternate infinite ease-in-out;
         }
@@ -36,15 +37,19 @@
     height: 60px;
     display: flex;
 
-    &--a {
+    &__square {
         width: 60px;
-        background-color: $app-color1;
+
+        &--a {
+            background-color: $app-color1;
+        }
+    
+        &--b {
+            background-color: $app-color2;
+        }
     }
 
-    &--b {
-        width: 60px;
-        background-color: $app-color2;
-    }
+
 }
 
 // Animation

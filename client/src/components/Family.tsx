@@ -25,8 +25,8 @@ export const Family = (props: FamilyInterface) => {
         <Link to={`/family/${id}`}>
             <div className="family">
                 <div className="family__body">
-                    <div className="family__body__name">{name}</div>
-                    <div className="family__body__members">{members}</div>
+                    <div className="family__name">{name}</div>
+                    <div className="family__members">{members}</div>
                 </div>
             </div>
         </Link>
@@ -37,8 +37,8 @@ export const FamilyHeader = () => {
     return (
         <div className="family family--header">
             <div className="family__body family__body--header">
-                <div className="family__body__name">Family name</div>
-                <div className="family__body__members">Members</div>
+                <div className="family__name">Family name</div>
+                <div className="family__members">Members</div>
             </div>
         </div>
     );

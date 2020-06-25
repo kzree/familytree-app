@@ -12,7 +12,7 @@ const Modal = (props: ModalProps) => {
     let open = props.open;
     return (
         <div className={cx('modal', { open })}>
-            <div className={'modal-inner'}>
+            <div className={'modal__inner'}>
                 <IoMdCloseCircle className={'close'} onClick={props.onClose} />
                 {props.children}
             </div>

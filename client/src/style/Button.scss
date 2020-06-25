@@ -1,100 +1,69 @@
 // Big button
-%button-big-shared {
+.btn {
     display: flex;
     position: absolute;
-    width: 300px;
-    height: 80px;
-    background-color: white;
-    border-radius: 50px;
-    justify-content: center;
-    left: 50%;
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.button-big-wrap {
-    @extend %button-big-shared;
-    &:hover {
-        background-color: $app-color2;
-        .button-big-text {
-            color: $app-black;
-        }
-    }
-}
-
-.button-big-text {
-    position: absolute;
-    font-size: 32px;
-    text-align: center;
-    top: 50%;
-    color: $app-black;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    transition: all 0.2s;
-}
-
-.button-big-alt-wrap {
-    @extend %button-big-shared;
-    background-color: $app-black;
-    .button-big-text {
-        color: white;
-    }
-    &:hover {
-        background-color: $app-color2;
-        .button-big-text {
-            color: #000000;
-        }
-    }
-}
-
-// Small button
-%button-small-shared {
-    display: flex;
-    position: absolute;
-    width: 100px;
-    height: 30px;
     background-color: white;
     border-radius: 50px;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s;
-}
 
-.button-small-wrap {
-    @extend %button-small-shared;
     &:hover {
         background-color: $app-color2;
     }
-}
+    
+    &__text {
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        color: $app-black;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        transition: all 0.2s;
 
-.button-small-text {
-    position: absolute;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    transition: all 0.2s;
-    color: #000000;
-}
+        &--big {
+            font-size: 32px;
+        }
 
-.button-small-alt-wrap {
-    @extend %button-small-shared;
-    background-color: #000000;
-    .button-small-text {
-        color: #ffffff;
-    }
-    &:hover {
-        background-color: $app-color2;
-        .button-small-text {
-            color: #000000;
+        &--small {
+            font-size: 18px;
+            font-weight: bold;
+
         }
     }
 
-    &.negative-btn {
+    &--big {
+        width: 300px;
+        height: 80px;
+        left: 50%;
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+
+        &:hover {
+            .btn__text {
+                color: $app-black;
+            }
+        }
+    }
+
+    &--small {
+        width: 100px;
+        height: 30px;
+    }
+
+    &--alt {
+        background-color: $app-black;
+        .btn__text {
+            color: #ffffff;
+        }
+        &:hover {
+            .btn__text {
+                color: $app-black;
+            }
+        }
+    }
+
+    &--negative {
         &:hover {
             background-color: $app-color1;
             .button-small-text {

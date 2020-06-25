@@ -22,13 +22,13 @@
             height: 24px;
             font-size: 20px;
             border-radius: 6px;
-            border: 3px solid $app-black;
+            border: 2px solid $app-gray;
             transition: all 0.2s;
             padding-left: 12px;
             padding-right: 12px;
             &:focus {
                 outline: none;
-                border: 3px solid $app-color2;
+                border: 2px solid $app-black;
             }
         }
         select {
@@ -54,15 +54,6 @@
         &--not-dead {
             display: none;
         }
-    }
-}
-
-.addition-page__content {
-    h2 {
-        position: absolute;
-        width: 100%;
-        font-size: 42px;
-        text-align: center;
     }
 }
 

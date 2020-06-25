@@ -28,12 +28,7 @@ export const PersonAdditionPage = () => {
     const history = useHistory();
 
     const familyValueHandler = (e: React.FormEvent<HTMLSelectElement>) => {
-        setPersonFormInput({ ...personFormInput, familyId: e.currentTarget.value });
-        resetParents();
-    };
-
-    const resetParents = () => {
-        setPersonFormInput({ ...personFormInput, motherId: '', fatherId: '' });
+        setPersonFormInput({ ...personFormInput, familyId: e.currentTarget.value, motherId: '', fatherId: '' });
     };
 
     const nameValueHandler = (e: React.FormEvent<HTMLInputElement>) => {

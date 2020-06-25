@@ -1,12 +1,12 @@
 import React from 'react';
-import PersonPageData from '../types/PersonPageData';
 import { Link } from 'react-router-dom';
+import { PersonType } from '../types/PersonType';
 
-export const SiblingsList = (props: { personPageData: PersonPageData }) => {
-    if (props.personPageData.siblings.length > 0) {
+export const SiblingsList = (props: { siblings: PersonType[] }) => {
+    if (props.siblings.length > 0) {
         return (
             <ul>
-                {props.personPageData.siblings.map((item, i) => {
+                {props.siblings.map((item, i) => {
                     return (
                         <li key={i + 'sib'}>
                             <Link to={`/person/${item.id}`}>{item.name}</Link>

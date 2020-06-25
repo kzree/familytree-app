@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { PersonType } from '../types/PersonType';
 import { getById, getByFamilyId, getChildren, getSiblings, deleteById } from '../services/personService';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ButtonSmallAlt } from '../components/Button';
 import IdFromUrl from '../types/urlParamTypes';
 import Alert from '../components/Alert';
@@ -9,84 +9,71 @@ import { createEmptyPerson, calculateAgeByPerson } from '../services/util';
 import Confirmation from '../components/Confirmation';
 import ChildrenList from '../components/ChildrenList';
 import SiblingsList from '../components/SiblingsList';
+import { useHistory } from 'react-router-dom';
 
 export const PersonPage = (props: IdFromUrl) => {
     const [key, setKey] = useState<string>(null);
     const [person, setPerson] = useState<PersonType>(createEmptyPerson());
     const [personChildren, setPersonChildren] = useState<PersonType[]>([]);
-    const [parent1, setParent1] = useState<PersonType>(createEmptyPerson())
-    const [parent2, setParent2] = useState<PersonType>(createEmptyPerson())
-    const [relativesAmount, setRelativesAmount] = useState<number>(0)
+    const [parent1, setParent1] = useState<PersonType>(createEmptyPerson());
+    const [parent2, setParent2] = useState<PersonType>(createEmptyPerson());
+    const [relativesAmount, setRelativesAmount] = useState<number>(0);
     const [childNumber, setChildNumber] = useState<number>(0);
-    const [siblings, setSiblings] = useState<PersonType[]>([])
+    const [siblings, setSiblings] = useState<PersonType[]>([]);
     const [alert, setAlert] = useState<boolean>(false);
     const [confirm, setConfirm] = useState<boolean>(false);
-    const [redirect, setRedirect] = useState<boolean>(false);
+    const history = useHistory();
 
     const deleteThisPerson = () => {
         deleteById(person.id);
-        setRedirect(true);
+        history.push('/viewall');
     };
 
     const calculatePersonAge = () => calculateAgeByPerson(person);
 
+    const getRelatives = useCallback(() => {
+        if (person.family) {
+            getByFamilyId(person.family).then((data) => {
+                setRelativesAmount(data.length - 1);
+            });
+        }
+    }, [person.family]);
 
-    const getRelatives = useCallback(
-        () => {
-            if (person.family) {
-                getByFamilyId(person.family).then((data) => {
-                    setRelativesAmount(data.length - 1);
-                });
-            }
-        },
-        [person.family]
-    );
+    const getPersonChildren = useCallback(() => {
+        if (person.id) {
+            getChildren(person.id).then((data) => {
+                setPersonChildren(data);
+            });
+        }
+    }, [person.id]);
 
-    const getPersonChildren = useCallback(
-        () => {
-            if (person.id) {
-                getChildren(person.id).then((data) => {
-                    setPersonChildren(data);
-                });
-            }
-        },
-        [person.id]
-    );
-
-    const getChildNumber = useCallback(
-        () => {
-            if (siblings.length === 0) {
-                setChildNumber(1);
-            } else {
-                let birthdayDates = [];
-                birthdayDates.push(new Date(person.birthDate));
-                siblings.forEach((sibling) => {
-                    birthdayDates.push(new Date(sibling.birthDate));
-                });
-                birthdayDates.sort((a, b) => a.getTime() - b.getTime());
-                for (let i = 0; i < birthdayDates.length; i++) {
-                    if (birthdayDates[i].getTime() === new Date(person.birthDate).getTime()) {
-                        setChildNumber(i + 1);
-                    }
+    const getChildNumber = useCallback(() => {
+        if (siblings.length === 0) {
+            setChildNumber(1);
+        } else {
+            let birthdayDates = [];
+            birthdayDates.push(new Date(person.birthDate));
+            siblings.forEach((sibling) => {
+                birthdayDates.push(new Date(sibling.birthDate));
+            });
+            birthdayDates.sort((a, b) => a.getTime() - b.getTime());
+            for (let i = 0; i < birthdayDates.length; i++) {
+                if (birthdayDates[i].getTime() === new Date(person.birthDate).getTime()) {
+                    setChildNumber(i + 1);
                 }
             }
-        },
-        [person.birthDate, siblings]
-    );
+        }
+    }, [person.birthDate, siblings]);
 
-    const getPersonSiblings = useCallback(
-        () => {
-            if (person.id) {
-                getSiblings(person.id).then((data) => {
-                    setSiblings(data);
-                });
-            }
-        },
-        [person.id]
-    );
+    const getPersonSiblings = useCallback(() => {
+        if (person.id) {
+            getSiblings(person.id).then((data) => {
+                setSiblings(data);
+            });
+        }
+    }, [person.id]);
 
     const getPersonInformation = useCallback(() => {
-
         if (person) {
             // Parent information
             if (person.parent1) {
@@ -109,14 +96,11 @@ export const PersonPage = (props: IdFromUrl) => {
             getPersonChildren();
             getChildNumber();
         }
-
     }, [getChildNumber, getPersonChildren, getPersonSiblings, getRelatives, person]);
 
-    
     useEffect(() => {
         getById(props.match.params.id).then((data) => {
             setPerson(data);
-
         });
     }, [props.match.params.id]);
 
@@ -124,19 +108,13 @@ export const PersonPage = (props: IdFromUrl) => {
         if (key !== person.id) {
             getPersonInformation();
             setKey(person.id);
-
         }
     }, [getPersonInformation, key, person.id]);
 
-    let profileClass = '';
-    if (person.gender === 'male') {
-        profileClass = 'person-info__img__content person-info__img__content--male';
-    } else {
-        profileClass = 'person-info__img__content person-info__img__content--female';
-    }
-    if (redirect) {
-        return <Redirect to="/viewall" />;
-    }
+    const profileClass =
+        person.gender === 'male'
+            ? 'person-info__img__content person-info__img__content--male'
+            : 'person-info__img__content person-info__img__content--female';
 
     if (key === person.id) {
         return (
@@ -174,17 +152,13 @@ export const PersonPage = (props: IdFromUrl) => {
                             <div className="person-extra__info__text">
                                 Mother:{' '}
                                 <Link to={`/person/${parent1.id}`}>
-                                    {parent1.dead
-                                        ? `✝ ${parent1.name}`
-                                        : parent1.name}
+                                    {parent1.dead ? `✝ ${parent1.name}` : parent1.name}
                                 </Link>
                             </div>
                             <div className="person-extra__info__text">
                                 Father:{' '}
                                 <Link to={`/person/${parent2.id}`}>
-                                    {parent1.dead
-                                        ? `✝ ${parent2.name}`
-                                        : parent2.name}
+                                    {parent1.dead ? `✝ ${parent2.name}` : parent2.name}
                                 </Link>
                             </div>
                             <div className="person-extra__info__text"># child of family: {childNumber}</div>
@@ -222,7 +196,6 @@ export const PersonPage = (props: IdFromUrl) => {
     } else {
         return null;
     }
-    
 };
 
 export default PersonPage;

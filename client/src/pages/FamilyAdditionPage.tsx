@@ -8,12 +8,14 @@ export const FamilyAdditionPage = () => {
     const [alert, setAlert] = useState<boolean>(false);
     const history = useHistory();
 
-    const submitNewFamily = async (e: React.FormEvent<HTMLFormElement>) => {
+    const submitNewFamily = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        let newFamilyName = createdFamily.current.value.replace(/ +(?= )/g, '');
-        // Error checking
-        if (newFamilyName && newFamilyName !== ' ') {
-            newFamily(createdFamily.current.value).then(() => setAlert(true));
+        if (!alert) {
+            let newFamilyName = createdFamily.current.value.replace(/ +(?= )/g, '');
+            // Error checking
+            if (newFamilyName && newFamilyName !== ' ') {
+                newFamily(createdFamily.current.value).then(() => setAlert(true));
+            }
         }
     };
 
@@ -28,7 +30,7 @@ export const FamilyAdditionPage = () => {
                 <h2>Add new family</h2>
                 <form onSubmit={submitNewFamily} className="family-form">
                     <div className="family-form__input">
-                        <input type="text" placeholder="Enter family name..." ref={createdFamily} required/>
+                        <input type="text" placeholder="Enter family name..." ref={createdFamily} required />
                     </div>
                     <div className="family-form__input family-form__submit">
                         <input type="submit" value="Submit" className="submitbtn" />

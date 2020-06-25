@@ -4,28 +4,18 @@ import { PersonInterface } from '../types/PersonType';
 import { calculateAgeByParams } from '../services/util';
 
 const Person = (props: PersonInterface) => {
-    const [id, setId] = useState('');
-    const [name, setName] = useState('');
+    const {id, name, dead, birthDate, deathDate} = props;
     const [age, setAge] = useState(0);
 
     useEffect(() => {
-        const checkIfDead = () => {
-            if (props.dead) {
-                return '✝' + props.name;
-            } else {
-                return props.name;
-            }
-        };
-        setId(props.id);
-        setName(checkIfDead());
-        setAge(calculateAgeByParams(props.birthDate, props.deathDate, props.dead));
-    }, [props.birthDate, props.dead, props.deathDate, props.id, props.name]);
+        setAge(calculateAgeByParams(birthDate, deathDate, dead));
+    }, [birthDate, dead, deathDate]);
 
     return (
         <Link to={`/person/${id}`}>
             <div className="person person--item">
                 <div className="person__body">
-                    <div className="person__name">{name}</div>
+                    <div className="person__name">{dead ? `✝${name}` : name}</div>
                     <div className="person__gender">{props.gender}</div>
                     <div className="person__age">{age}</div>
                     <div className="person__birthday">{props.birthDate}</div>

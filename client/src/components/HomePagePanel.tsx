@@ -10,10 +10,9 @@ interface PropTypes {
 }
 
 const HomePagePanel = (props: PropTypes) => {
-    let panelTheme;
-    props.theme ? (panelTheme = 'lower-panel--a') : (panelTheme = 'lower-panel--b');
+    const panelTheme = props.theme;
     return (
-        <div className={panelTheme}>
+        <div className={panelTheme ? 'lower-panel--a' : 'lower-panel--b'}>
             <div className="lower-panel__text-area">
                 <div className="lower-panel__header">{props.title}</div>
                 <div className="lower-panel__body">

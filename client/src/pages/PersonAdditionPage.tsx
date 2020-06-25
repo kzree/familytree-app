@@ -27,42 +27,12 @@ export const PersonAdditionPage = () => {
     const [alert, setAlert] = useState<boolean>(false);
     const history = useHistory();
 
-    const familyValueHandler = (e: React.FormEvent<HTMLSelectElement>) => {
-        setPersonFormInput({ ...personFormInput, familyId: e.currentTarget.value, motherId: '', fatherId: '' });
+    const personFormInputHandler = (e: React.FormEvent<any>) => {
+        setPersonFormInput({ ...personFormInput, [e.currentTarget.name]: e.currentTarget.value });
     };
 
-    const nameValueHandler = (e: React.FormEvent<HTMLInputElement>) => {
-        setPersonFormInput({ ...personFormInput, name: e.currentTarget.value });
-    };
-
-    const motherIdValueHandler = (e: React.FormEvent<HTMLSelectElement>) => {
-        setPersonFormInput({ ...personFormInput, motherId: e.currentTarget.value });
-        if (e.currentTarget.value !== '') getParentAge(e.currentTarget.value);
-    };
-
-    const fatherIdValueHandler = (e: React.FormEvent<HTMLSelectElement>) => {
-        setPersonFormInput({ ...personFormInput, fatherId: e.currentTarget.value });
-        if (e.currentTarget.value !== '') getParentAge(e.currentTarget.value);
-    };
-
-    const genderValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPersonFormInput({ ...personFormInput, gender: e.currentTarget.value });
-    };
-
-    const birthDateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPersonFormInput({ ...personFormInput, birthDate: e.currentTarget.value });
-    };
-
-    const deathDayValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPersonFormInput({ ...personFormInput, deathDate: e.currentTarget.value });
-    };
-
-    const motherQueryHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPersonFormOptions({ ...personFormOptions, motherQuery: e.currentTarget.value });
-    };
-
-    const fatherQueryHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPersonFormOptions({ ...personFormOptions, fatherQuery: e.currentTarget.value });
+    const personFormOptionsHandler = (e: React.FormEvent<any>) => {
+        setPersonFormOptions({ ...personFormOptions, [e.currentTarget.name]: e.currentTarget.value });
     };
 
     const hasMotherHandler = () => {
@@ -141,12 +111,20 @@ export const PersonAdditionPage = () => {
         }
     }, [families, personFormInput]);
 
-    let deathdayClass;
-    if (personFormInput.isDead) {
-        deathdayClass = 'person-form__input';
-    } else {
-        deathdayClass = 'person-form__input person-form__input--not-dead ';
-    }
+    useEffect(() => {
+        setPersonFormInput({ ...personFormInput, motherId: '', fatherId: '' });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [personFormInput.familyId]);
+
+    useEffect(() => {
+        if (personFormInput.motherId) getParentAge(personFormInput.motherId);
+        if (personFormInput.fatherId) getParentAge(personFormInput.fatherId);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [personFormInput.motherId, personFormInput.fatherId]);
+
+    const deathdayClass = personFormInput.isDead
+        ? 'person-form__input'
+        : 'person-form__input person-form__input--not-dead ';
 
     return (
         <div className="addition-page">
@@ -156,7 +134,14 @@ export const PersonAdditionPage = () => {
                 <form onSubmit={postData} className="person-form">
                     <div className="person-form__input">
                         <label htmlFor="name-input">Name</label>
-                        <input id="name-input" value={personFormInput.name} onChange={nameValueHandler} required />
+                        <input
+                            id="name-input"
+                            name="name"
+                            value={personFormInput.name}
+                            onChange={personFormInputHandler}
+                            required
+                            pattern="\S(.*\S)?"
+                        />
                     </div>
                     <div className="person-form__input person-form__input--radio">
                         <input
@@ -164,11 +149,17 @@ export const PersonAdditionPage = () => {
                             id="male"
                             name="gender"
                             value="male"
-                            onChange={genderValueHandler}
+                            onChange={personFormInputHandler}
                             defaultChecked
                         />
                         <label htmlFor="male">Male</label>
-                        <input type="radio" id="female" name="gender" value="female" onChange={genderValueHandler} />
+                        <input
+                            type="radio"
+                            id="female"
+                            name="gender"
+                            value="female"
+                            onChange={personFormInputHandler}
+                        />
                         <label htmlFor="female">Female</label>
                     </div>
                     <div className="person-form__input">
@@ -176,9 +167,10 @@ export const PersonAdditionPage = () => {
                         <input
                             type="date"
                             id="date-input"
+                            name="birthDate"
                             max={getToday()}
                             value={personFormInput.birthDate}
-                            onChange={birthDateHandler}
+                            onChange={personFormInputHandler}
                             required
                         />
                     </div>
@@ -197,15 +189,16 @@ export const PersonAdditionPage = () => {
                             <input
                                 type="date"
                                 id="deathday-input"
+                                name="deathDate"
                                 max={getToday()}
                                 value={personFormInput.deathDate}
-                                onChange={deathDayValueHandler}
+                                onChange={personFormInputHandler}
                                 required
                             />
                         )}
                     </div>
                     <div className="person-form__input">
-                        <FamilyDropdown families={families} handleChange={familyValueHandler} />
+                        <FamilyDropdown families={families} handleChange={personFormInputHandler} />
                     </div>
                     <div className="person-form__input person-form__input--check">
                         <label htmlFor="hasmother-input">Mother known</label>
@@ -221,8 +214,9 @@ export const PersonAdditionPage = () => {
                         <input
                             id="mother-search"
                             placeholder="Search..."
+                            name="motherQuery"
                             value={personFormOptions.motherQuery}
-                            onChange={motherQueryHandler}
+                            onChange={personFormOptionsHandler}
                         />
                         <div className="parent-searchbtn" onClick={() => parentValueHandler('mother')}>
                             <IoMdSearch />
@@ -232,7 +226,7 @@ export const PersonAdditionPage = () => {
                         <ParentDropdown
                             familiyId={personFormInput.familyId}
                             parents={personFormOptions.possibleMothers}
-                            onChange={motherIdValueHandler}
+                            onChange={personFormInputHandler}
                             gender="female"
                         />
                     </div>
@@ -250,9 +244,9 @@ export const PersonAdditionPage = () => {
                         <input
                             id="father-search"
                             placeholder="Search..."
-                            name="father-input"
+                            name="fatherQuery"
                             value={personFormOptions.fatherQuery}
-                            onChange={fatherQueryHandler}
+                            onChange={personFormOptionsHandler}
                         />
                         <div className="parent-searchbtn" onClick={() => parentValueHandler('father')}>
                             <IoMdSearch />
@@ -262,7 +256,7 @@ export const PersonAdditionPage = () => {
                         <ParentDropdown
                             familiyId={personFormInput.familyId}
                             parents={personFormOptions.possibleFathers}
-                            onChange={fatherIdValueHandler}
+                            onChange={personFormInputHandler}
                             gender="male"
                         />
                     </div>

@@ -65,6 +65,28 @@ export const PersonAdditionPage = () => {
         setPersonFormOptions({ ...personFormOptions, fatherQuery: e.currentTarget.value });
     };
 
+    const hasMotherHandler = () => {
+        setPersonFormOptions({
+            ...personFormOptions,
+            hasMother: !personFormOptions.hasMother,
+            possibleMothers: [],
+            motherQuery: '',
+            motherAge: 0,
+        });
+        setPersonFormInput({ ...personFormInput, motherId: '' });
+    };
+
+    const hasFatherHandler = () => {
+        setPersonFormOptions({
+            ...personFormOptions,
+            hasFather: !personFormOptions.hasFather,
+            possibleFathers: [],
+            fatherQuery: '',
+            fatherAge: 0,
+        });
+        setPersonFormInput({ ...personFormInput, fatherId: '' });
+    };
+
     const parentValueHandler = async (parent: string) => {
         if (parent === 'mother' && personFormOptions.hasMother && personFormOptions.motherQuery) {
             let searchQuery = personFormOptions.motherQuery;
@@ -171,14 +193,16 @@ export const PersonAdditionPage = () => {
                     </div>
                     <div className={deathdayClass}>
                         <label htmlFor="deathday-input">Deathday</label>
-                        {personFormInput.isDead && <input
-                            type="date"
-                            id="deathday-input"
-                            max={getToday()}
-                            value={personFormInput.deathDate}
-                            onChange={deathDayValueHandler}
-                            required
-                        />}
+                        {personFormInput.isDead && (
+                            <input
+                                type="date"
+                                id="deathday-input"
+                                max={getToday()}
+                                value={personFormInput.deathDate}
+                                onChange={deathDayValueHandler}
+                                required
+                            />
+                        )}
                     </div>
                     <div className="person-form__input">
                         <FamilyDropdown families={families} handleChange={familyValueHandler} />
@@ -189,12 +213,7 @@ export const PersonAdditionPage = () => {
                             type="checkbox"
                             id="hasmother-input"
                             checked={personFormOptions.hasMother}
-                            onClick={() =>
-                                setPersonFormOptions({
-                                    ...personFormOptions,
-                                    hasMother: !personFormOptions.hasMother,
-                                })
-                            }
+                            onClick={hasMotherHandler}
                         />
                     </div>
                     <div className="person-form__input extra-pad">
@@ -223,12 +242,7 @@ export const PersonAdditionPage = () => {
                             type="checkbox"
                             id="hasfather-input"
                             checked={personFormOptions.hasFather}
-                            onClick={() =>
-                                setPersonFormOptions({
-                                    ...personFormOptions,
-                                    hasFather: !personFormOptions.hasFather,
-                                })
-                            }
+                            onClick={hasFatherHandler}
                         />
                     </div>
                     <div className="person-form__input extra-pad">

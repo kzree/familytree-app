@@ -134,7 +134,7 @@ export const PersonAdditionPage = () => {
                 <form onSubmit={postData} className="person-form">
                     <div className="person-form__input">
                         <label htmlFor="name-input">Name</label>
-                        <input id="name-input" value={personFormInput.name} onChange={nameValueHandler} />
+                        <input id="name-input" value={personFormInput.name} onChange={nameValueHandler} required />
                     </div>
                     <div className="person-form__input person-form__input--radio">
                         <input
@@ -157,6 +157,7 @@ export const PersonAdditionPage = () => {
                             max={getToday()}
                             value={personFormInput.birthDate}
                             onChange={birthDateHandler}
+                            required
                         />
                     </div>
                     <div className="person-form__input person-form__input--check">
@@ -170,13 +171,14 @@ export const PersonAdditionPage = () => {
                     </div>
                     <div className={deathdayClass}>
                         <label htmlFor="deathday-input">Deathday</label>
-                        <input
+                        {personFormInput.isDead && <input
                             type="date"
                             id="deathday-input"
                             max={getToday()}
                             value={personFormInput.deathDate}
                             onChange={deathDayValueHandler}
-                        />
+                            required
+                        />}
                     </div>
                     <div className="person-form__input">
                         <FamilyDropdown families={families} handleChange={familyValueHandler} />

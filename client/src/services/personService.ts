@@ -1,13 +1,27 @@
 import { PersonType } from '../types/PersonType';
+import PersonAdditionForm from '../types/PersonAdditionForm';
 
-const basePath = 'http://localhost:8080/api/v1/person';
+const basePath = '/api/v1/person';
+
+export function getPersonFromServer(path: string): Promise<PersonType> {
+    return fetch(path, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}
 
 export function getAll(): Promise<Array<PersonType>> {
     return fetch(basePath + '/all', {
         headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(async response => {
+            'Content-Type': 'application/json',
+        },
+    }).then((response) => {
         if (!response.ok) {
             throw new Error(response.statusText);
         }
@@ -18,9 +32,9 @@ export function getAll(): Promise<Array<PersonType>> {
 export function getById(id: string): Promise<PersonType> {
     return fetch(basePath + '/' + id, {
         headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(async response => {
+            'Content-Type': 'application/json',
+        },
+    }).then((response) => {
         if (!response.ok) {
             throw new Error(response.statusText);
         }
@@ -31,9 +45,9 @@ export function getById(id: string): Promise<PersonType> {
 export function getByFamilyId(id: string): Promise<Array<PersonType>> {
     return fetch(basePath + '/family/' + id, {
         headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(async response => {
+            'Content-Type': 'application/json',
+        },
+    }).then((response) => {
         if (!response.ok) {
             throw new Error(response.statusText);
         }
@@ -44,9 +58,9 @@ export function getByFamilyId(id: string): Promise<Array<PersonType>> {
 export function getChildren(id: string): Promise<Array<PersonType>> {
     return fetch(basePath + '/child/' + id, {
         headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(async response => {
+            'Content-Type': 'application/json',
+        },
+    }).then((response) => {
         if (!response.ok) {
             throw new Error(response.statusText);
         }
@@ -57,9 +71,9 @@ export function getChildren(id: string): Promise<Array<PersonType>> {
 export function getSiblings(id: string): Promise<Array<PersonType>> {
     return fetch(basePath + '/sibling/' + id, {
         headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(async response => {
+            'Content-Type': 'application/json',
+        },
+    }).then((response) => {
         if (!response.ok) {
             throw new Error(response.statusText);
         }
@@ -70,9 +84,9 @@ export function getSiblings(id: string): Promise<Array<PersonType>> {
 export function searchPeopleByQuery(searchQuery: string): Promise<Array<PersonType>> {
     return fetch(basePath + '/search/' + searchQuery, {
         headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(async response => {
+            'Content-Type': 'application/json',
+        },
+    }).then((response) => {
         if (!response.ok) {
             throw new Error(response.statusText);
         }
@@ -80,41 +94,32 @@ export function searchPeopleByQuery(searchQuery: string): Promise<Array<PersonTy
     });
 }
 
-export async function addPerson(
-    name: string,
-    gender: string,
-    bday: string,
-    dead: boolean,
-    dday: string,
-    family: string,
-    mother: string,
-    father: string
-) {
+export async function addPerson(personToSend: PersonAdditionForm) {
     await fetch(basePath, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            name: name,
-            gender: gender,
-            birthDate: bday,
-            dead: dead,
-            deathDate: dday,
-            parent1: mother,
-            parent2: father,
-            family: family
-        })
+            name: personToSend.name,
+            gender: personToSend.gender,
+            birthDate: personToSend.birthDate,
+            dead: personToSend.isDead,
+            deathDate: personToSend.deathDate,
+            parent1: personToSend.motherId,
+            parent2: personToSend.fatherId,
+            family: personToSend.familyId,
+        }),
     });
 }
 
 export async function getYoungestPerson(): Promise<PersonType> {
     return fetch(basePath + '/youngest', {
         headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(async response => {
+            'Content-Type': 'application/json',
+        },
+    }).then(async (response) => {
         if (!response.ok) {
             throw new Error(response.statusText);
         }
@@ -125,9 +130,9 @@ export async function getYoungestPerson(): Promise<PersonType> {
 export async function getOldestPerson(): Promise<PersonType> {
     return fetch(basePath + '/oldest', {
         headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(async response => {
+            'Content-Type': 'application/json',
+        },
+    }).then(async (response) => {
         if (!response.ok) {
             throw new Error(response.statusText);
         }
@@ -138,9 +143,9 @@ export async function getOldestPerson(): Promise<PersonType> {
 export async function getYoungestUncle(): Promise<PersonType> {
     return fetch(basePath + '/youngest/uncle', {
         headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(async response => {
+            'Content-Type': 'application/json',
+        },
+    }).then(async (response) => {
         if (!response.ok) {
             throw new Error(response.statusText);
         }
@@ -152,7 +157,7 @@ export function deleteById(id: string) {
     return fetch(basePath + '/' + id, {
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+        },
     });
 }

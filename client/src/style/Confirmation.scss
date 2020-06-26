@@ -1,12 +1,14 @@
-.confirmation-box-btn {
-    height: 30px;
-    width: 300px;
-    padding-top: 46px;
-    display: flex;
-    justify-content: space-between;
-}
+.confirmation-box{
+    &__btn-container {
+        height: 30px;
+        width: 300px;
+        padding-top: 46px;
+        display: flex;
+        justify-content: space-between;
+    }
 
-.confirmation-box-btn-cont {
-    height: 30px;
-    width: 100px;
+    &__btn {
+        height: 30px;
+        width: 100px;
+    }
 }

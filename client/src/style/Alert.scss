@@ -6,48 +6,48 @@
     top: 0;
     left: 0;
     z-index: 2000;
-}
 
-.alert-box-inner {
-    position: relative;
-    width: 300px;
-    height: 200px;
-    margin: 0 auto;
-    top: 230px;
-    padding: 25px;
-    border-radius: 5px;
-    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
-    background: white;
-    transition: all 0.2s;
-}
+    &__inner {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        margin: 0 auto;
+        top: 230px;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+        background: white;
+        transition: all 0.2s;
+    }
 
-.alert-box-title {
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    color: $app-color1;
-    transition: all 0.2s;
-}
+    &__title {
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        color: $app-color1;
+        transition: all 0.2s;
+    }
 
-.alert-box-text {
-    font-size: 20px;
-    text-align: center;
-    margin-top: 20px;
-}
+    &__text {
+        font-size: 20px;
+        text-align: center;
+        margin-top: 20px;
+    }
 
-.alert-box-btn {
-    position: absolute;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 30px;
-    left: 50%;
-    bottom: 40px;
-}
+    &__btn {
+        position: absolute;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 30px;
+        left: 50%;
+        bottom: 40px;
+    }
 
-.alert-box .open {
-    display: block;
-}
+    &.open {
+        display: block;
+    }
 
-.alert-box:not(.open) {
-    display: none;
+    &:not(.open) {
+        display: none;
+    }
 }

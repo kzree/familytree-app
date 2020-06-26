@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { ButtonSmallAlt, ButtonSmallAltNegative } from './Button';
+import Button from './Button';
 
 interface ConfirmationProps {
     text: string;
@@ -9,19 +9,18 @@ interface ConfirmationProps {
     handleOk?: VoidFunction;
 }
 
-const Confirmation = (props: ConfirmationProps) => {
-    let open = props.open;
+const Confirmation = ({ text, open, handleClose, handleOk }: ConfirmationProps) => {
     return (
         <div className={cx('alert-box', { open })}>
-            <div className="alert-box-inner">
-                <div className="alert-box-title">Confirm</div>
-                <div className="alert-box-text">{props.text}</div>
-                <div className="confirmation-box-btn">
-                    <div className="confirmation-box-btn-cont">
-                        <ButtonSmallAltNegative text="No" handleClick={props.handleClose} />
+            <div className="alert-box__inner">
+                <div className="alert-box__title">Confirm</div>
+                <div className="alert-box__text">{text}</div>
+                <div className="confirmation-box__btn-container">
+                    <div className="confirmation-box__btn">
+                        <Button buttonText="No" handleClick={handleClose} size="small" theme="negative" />
                     </div>
-                    <div className="confirmation-box-btn-cont">
-                        <ButtonSmallAlt text="Yes" handleClick={props.handleOk} />
+                    <div className="confirmation-box__btn">
+                        <Button buttonText="Yes" handleClick={handleClose} size="small" theme="alt" />
                     </div>
                 </div>
             </div>

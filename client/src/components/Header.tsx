@@ -1,34 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-const HeaderLogo = () => {
-    return (
-        <div className="header-logo-wrap">
-            <Link to={'/'}>
-                <div className="header-logo">FAMI</div>
-            </Link>
-        </div>
-    );
-};
+const HeaderLogo = () => (
+    <div className="header-logo">
+        <Link to={'/'}>
+            <div className="header-logo__img">FAMI</div>
+        </Link>
+    </div>
+);
 
-const HeaderDeco = () => {
-    return (
-        <div className="header-deco-wrap">
-            <div className="header-deco-f"></div>
-            <div className="header-deco-s"></div>
-        </div>
-    );
-};
+const HeaderDeco = () => (
+    <div className="header-deco">
+        <div className="header-deco__square header-deco__square--b"></div>
+        <div className="header-deco__square header-deco__square--a"></div>
+    </div>
+);
 
-export default class Header extends Component {
-    render() {
-        return (
-            <div className="header-wrap">
-                <div className="header-content">
-                    <HeaderLogo />
-                </div>
-                <HeaderDeco />
-            </div>
-        );
-    }
-}
+export const Header = () => (
+    <div className="header">
+        <div className="header__content">
+            <HeaderLogo />
+        </div>
+        <HeaderDeco />
+    </div>
+);
+
+export default Header;

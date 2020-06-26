@@ -1,70 +1,52 @@
-import React, { PureComponent } from 'react';
-import { ButtonBigAlt } from '../components/Button';
+import React, { useState } from 'react';
 import { newFamily } from '../services/familyService';
-import { Redirect } from 'react-router-dom';
 import Alert from '../components/Alert';
+import { useHistory } from 'react-router';
 
-interface state {
-    redirect: boolean;
-    alert: boolean;
-}
+export const FamilyAdditionPage = () => {
+    const [createdFamily, setCreatedFamily] = useState<string>('');
+    const [alert, setAlert] = useState<boolean>(false);
+    const history = useHistory();
 
-export default class FamilyAdditionPage extends PureComponent<{}, state> {
-    newFamily: React.RefObject<HTMLInputElement>;
-    constructor(props: Readonly<{}>) {
-        super(props);
-        this.newFamily = React.createRef();
-
-        this.state = {
-            redirect: false,
-            alert: false
-        };
-    }
-
-    submitNewFamily = async () => {
-        // TODO: Put this into an utility file
-        // Remove unnecessary spaces
-        let newFamilyName = this.newFamily.current.value.replace(/ +(?= )/g, '');
-        // Error checking
-        if (newFamilyName !== '' && newFamilyName !== ' ') {
-            newFamily(this.newFamily.current.value).then(() =>
-                this.setState({
-                    alert: true
-                })
-            );
+    const submitNewFamily = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!alert) {
+            const newFamilyName = createdFamily.trim();
+            if (newFamilyName) newFamily(createdFamily).then(() => setAlert(true));
         }
     };
 
-    redirect = () => {
-        this.setState({
-            redirect: true
-        });
+    const createdFamilyValueHandler = (e: React.FormEvent<any>) => {
+        setCreatedFamily(e.currentTarget.value);
     };
 
-    render() {
-        if (this.state.redirect) {
-            return <Redirect to="/viewall/families" />;
-        }
-        return (
-            <div className="addition-page-wrap">
-                <Alert text="Family added successfully" open={this.state.alert} handleClose={this.redirect} />
-                <div className="addition-content-wrap">
-                    <div className="addition-title">Add new family</div>
-                    <div className="f-addition-input-wrap">
+    return (
+        <div className="addition-page">
+            <Alert
+                text="Family added successfully"
+                open={alert}
+                handleClose={() => history.push('/viewall/families')}
+            />
+            <div className="addition-page__content">
+                <h2>Add new family</h2>
+                <form onSubmit={submitNewFamily} className="family-form">
+                    <div className="family-form__input">
                         <input
                             type="text"
-                            name="addition-input"
-                            id="addition-input"
-                            className="addition-input"
                             placeholder="Enter family name..."
-                            ref={this.newFamily}
+                            value={createdFamily}
+                            onChange={createdFamilyValueHandler}
+                            required
+                            pattern="\S(.*\S)?"
                         />
                     </div>
-                    <div className="f-addition-btn">
-                        <ButtonBigAlt text="Submit" handleClick={this.submitNewFamily} />
+                    <div className="family-form__input family-form__submit">
+                        <input type="submit" value="Submit" className="submitbtn" />
                     </div>
-                </div>
+                </form>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
+
+export default FamilyAdditionPage;

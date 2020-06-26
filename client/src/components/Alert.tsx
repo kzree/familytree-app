@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { ButtonSmallAlt } from './Button';
+import Button from './Button';
 
 interface PropTypes {
     text: string;
@@ -8,15 +8,14 @@ interface PropTypes {
     handleClose: VoidFunction;
 }
 
-const Alert = (props: PropTypes) => {
-    let open = props.open;
+const Alert = ({ text, open, handleClose }: PropTypes) => {
     return (
         <div className={cx('alert-box', { open })}>
-            <div className="alert-box-inner">
-                <div className="alert-box-title">Alert</div>
-                <div className="alert-box-text">{props.text}</div>
-                <div className="alert-box-btn">
-                    <ButtonSmallAlt text="Close" handleClick={props.handleClose} />
+            <div className="alert-box__inner">
+                <div className="alert-box__title">Alert</div>
+                <div className="alert-box__text">{text}</div>
+                <div className="alert-box__btn">
+                    <Button buttonText="Close" handleClick={handleClose} size="small" theme="alt" />
                 </div>
             </div>
         </div>

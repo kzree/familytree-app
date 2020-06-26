@@ -1,13 +1,13 @@
 import { FamilyType } from '../types/FamilyType';
 
-const basePath = 'http://localhost:8080/api/v1/family';
+const basePath = '/api/v1/family';
 
 export function getAll(): Promise<Array<FamilyType>> {
     return fetch(basePath + '/all', {
         headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(async response => {
+            'Content-Type': 'application/json',
+        },
+    }).then(async (response) => {
         if (!response.ok) {
             throw new Error(response.statusText);
         }
@@ -18,9 +18,9 @@ export function getAll(): Promise<Array<FamilyType>> {
 export function getById(id: string): Promise<FamilyType> {
     return fetch(basePath + '/' + id, {
         headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(async response => {
+            'Content-Type': 'application/json',
+        },
+    }).then(async (response) => {
         if (!response.ok) {
             throw new Error(response.statusText);
         }
@@ -33,8 +33,8 @@ export async function newFamily(fName: string) {
         method: 'POST',
         headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name: fName })
+        body: JSON.stringify({ name: fName }),
     });
 }

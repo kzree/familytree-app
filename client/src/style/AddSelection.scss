@@ -1,29 +1,25 @@
-.add-select-wrap {
+.add-selection {
     width: 500px;
     height: 400px;
-    &:hover {
-        .add-select-title {
-            color: $app-color1;
-        }
+
+    &__title {
+        padding-top: 12px;
+        padding-bottom: 60px;
+        font-size: 48px;
+        font-weight: bold;
+        text-align: center;
+        transition: all 0.2s;
     }
-}
 
-.add-select-title {
-    padding-top: 12px;
-    padding-bottom: 60px;
-    font-size: 48px;
-    font-weight: bold;
-    text-align: center;
-    transition: all 0.2s;
-}
+    &__btns {
+        position: absolute;
+        padding-top: 32px;
+        width: 500px;
+        height: 300px;
+    }
 
-.add-select-btns {
-    position: absolute;
-    padding-top: 32px;
-    width: 500px;
-    height: 300px;
-}
+    &__btn-wrap {
+        height: 100px;
 
-.add-select-btn-wrap {
-    height: 100px;
+    }
 }

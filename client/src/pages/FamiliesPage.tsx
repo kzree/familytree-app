@@ -1,56 +1,42 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FamilyType } from '../types/FamilyType';
 import { FamilyHeader } from '../components/Family';
 import FamilyTable from '../components/FamilyTable';
 import { getAll } from '../services/familyService';
 import { Link } from 'react-router-dom';
-import { ButtonSmall } from '../components/Button';
+import Button from '../components/Button';
 
-interface FamiliesPageState {
-    items: FamilyType[];
-}
+export const FamiliesPage = () => {
+    const [items, setItems] = useState<FamilyType[]>([]);
 
-export default class FamiliesPage extends PureComponent<{}, FamiliesPageState> {
-    constructor(props: Readonly<{}>) {
-        super(props);
-
-        this.state = {
-            items: []
-        };
-    }
-
-    init = async () => {
-        await getAll().then(data => {
-            this.setState({
-                items: data
+    useEffect(() => {
+        const fetchData = async () => {
+            await getAll().then((data) => {
+                setItems(data);
             });
-        });
-    };
+        };
 
-    componentDidMount = () => {
-        this.init();
-    };
+        if (items.length === 0) fetchData();
+    }, [items]);
 
-    render() {
-        return (
-            <div className="people-wrap">
-                <div className="people-content-wrap">
-                    <div className="people-content-panel">
-                        <div className="people-content-panel-btn">
-                            <Link to={'/viewall'}>
-                                <ButtonSmall text="People" />
-                            </Link>
-                        </div>
-                        <div className="people-content-panel-head">
-                            <div className="people-content-panel-head-t">Families</div>
-                        </div>
+    return (
+        <div className="list-page">
+            <div className="list-page__content">
+                <div className="list-panel">
+                    <div className="list-panel__btn">
+                        <Link to={'/viewall'}>
+                            <Button buttonText="People" size="small" theme="main" />
+                        </Link>
                     </div>
-                    <FamilyHeader />
-                    <div className="people-table-wrap">
-                        <FamilyTable visibleFamilies={this.state.items.sort((a, b) => a.name.localeCompare(b.name))} />
+                    <div className="list-panel__head">
+                        <div className="list-panel__text">Families</div>
                     </div>
                 </div>
+                <FamilyHeader />
+                <FamilyTable visibleFamilies={items.sort((a, b) => a.name.localeCompare(b.name))} />
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
+
+export default FamiliesPage;

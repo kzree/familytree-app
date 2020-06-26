@@ -1,22 +1,18 @@
-import React, { Component } from 'react';
-import { ButtonSmallAlt } from '../components/Button';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 
-export default class NotFoundPage extends Component {
-    render() {
-        return (
-            <div className="not-found-wrap">
-                <div className="not-found-title">Page not found!</div>
-                <div className="not-found-text">
-                    It seems that the page you tried to access does not exist.
-                </div>
-                <div className="not-found-text">Return to the home page.</div>
-                <div className="not-found-btn">
-                    <Link to={'/'}>
-                        <ButtonSmallAlt text="Home" />
-                    </Link>
-                </div>
-            </div>
-        );
-    }
-}
+export const NotFoundPage = () => (
+    <div className="notfound-page">
+        <div className="notfound-page__title">Page not found!</div>
+        <div className="notfound-page__text">It seems that the page you tried to access does not exist.</div>
+        <div className="notfound-page__text">Return to the home page.</div>
+        <div className="notfound-page__btn">
+            <Link to={'/'}>
+                <Button buttonText="Home" size="small" theme="alt" />
+            </Link>
+        </div>
+    </div>
+);
+
+export default NotFoundPage;

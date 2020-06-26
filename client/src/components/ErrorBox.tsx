@@ -1,63 +1,33 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface ErrorBoxProps {
     errors: number[];
 }
 
-interface ErrorBoxState {
-    defaultMessage: string;
-    message: string;
-    errorCodes: number[];
-}
+export const ErrorBox = ({ errors }: ErrorBoxProps) => {
+    const defaultMessage = 'Error creating new person! Check input fields!';
 
-export default class ErrorBox extends PureComponent<ErrorBoxProps, ErrorBoxState> {
-    constructor(props: ErrorBoxProps) {
-        super(props);
+    const [message, setMessage] = useState('');
+    const [errorCodes, setErrorCodes] = useState<number[]>([]);
 
-        this.state = {
-            defaultMessage: 'Error creating new person! Check input fields!',
-            message: '',
-            errorCodes: []
+    useEffect(() => {
+        setErrorCodes(errors);
+
+        const buildMessage = () => {
+            if (errorCodes.length > 0) {
+                const errorCode = errorCodes.join('');
+                setMessage(`${defaultMessage} Code: x${errorCode}`);
+            } else setMessage('');
         };
-    }
 
-    buildMessage = () => {
-        if (this.state.errorCodes.length > 0) {
-            let errorCode = this.state.errorCodes.join('');
-            this.setState({
-                message: this.state.defaultMessage + ' Code: x' + errorCode
-            });
-        }
-    };
+        buildMessage();
+    }, [errorCodes, errors]);
 
-    init = () => {
-        this.setState(
-            {
-                errorCodes: this.props.errors
-            },
-            () => this.buildMessage()
-        );
-    };
+    return (
+        <div className="error-box">
+            <div>{message}</div>
+        </div>
+    );
+};
 
-    componentDidMount = () => {
-        this.init();
-    };
-
-    componentDidUpdate = () => {
-        if (this.state.errorCodes !== this.props.errors) {
-            this.init();
-        }
-    };
-
-    render() {
-        if (this.state.message.length > 0) {
-            return (
-                <div className="error-box-wrap">
-                    <div className="error-box-error">{this.state.message}</div>
-                </div>
-            );
-        } else {
-            return null;
-        }
-    }
-}
+export default ErrorBox;

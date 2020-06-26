@@ -1,63 +1,48 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PersonType } from '../types/PersonType';
 import { getAll } from '../services/personService';
 import { PersonHeader } from '../components/Person';
 import PeopleTable from '../components/PeopleTable';
-import { ButtonSmall } from '../components/Button';
 import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 
-const PeoplePanel = () => {
+const PeoplePanel = () => (
+    <div className="list-panel">
+        <div className="list-panel__btn">
+            <Link to={'/viewall/families'}>
+                <Button buttonText="Families" size="small" theme="main" />
+            </Link>
+        </div>
+        <div className="list-panel__head">
+            <div className="list-panel__text">List of all</div>
+        </div>
+    </div>
+);
+
+export const PeoplePage = () => {
+    const [items, setItems] = useState<PersonType[]>([]);
+
+    const fetchAll = async () => {
+        window.scrollTo(0, 0);
+        await getAll().then((data) => {
+            setItems(data);
+        });
+    };
+
+    useEffect(() => {
+        fetchAll();
+    }, []);
+
     return (
-        <div className="people-content-panel">
-            <div className="people-content-panel-btn">
-                <Link to={'/viewall/families'}>
-                    <ButtonSmall text="Families" />
-                </Link>
-            </div>
-            <div className="people-content-panel-head">
-                <div className="people-content-panel-head-t">List of all</div>
+        <div className="list-page">
+            <div className="list-page__content">
+                <PeoplePanel />
+                <PersonHeader />
+
+                <PeopleTable visiblePeople={items.sort((a, b) => a.name.localeCompare(b.name))} />
             </div>
         </div>
     );
 };
 
-interface PeoplePageState {
-    items: PersonType[];
-}
-
-export default class PeoplePage extends PureComponent<{}, PeoplePageState> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            items: []
-        };
-    }
-
-    fetchAll = async () => {
-        await getAll().then(data => {
-            this.setState({
-                items: data
-            });
-        });
-    };
-
-    componentDidMount() {
-        window.scrollTo(0, 0);
-        this.fetchAll();
-    }
-
-    render() {
-        return (
-            <div className="people-wrap">
-                <div className="people-content-wrap">
-                    <PeoplePanel />
-                    <PersonHeader />
-
-                    <div className="people-table-wrap">
-                        <PeopleTable visiblePeople={this.state.items.sort((a, b) => a.name.localeCompare(b.name))} />
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
+export default PeoplePage;

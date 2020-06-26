@@ -1,76 +1,56 @@
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import { IoMdSearch } from 'react-icons/io';
 import { PersonType } from '../types/PersonType';
 import { PersonHeader } from '../components/Person';
 import PeopleTable from '../components/PeopleTable';
 import { searchPeopleByQuery } from '../services/personService';
 
-interface PeoplePageState {
-    items: PersonType[];
-}
+export const SearchPage = () => {
+    const [searchQuery, setSearchQuery] = useState<string>('');
+    const [items, setItems] = useState<PersonType[]>([]);
 
-export default class SearchPage extends PureComponent<{}, PeoplePageState> {
-    searchRef: React.RefObject<HTMLInputElement>;
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            items: []
-        };
-        this.searchRef = React.createRef();
-    }
-
-    searchDatabase = async () => {
-        // Remove unnecessary spaces
-        let searchQuery = this.searchRef.current.value.replace(/ +(?= )/g, '');
+    const searchDatabase = async () => {
         // Error checking
-        if (searchQuery !== '' && searchQuery !== ' ') {
+        const temp = searchQuery.trim();
+        if (temp && temp !== ' ') {
             // Removing error causing symbol
-            await searchPeopleByQuery(searchQuery.replace('+', '')).then(
-                data => {
-                    this.setState({
-                        items: data
-                    });
-                }
-            );
-        } else {
-            this.setState({
-                items: []
+            await searchPeopleByQuery(temp.replace('+', '')).then((data) => {
+                setItems(data);
             });
+        } else {
+            setItems([]);
         }
     };
 
-    render() {
-        return (
-            <div>
-                <div className="people-wrap">
-                    <div className="people-content-wrap">
-                        <div className="people-search-panel">
-                            <div className="people-search-panel-input-wrap">
-                                <div className="people-search-body">
-                                    <input
-                                        type="text"
-                                        name="people-search-input"
-                                        id="people-search-input"
-                                        className="people-search-input"
-                                        placeholder="Search..."
-                                        ref={this.searchRef}
-                                    />
-                                    <div
-                                        className="people-search-btn"
-                                        onClick={() => this.searchDatabase()}
-                                    >
-                                        <IoMdSearch />
-                                    </div>
+    const searchQueryValueHandler = (e: React.FormEvent<any>) => {
+        setSearchQuery(e.currentTarget.value);
+    };
+
+    return (
+        <div>
+            <div className="list-page">
+                <div className="list-page__content">
+                    <div className="search-panel">
+                        <div className="search-panel__input-wrap">
+                            <div className="search-panel__input">
+                                <input
+                                    type="text"
+                                    placeholder="Search..."
+                                    value={searchQuery}
+                                    onChange={searchQueryValueHandler}
+                                />
+                                <div className="search-panel__search-btn" onClick={() => searchDatabase()}>
+                                    <IoMdSearch />
                                 </div>
                             </div>
                         </div>
-                        <PersonHeader />
-                        <div className="people-table-wrap">
-                            <PeopleTable visiblePeople={this.state.items} />
-                        </div>
                     </div>
+                    <PersonHeader />
+                    <PeopleTable visiblePeople={items} />
                 </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
+
+export default SearchPage;

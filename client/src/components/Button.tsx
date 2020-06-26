@@ -1,43 +1,21 @@
 import React from 'react';
 
-const ButtonBig = (props: { handleClick?: VoidFunction; text: string }) => {
+interface ButtonProps {
+    handleClick?: VoidFunction;
+    buttonText: string;
+    size: string; //big, small
+    theme: string; //main, alt, negative
+}
+
+export const Button = ({ handleClick, buttonText, size, theme }: ButtonProps) => {
+    const btnClass = `btn btn--${size} ${theme === 'main' ? '' : `btn--${theme}`}`;
+    const btnTextClass = `btn__text btn__text--${size}`;
+
     return (
-        <div className="button-big-wrap" onClick={props.handleClick}>
-            <div className="button-big-text">{props.text}</div>
-        </div>
+        <button className={btnClass} onClick={handleClick}>
+            <span className={btnTextClass}>{buttonText}</span>
+        </button>
     );
 };
 
-export const ButtonBigAlt = (props: { handleClick?: VoidFunction; text: string }) => {
-    return (
-        <div className="button-big-alt-wrap" onClick={props.handleClick}>
-            <div className="button-big-text">{props.text}</div>
-        </div>
-    );
-};
-
-export const ButtonSmall = (props: { handleClick?: VoidFunction; text: string }) => {
-    return (
-        <div className="button-small-wrap" onClick={props.handleClick}>
-            <div className="button-small-text">{props.text}</div>
-        </div>
-    );
-};
-
-export const ButtonSmallAlt = (props: { handleClick?: VoidFunction; text: string }) => {
-    return (
-        <div className="button-small-alt-wrap" onClick={props.handleClick}>
-            <div className="button-small-text">{props.text}</div>
-        </div>
-    );
-};
-
-export const ButtonSmallAltNegative = (props: { handleClick?: VoidFunction; text: string }) => {
-    return (
-        <div className="button-small-alt-wrap negative-btn" onClick={props.handleClick}>
-            <div className="button-small-text">{props.text}</div>
-        </div>
-    );
-};
-
-export default ButtonBig;
+export default Button;

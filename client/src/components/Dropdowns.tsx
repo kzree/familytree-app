@@ -8,13 +8,13 @@ interface familyDropdownProps {
     handleChange: any;
 }
 
-export const FamilyDropdown = (props: familyDropdownProps) => (
+export const FamilyDropdown = ({ families, handleChange }: familyDropdownProps) => (
     <>
         <div className="person-form__input">
             <label htmlFor="families">Family</label>
         </div>
-        <select id="families" name="familyId" onChange={props.handleChange}>
-            {props.families.map((item, i) => {
+        <select id="families" name="familyId" onChange={handleChange}>
+            {families.map((item, i) => {
                 return (
                     <option value={item.id} key={i}>
                         {item.name}

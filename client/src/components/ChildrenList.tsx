@@ -6,10 +6,10 @@ interface ChildrenListProps {
     childrenList: PersonType[];
 }
 
-export const ChildrenList = (props: ChildrenListProps) =>
-    props.childrenList.length ? (
+export const ChildrenList = ({ childrenList }: ChildrenListProps) =>
+    childrenList.length ? (
         <ul>
-            {props.childrenList.map((child, i) => {
+            {childrenList.map((child, i) => {
                 return (
                     <li key={i + 'child'}>
                         <Link to={`/person/${child.id}`}>{child.name}</Link>

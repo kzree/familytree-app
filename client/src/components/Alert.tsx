@@ -13,9 +13,9 @@ const Alert = (props: PropTypes) => {
     return (
         <div className={cx('alert-box', { open })}>
             <div className="alert-box__inner">
-                <div className="alert-box__inner__title">Alert</div>
-                <div className="alert-box__inner__text">{props.text}</div>
-                <div className="alert-box__inner__btn">
+                <div className="alert-box__title">Alert</div>
+                <div className="alert-box__text">{props.text}</div>
+                <div className="alert-box__btn">
                     <Button buttonText="Close" handleClick={props.handleClose} size="small" theme="alt" />
                 </div>
             </div>

@@ -113,8 +113,8 @@ export const PersonPage = (props: IdFromUrl) => {
 
     const profileClass =
         person.gender === 'male'
-            ? 'person-info__img__content person-info__img__content--male'
-            : 'person-info__img__content person-info__img__content--female';
+            ? 'person-info__img person-info__img--male'
+            : 'person-info__img person-info__img--female';
 
     if (key === person.id) {
         return (
@@ -128,14 +128,12 @@ export const PersonPage = (props: IdFromUrl) => {
                 />
                 <div className="person-page__content">
                     <div className="person-info">
-                        <div className="person-info__img">
+                        <div className="person-info__img-wrap">
                             <div className={profileClass}></div>
                         </div>
                         <div className="person-info__content">
-                            <div className="person-info__content__text">
-                                {person.dead ? `✝ ${person.name}` : person.name}
-                            </div>
-                            <div className="person-info__content__text">Age: {calculatePersonAge()}</div>
+                            <div className="person-info__text">{person.dead ? `✝ ${person.name}` : person.name}</div>
+                            <div className="person-info__text">Age: {calculatePersonAge()}</div>
                         </div>
                     </div>
                     <div className="person-extra">

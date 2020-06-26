@@ -35,41 +35,41 @@
     height: 100%;
     background-color: $app-black;
 
-    &__img {
+    &__img-wrap {
         padding-top: 32px;
         width: 300px;
         height: 250px;
         display: flex;
         justify-content: center;
+    }
 
-        &__content {
-            width: 200px;
-            height: 200px;
+    &__img {
+        width: 200px;
+        height: 200px;
 
-            &--male {
-                background-image: url(/male-pic.png);
-                border: 5px solid $app-color2;
-            }
+        &--male {
+            background-image: url(/male-pic.png);
+            border: 5px solid $app-color2;
+        }
 
-            &--female {
-                background-image: url(/female-pic.png);
-                border: 5px solid $app-color1;
-            }
+        &--female {
+            background-image: url(/female-pic.png);
+            border: 5px solid $app-color1;
         }
     }
 
     &__content {
         width: 300px;
         height: 500px;
+    }
 
-        &__text {
-            width: 300px;
-            height: 30px;
-            padding-top: 10px;
-            text-align: center;
-            font-size: 26px;
-            color: #ffffff;
-        }
+    &__text {
+        width: 300px;
+        height: 30px;
+        padding-top: 10px;
+        text-align: center;
+        font-size: 26px;
+        color: #ffffff;
     }
 }
 

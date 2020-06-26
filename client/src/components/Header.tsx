@@ -11,8 +11,8 @@ const HeaderLogo = () => (
 
 const HeaderDeco = () => (
     <div className="header-deco">
-        <div className="header-deco__square header-deco__square--a"></div>
         <div className="header-deco__square header-deco__square--b"></div>
+        <div className="header-deco__square header-deco__square--a"></div>
     </div>
 );
 

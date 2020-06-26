@@ -14,8 +14,8 @@ const Confirmation = (props: ConfirmationProps) => {
     return (
         <div className={cx('alert-box', { open })}>
             <div className="alert-box__inner">
-                <div className="alert-box__inner__title">Confirm</div>
-                <div className="alert-box__inner__text">{props.text}</div>
+                <div className="alert-box__title">Confirm</div>
+                <div className="alert-box__text">{props.text}</div>
                 <div className="confirmation-box__btn-container">
                     <div className="confirmation-box__btn">
                         <Button buttonText="No" handleClick={props.handleClose} size="small" theme="negative" />

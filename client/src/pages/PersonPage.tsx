@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { PersonType } from '../types/PersonType';
 import { getById, getByFamilyId, getChildren, getSiblings, deleteById } from '../services/personService';
 import { Link } from 'react-router-dom';
-import { ButtonSmallAlt } from '../components/Button';
 import IdFromUrl from '../types/urlParamTypes';
 import Alert from '../components/Alert';
 import { createEmptyPerson, calculateAgeByPerson } from '../services/util';
@@ -10,6 +9,7 @@ import Confirmation from '../components/Confirmation';
 import ChildrenList from '../components/ChildrenList';
 import SiblingsList from '../components/SiblingsList';
 import { useHistory } from 'react-router-dom';
+import Button from '../components/Button';
 
 export const PersonPage = (props: IdFromUrl) => {
     const [key, setKey] = useState<string>(null);
@@ -179,10 +179,15 @@ export const PersonPage = (props: IdFromUrl) => {
                             </div>
                         </div>
                         <div className="person-page__btn person-page__btn--edit">
-                            <ButtonSmallAlt text="Edit" handleClick={() => setAlert(!alert)} />
+                            <Button handleClick={() => setAlert(!alert)} buttonText="Edit" size="small" theme="alt" />
                         </div>
                         <div className="person-page__btn person-page__btn--del">
-                            <ButtonSmallAlt text="Delete" handleClick={() => setConfirm(!confirm)} />
+                            <Button
+                                handleClick={() => setConfirm(!confirm)}
+                                buttonText="Delete"
+                                size="small"
+                                theme="alt"
+                            />
                         </div>
                         <div className="person-extra__footer">
                             <div className="person-extra__info__text">

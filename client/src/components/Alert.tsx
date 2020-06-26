@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { ButtonSmallAlt } from './Button';
+import Button from './Button';
 
 interface PropTypes {
     text: string;
@@ -16,7 +16,7 @@ const Alert = (props: PropTypes) => {
                 <div className="alert-box__inner__title">Alert</div>
                 <div className="alert-box__inner__text">{props.text}</div>
                 <div className="alert-box__inner__btn">
-                    <ButtonSmallAlt text="Close" handleClick={props.handleClose} />
+                    <Button buttonText="Close" handleClick={props.handleClose} size="small" theme="alt" />
                 </div>
             </div>
         </div>

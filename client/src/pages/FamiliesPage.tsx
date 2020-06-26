@@ -4,7 +4,7 @@ import { FamilyHeader } from '../components/Family';
 import FamilyTable from '../components/FamilyTable';
 import { getAll } from '../services/familyService';
 import { Link } from 'react-router-dom';
-import { ButtonSmall } from '../components/Button';
+import Button from '../components/Button';
 
 export const FamiliesPage = () => {
     const [items, setItems] = useState<FamilyType[]>([]);
@@ -25,7 +25,7 @@ export const FamiliesPage = () => {
                 <div className="list-panel">
                     <div className="list-panel__btn">
                         <Link to={'/viewall'}>
-                            <ButtonSmall text="People" />
+                            <Button buttonText="People" size="small" theme="main" />
                         </Link>
                     </div>
                     <div className="list-panel__head">

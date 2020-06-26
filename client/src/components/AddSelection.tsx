@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ButtonBigAlt } from './Button';
+import Button from './Button';
 
 const AddSelection = () => (
     <div className="add-selection">
@@ -8,12 +8,12 @@ const AddSelection = () => (
         <div className="add-selection__btns">
             <div className="add-selection__btn-wrap">
                 <Link to={'/add/person'}>
-                    <ButtonBigAlt text="Add Person" />
+                    <Button buttonText="Add Person" size="big" theme="alt" />
                 </Link>
             </div>
             <div className="add-selection__btn-wrap">
                 <Link to={'/add/family'}>
-                    <ButtonBigAlt text="Add Family" />
+                    <Button buttonText="Add Famiy" size="big" theme="alt" />
                 </Link>
             </div>
         </div>

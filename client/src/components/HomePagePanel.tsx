@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ButtonBig, { ButtonBigAlt } from './Button';
+import Button from './Button';
 
 interface PropTypes {
     title: string;
@@ -22,8 +22,11 @@ const HomePagePanel = (props: PropTypes) => {
                 </div>
             </div>
             <Link to={props.path}>
-                {props.theme === 1 && <ButtonBig text={props.buttonText} />}
-                {props.theme === 0 && <ButtonBigAlt text={props.buttonText} />}
+                {props.theme ? (
+                    <Button buttonText={props.buttonText} size="big" theme="main" />
+                ) : (
+                    <Button buttonText={props.buttonText} size="big" theme="alt" />
+                )}
             </Link>
         </div>
     );

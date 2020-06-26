@@ -1,6 +1,6 @@
 import React from 'react';
-import { ButtonSmallAlt } from '../components/Button';
 import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 
 export const NotFoundPage = () => (
     <div className="notfound-page">
@@ -9,7 +9,7 @@ export const NotFoundPage = () => (
         <div className="notfound-page__text">Return to the home page.</div>
         <div className="notfound-page__btn">
             <Link to={'/'}>
-                <ButtonSmallAlt text="Home" />
+                <Button buttonText="Home" size="small" theme="alt" />
             </Link>
         </div>
     </div>

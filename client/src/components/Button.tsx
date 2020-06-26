@@ -1,33 +1,23 @@
 import React from 'react';
 
-const ButtonBig = (props: { handleClick?: VoidFunction; text: string }) => (
-    <div className="btn btn--big" onClick={props.handleClick}>
-        <div className="btn__text btn__text--big">{props.text}</div>
-    </div>
-);
+interface ButtonProps {
+    handleClick?: VoidFunction;
+    buttonText: string;
+    size: string; //big, small
+    theme: string; //main, alt, negative
+}
 
-export const ButtonBigAlt = (props: { handleClick?: VoidFunction; text: string }) => (
-    <div className="btn btn--big btn--alt" onClick={props.handleClick}>
-        <div className="btn__text btn__text--big">{props.text}</div>
-    </div>
-);
+export const Button = (props: ButtonProps) => {
+    const { handleClick, buttonText, size, theme } = props;
 
-export const ButtonSmall = (props: { handleClick?: VoidFunction; text: string }) => (
-    <div className="btn btn--small" onClick={props.handleClick}>
-        <div className="btn__text btn__text--small">{props.text}</div>
-    </div>
-);
+    const btnClass = `btn btn--${size} ${theme === 'main' ? '' : `btn--${theme}`}`;
+    const btnTextClass = `btn__text btn__text--${size}`;
 
-export const ButtonSmallAlt = (props: { handleClick?: VoidFunction; text: string }) => (
-    <div className="btn btn--small btn--alt" onClick={props.handleClick}>
-        <div className="btn__text btn__text--small">{props.text}</div>
-    </div>
-);
+    return (
+        <div className={btnClass} onClick={handleClick}>
+            <div className={btnTextClass}>{buttonText}</div>
+        </div>
+    );
+};
 
-export const ButtonSmallAltNegative = (props: { handleClick?: VoidFunction; text: string }) => (
-    <div className="btn btn--small btn--alt btn--negative" onClick={props.handleClick}>
-        <div className="btn__text btn__text--small">{props.text}</div>
-    </div>
-);
-
-export default ButtonBig;
+export default Button;

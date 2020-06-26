@@ -11,7 +11,7 @@
     &:hover {
         background-color: $app-color2;
     }
-    
+
     &__text {
         position: absolute;
         text-align: center;
@@ -28,7 +28,6 @@
         &--small {
             font-size: 18px;
             font-weight: bold;
-
         }
     }
 
@@ -64,11 +63,12 @@
     }
 
     &--negative {
+        background-color: $app-black;
+        .btn__text {
+            color: #ffffff;
+        }
         &:hover {
             background-color: $app-color1;
-            .button-small-text {
-                color: #ffffff;
-            }
         }
     }
 }

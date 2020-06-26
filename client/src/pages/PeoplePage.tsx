@@ -3,14 +3,14 @@ import { PersonType } from '../types/PersonType';
 import { getAll } from '../services/personService';
 import { PersonHeader } from '../components/Person';
 import PeopleTable from '../components/PeopleTable';
-import { ButtonSmall } from '../components/Button';
 import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 
 const PeoplePanel = () => (
     <div className="list-panel">
         <div className="list-panel__btn">
             <Link to={'/viewall/families'}>
-                <ButtonSmall text="Families" />
+                <Button buttonText="Families" size="small" theme="main" />
             </Link>
         </div>
         <div className="list-panel__head">

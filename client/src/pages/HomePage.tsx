@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ButtonBig from '../components/Button';
+import Button from '../components/Button';
 import '../style/Index.scss';
 import Modal from '../components/Modal';
 import AddSelection from '../components/AddSelection';
@@ -16,7 +16,7 @@ const Greeting = (props: { handleClick: VoidFunction }) => (
                     minutes to get started!
                 </div>
             </div>
-            <ButtonBig text="Get started" handleClick={() => props.handleClick()} />
+            <Button handleClick={() => props.handleClick()} buttonText="Get started" size="big" theme="main" />
         </div>
     </div>
 );

@@ -58,21 +58,22 @@ export const PersonAdditionPage = () => {
     };
 
     const parentValueHandler = async (parent: string) => {
-        if (parent === 'mother' && personFormOptions.hasMother && personFormOptions.motherQuery) {
-            const searchQuery = personFormOptions.motherQuery;
+        const { hasMother, hasFather, motherQuery, fatherQuery } = personFormOptions;
+        if (parent === 'mother' && hasMother && motherQuery) {
+            const searchQuery = motherQuery;
             await searchPeopleByQuery(searchQuery.replace('+', '')).then((data) => {
                 setPersonFormOptions({ ...personFormOptions, possibleMothers: data });
             });
-        } else if (parent === 'mother' && personFormOptions.hasMother && !personFormOptions.motherQuery) {
+        } else if (parent === 'mother' && hasMother && !motherQuery) {
             setPersonFormOptions({ ...personFormOptions, possibleMothers: [] });
         }
 
-        if (parent === 'father' && personFormOptions.hasFather && personFormOptions.fatherQuery) {
-            const searchQuery = personFormOptions.fatherQuery;
+        if (parent === 'father' && hasFather && fatherQuery) {
+            const searchQuery = fatherQuery;
             await searchPeopleByQuery(searchQuery.replace('+', '')).then((data) => {
                 setPersonFormOptions({ ...personFormOptions, possibleFathers: data, fatherQuery: searchQuery });
             });
-        } else if (parent === 'father' && personFormOptions.hasFather && !personFormOptions.fatherQuery) {
+        } else if (parent === 'father' && hasFather && !fatherQuery) {
             setPersonFormOptions({ ...personFormOptions, possibleFathers: [] });
         }
     };

@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 import Button from '../components/Button';
 
 export const PersonPage = (props: IdFromUrl) => {
-    const [key, setKey] = useState<string>(null);
+    const [loadedPersonId, setKey] = useState<string>(null);
     const [person, setPerson] = useState<PersonType>(createEmptyPerson());
     const [personChildren, setPersonChildren] = useState<PersonType[]>([]);
     const [parent1, setParent1] = useState<PersonType>(createEmptyPerson());
@@ -102,15 +102,15 @@ export const PersonPage = (props: IdFromUrl) => {
     }, [props.match.params.id]);
 
     useEffect(() => {
-        if (key !== person.id) {
+        if (loadedPersonId !== person.id) {
             getPersonInformation();
             setKey(person.id);
         }
-    }, [getPersonInformation, key, person.id]);
+    }, [getPersonInformation, loadedPersonId, person.id]);
 
     const profileClass = `person-info__img person-info__img--${person.gender}`;
 
-    if (key === person.id) {
+    if (loadedPersonId === person.id) {
         return (
             <div className="person-page">
                 <Alert text="Feature not yet available" open={alert} handleClose={() => setAlert(!alert)} />

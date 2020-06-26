@@ -22,11 +22,7 @@ const HomePagePanel = ({ title, path, buttonText, theme }: PropTypes) => {
                 </div>
             </div>
             <Link to={path}>
-                {theme ? (
-                    <Button buttonText={buttonText} size="big" theme="main" />
-                ) : (
-                    <Button buttonText={buttonText} size="big" theme="alt" />
-                )}
+                <Button buttonText={buttonText} size="big" theme={theme ? 'main' : 'alt'} />
             </Link>
         </div>
     );

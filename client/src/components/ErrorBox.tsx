@@ -15,11 +15,9 @@ export const ErrorBox = ({ errors }: ErrorBoxProps) => {
 
         const buildMessage = () => {
             if (errorCodes.length > 0) {
-                let errorCode = errorCodes.join('');
-                setMessage(defaultMessage + ' Code: x' + errorCode);
-            } else {
-                setMessage('');
-            }
+                const errorCode = errorCodes.join('');
+                setMessage(`${defaultMessage} Code: x${errorCode}`);
+            } else setMessage('');
         };
 
         buildMessage();

@@ -4,17 +4,20 @@ import Alert from '../components/Alert';
 import { useHistory } from 'react-router';
 
 export const FamilyAdditionPage = () => {
-    const createdFamily: React.RefObject<HTMLInputElement> = React.createRef();
+    const [createdFamily, setCreatedFamily] = useState<string>('');
     const [alert, setAlert] = useState<boolean>(false);
     const history = useHistory();
 
     const submitNewFamily = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!alert) {
-            const newFamilyName = createdFamily.current.value.trim();
-            // Error checking
-            if (newFamilyName) newFamily(createdFamily.current.value).then(() => setAlert(true));
+            const newFamilyName = createdFamily.trim();
+            if (newFamilyName) newFamily(createdFamily).then(() => setAlert(true));
         }
+    };
+
+    const createdFamilyValueHandler = (e: React.FormEvent<any>) => {
+        setCreatedFamily(e.currentTarget.value);
     };
 
     return (
@@ -31,7 +34,8 @@ export const FamilyAdditionPage = () => {
                         <input
                             type="text"
                             placeholder="Enter family name..."
-                            ref={createdFamily}
+                            value={createdFamily}
+                            onChange={createdFamilyValueHandler}
                             required
                             pattern="\S(.*\S)?"
                         />

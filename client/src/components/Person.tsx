@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { PersonInterface } from '../types/PersonType';
 import { calculateAgeByParams } from '../services/util';
 
-const Person = (props: PersonInterface) => {
-    const {id, name, dead, birthDate, deathDate} = props;
+const Person = ({ id, name, gender, dead, birthDate, deathDate }: PersonInterface) => {
     const [age, setAge] = useState(0);
 
     useEffect(() => {
@@ -16,9 +15,9 @@ const Person = (props: PersonInterface) => {
             <div className="person person--item">
                 <div className="person__body">
                     <div className="person__name">{dead ? `✝${name}` : name}</div>
-                    <div className="person__gender">{props.gender}</div>
+                    <div className="person__gender">{gender}</div>
                     <div className="person__age">{age}</div>
-                    <div className="person__birthday">{props.birthDate}</div>
+                    <div className="person__birthday">{birthDate}</div>
                 </div>
             </div>
         </Link>

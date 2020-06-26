@@ -25,7 +25,14 @@ export const FamilyDropdown = (props: familyDropdownProps) => (
     </>
 );
 
-export const ParentDropdown = (props: { parents: PersonType[]; onChange: any; familiyId: string; gender: string }) =>
+interface ParentDropdownProps {
+    parents: PersonType[];
+    onChange: any;
+    familiyId: string;
+    gender: string;
+}
+
+export const ParentDropdown = (props: ParentDropdownProps) =>
     props.parents.length ? (
         <>
             <div className="person-form__input">

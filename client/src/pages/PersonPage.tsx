@@ -166,7 +166,7 @@ export const PersonPage = (props: IdFromUrl) => {
                             <div className="person-extra__info__text">
                                 Children: <br />
                                 <div className="person-extra__info__list">
-                                    <ChildrenList children={personChildren} />
+                                    <ChildrenList childrenList={personChildren} />
                                 </div>
                             </div>
                             <div className="person-extra__info__text">

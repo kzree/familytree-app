@@ -11,11 +11,9 @@ export const FamilyAdditionPage = () => {
     const submitNewFamily = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!alert) {
-            let newFamilyName = createdFamily.current.value.replace(/ +(?= )/g, '');
+            const newFamilyName = createdFamily.current.value.trim();
             // Error checking
-            if (newFamilyName && newFamilyName !== ' ') {
-                newFamily(createdFamily.current.value).then(() => setAlert(true));
-            }
+            if (newFamilyName) newFamily(createdFamily.current.value).then(() => setAlert(true));
         }
     };
 
@@ -30,7 +28,13 @@ export const FamilyAdditionPage = () => {
                 <h2>Add new family</h2>
                 <form onSubmit={submitNewFamily} className="family-form">
                     <div className="family-form__input">
-                        <input type="text" placeholder="Enter family name..." ref={createdFamily} required />
+                        <input
+                            type="text"
+                            placeholder="Enter family name..."
+                            ref={createdFamily}
+                            required
+                            pattern="\S(.*\S)?"
+                        />
                     </div>
                     <div className="family-form__input family-form__submit">
                         <input type="submit" value="Submit" className="submitbtn" />

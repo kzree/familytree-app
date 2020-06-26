@@ -14,9 +14,9 @@ export const Button = (props: ButtonProps) => {
     const btnTextClass = `btn__text btn__text--${size}`;
 
     return (
-        <div className={btnClass} onClick={handleClick}>
-            <div className={btnTextClass}>{buttonText}</div>
-        </div>
+        <button className={btnClass} onClick={handleClick}>
+            <span className={btnTextClass}>{buttonText}</span>
+        </button>
     );
 };
 

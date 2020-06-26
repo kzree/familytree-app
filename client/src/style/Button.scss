@@ -7,9 +7,14 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s;
+    border: none;
 
     &:hover {
         background-color: $app-color2;
+    }
+
+    &:focus {
+        outline: none;
     }
 
     &__text {

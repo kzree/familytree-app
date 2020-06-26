@@ -44,7 +44,7 @@ const StatsPage = () => {
     };
 
     useEffect(() => {
-        const init = () => {
+        const loadStatsData = () => {
             getTotalPeopleAmount();
             getTotalFamiliesAmount();
             getTheYoungestPerson();
@@ -53,7 +53,7 @@ const StatsPage = () => {
         };
 
         if (!loaded) {
-            init();
+            loadStatsData();
             setLoaded(true);
         }
     }, [loaded]);

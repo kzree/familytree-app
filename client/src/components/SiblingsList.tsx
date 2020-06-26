@@ -9,13 +9,11 @@ interface SiblingsListProps {
 export const SiblingsList = ({ siblings }: SiblingsListProps) =>
     siblings.length ? (
         <ul>
-            {siblings.map((item, i) => {
-                return (
-                    <li key={i + 'sib'}>
-                        <Link to={`/person/${item.id}`}>{item.name}</Link>
-                    </li>
-                );
-            })}
+            {siblings.map((item, i) => (
+                <li key={i + 'sib'}>
+                    <Link to={`/person/${item.id}`}>{item.name}</Link>
+                </li>
+            ))}
         </ul>
     ) : (
         <ul>None</ul>

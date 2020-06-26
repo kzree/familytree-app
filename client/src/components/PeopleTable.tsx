@@ -7,7 +7,7 @@ interface PeopleTableProps {
 }
 
 const PeopleTable = ({ visiblePeople }: PeopleTableProps) => (
-    <>
+    <div className="list-page__table">
         {visiblePeople.map((item, i) => {
             return (
                 <Person
@@ -24,7 +24,7 @@ const PeopleTable = ({ visiblePeople }: PeopleTableProps) => (
                 />
             );
         })}
-    </>
+    </div>
 );
 
 export default PeopleTable;

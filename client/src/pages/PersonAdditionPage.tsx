@@ -59,7 +59,7 @@ export const PersonAdditionPage = () => {
 
     const parentValueHandler = async (parent: string) => {
         if (parent === 'mother' && personFormOptions.hasMother && personFormOptions.motherQuery) {
-            let searchQuery = personFormOptions.motherQuery;
+            const searchQuery = personFormOptions.motherQuery;
             await searchPeopleByQuery(searchQuery.replace('+', '')).then((data) => {
                 setPersonFormOptions({ ...personFormOptions, possibleMothers: data });
             });
@@ -68,7 +68,7 @@ export const PersonAdditionPage = () => {
         }
 
         if (parent === 'father' && personFormOptions.hasFather && personFormOptions.fatherQuery) {
-            let searchQuery = personFormOptions.fatherQuery;
+            const searchQuery = personFormOptions.fatherQuery;
             await searchPeopleByQuery(searchQuery.replace('+', '')).then((data) => {
                 setPersonFormOptions({ ...personFormOptions, possibleFathers: data, fatherQuery: searchQuery });
             });

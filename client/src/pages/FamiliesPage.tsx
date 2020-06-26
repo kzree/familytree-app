@@ -33,9 +33,7 @@ export const FamiliesPage = () => {
                     </div>
                 </div>
                 <FamilyHeader />
-                <div className="list-page__table">
-                    <FamilyTable visibleFamilies={items.sort((a, b) => a.name.localeCompare(b.name))} />
-                </div>
+                <FamilyTable visibleFamilies={items.sort((a, b) => a.name.localeCompare(b.name))} />
             </div>
         </div>
     );

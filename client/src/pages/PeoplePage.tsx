@@ -39,9 +39,7 @@ export const PeoplePage = () => {
                 <PeoplePanel />
                 <PersonHeader />
 
-                <div className="list-page__table">
-                    <PeopleTable visiblePeople={items.sort((a, b) => a.name.localeCompare(b.name))} />
-                </div>
+                <PeopleTable visiblePeople={items.sort((a, b) => a.name.localeCompare(b.name))} />
             </div>
         </div>
     );

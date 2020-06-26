@@ -46,9 +46,7 @@ export const SearchPage = () => {
                         </div>
                     </div>
                     <PersonHeader />
-                    <div className="list-page__table">
-                        <PeopleTable visiblePeople={items} />
-                    </div>
+                    <PeopleTable visiblePeople={items} />
                 </div>
             </div>
         </div>

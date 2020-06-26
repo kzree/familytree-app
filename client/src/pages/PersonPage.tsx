@@ -76,20 +76,17 @@ export const PersonPage = (props: IdFromUrl) => {
     const getPersonInformation = useCallback(() => {
         if (person) {
             // Parent information
-            if (person.parent1) {
-                getById(person.parent1).then((data) => {
-                    setParent1(data);
-                });
-            } else {
-                setParent1(createEmptyPerson());
-            }
-            if (person.parent2) {
-                getById(person.parent2).then((data) => {
-                    setParent2(data);
-                });
-            } else {
-                setParent2(createEmptyPerson());
-            }
+            person.parent1
+                ? getById(person.parent1).then((data) => {
+                      setParent1(data);
+                  })
+                : setParent1(createEmptyPerson());
+
+            person.parent2
+                ? getById(person.parent2).then((data) => {
+                      setParent2(data);
+                  })
+                : setParent2(createEmptyPerson());
 
             getRelatives();
             getPersonSiblings();
@@ -111,10 +108,7 @@ export const PersonPage = (props: IdFromUrl) => {
         }
     }, [getPersonInformation, key, person.id]);
 
-    const profileClass =
-        person.gender === 'male'
-            ? 'person-info__img person-info__img--male'
-            : 'person-info__img person-info__img--female';
+    const profileClass = `person-info__img person-info__img--${person.gender}`;
 
     if (key === person.id) {
         return (

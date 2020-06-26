@@ -18,7 +18,7 @@ export const FamilyPage = (props: IdFromUrl) => {
     const [familyid, setFamilyid] = useState<string>('');
 
     useEffect(() => {
-        const init = async () => {
+        const loadFamilyData = async () => {
             let idFromParams: string = props.match.params.id;
             await getByFamilyId(idFromParams).then((data) => {
                 setItems(data);
@@ -26,7 +26,7 @@ export const FamilyPage = (props: IdFromUrl) => {
             });
         };
 
-        if (familyid !== props.match.params.id) init();
+        if (familyid !== props.match.params.id) loadFamilyData();
     }, [familyid, props.match.params.id]);
 
     return (
@@ -35,9 +35,7 @@ export const FamilyPage = (props: IdFromUrl) => {
                 <FamilyPanel />
                 <PersonHeader />
 
-                <div className="list-page__content__table">
-                    <PeopleTable visiblePeople={items} />
-                </div>
+                <PeopleTable visiblePeople={items} />
             </div>
         </div>
     );

@@ -32,17 +32,17 @@ interface ParentDropdownProps {
     gender: string;
 }
 
-export const ParentDropdown = (props: ParentDropdownProps) =>
-    props.parents.length ? (
+export const ParentDropdown = ({ parents, onChange, familiyId, gender }: ParentDropdownProps) =>
+    parents.length ? (
         <>
             <div className="person-form__input">
                 <label>Select</label>
             </div>
-            <select id="parents" name={props.gender === 'male' ? 'fatherId' : 'motherId'} onChange={props.onChange}>
+            <select id="parents" name={gender === 'male' ? 'fatherId' : 'motherId'} onChange={onChange}>
                 <option value="">Please select</option>
-                {props.parents.map((item, i) => {
+                {parents.map((item, i) => {
                     const age = calculateAgeByPerson(item);
-                    if (props.familiyId === item.family && props.gender === item.gender) {
+                    if (familiyId === item.family && gender === item.gender) {
                         return (
                             <option value={item.id} key={i}>
                                 {item.name}

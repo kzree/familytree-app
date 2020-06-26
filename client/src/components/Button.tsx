@@ -7,9 +7,7 @@ interface ButtonProps {
     theme: string; //main, alt, negative
 }
 
-export const Button = (props: ButtonProps) => {
-    const { handleClick, buttonText, size, theme } = props;
-
+export const Button = ({ handleClick, buttonText, size, theme }: ButtonProps) => {
     const btnClass = `btn btn--${size} ${theme === 'main' ? '' : `btn--${theme}`}`;
     const btnTextClass = `btn__text btn__text--${size}`;
 

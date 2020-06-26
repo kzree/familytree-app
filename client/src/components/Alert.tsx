@@ -8,15 +8,14 @@ interface PropTypes {
     handleClose: VoidFunction;
 }
 
-const Alert = (props: PropTypes) => {
-    let open = props.open;
+const Alert = ({ text, open, handleClose }: PropTypes) => {
     return (
         <div className={cx('alert-box', { open })}>
             <div className="alert-box__inner">
                 <div className="alert-box__title">Alert</div>
-                <div className="alert-box__text">{props.text}</div>
+                <div className="alert-box__text">{text}</div>
                 <div className="alert-box__btn">
-                    <Button buttonText="Close" handleClick={props.handleClose} size="small" theme="alt" />
+                    <Button buttonText="Close" handleClick={handleClose} size="small" theme="alt" />
                 </div>
             </div>
         </div>

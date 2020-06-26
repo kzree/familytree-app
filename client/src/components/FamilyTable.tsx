@@ -2,9 +2,13 @@ import React from 'react';
 import Family from './Family';
 import { FamilyType } from '../types/FamilyType';
 
-const FamilyTable = (props: { visibleFamilies: FamilyType[] }) => (
+interface FamilyTableProps {
+    visibleFamilies: FamilyType[];
+}
+
+const FamilyTable = ({ visibleFamilies }: FamilyTableProps) => (
     <>
-        {props.visibleFamilies.map((item, i) => {
+        {visibleFamilies.map((item, i) => {
             return <Family key={i} id={item.id} name={item.name} />;
         })}
     </>

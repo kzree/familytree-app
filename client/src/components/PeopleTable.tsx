@@ -2,9 +2,13 @@ import React from 'react';
 import { PersonType } from '../types/PersonType';
 import Person from './Person';
 
-const PeopleTable = (props: { visiblePeople: PersonType[] }) => (
+interface PeopleTableProps {
+    visiblePeople: PersonType[];
+}
+
+const PeopleTable = ({ visiblePeople }: PeopleTableProps) => (
     <>
-        {props.visiblePeople.map((item, i) => {
+        {visiblePeople.map((item, i) => {
             return (
                 <Person
                     key={i}

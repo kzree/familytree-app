@@ -5,7 +5,11 @@ import Modal from '../components/Modal';
 import AddSelection from '../components/AddSelection';
 import HomePagePanel from '../components/HomePagePanel';
 
-const Greeting = (props: { handleClick: VoidFunction }) => (
+interface GreetingProps {
+    handleClick: VoidFunction;
+}
+
+const Greeting = ({ handleClick }: GreetingProps) => (
     <div className="home-greeting">
         <div className="home-greeting__img"></div>
         <div className="home-greeting__container">
@@ -16,7 +20,7 @@ const Greeting = (props: { handleClick: VoidFunction }) => (
                     minutes to get started!
                 </div>
             </div>
-            <Button handleClick={() => props.handleClick()} buttonText="Get started" size="big" theme="main" />
+            <Button handleClick={() => handleClick()} buttonText="Get started" size="big" theme="main" />
         </div>
     </div>
 );

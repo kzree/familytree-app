@@ -8,13 +8,12 @@ interface ModalProps {
     onClose: VoidFunction;
 }
 
-const Modal = (props: ModalProps) => {
-    let open = props.open;
+const Modal = ({ children, open, onClose }: ModalProps) => {
     return (
         <div className={cx('modal', { open })}>
             <div className={'modal__inner'}>
-                <IoMdCloseCircle className={'close'} onClick={props.onClose} />
-                {props.children}
+                <IoMdCloseCircle className={'close'} onClick={onClose} />
+                {children}
             </div>
         </div>
     );

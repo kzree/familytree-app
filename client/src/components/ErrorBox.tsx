@@ -4,14 +4,14 @@ interface ErrorBoxProps {
     errors: number[];
 }
 
-export const ErrorBox = (props: ErrorBoxProps) => {
+export const ErrorBox = ({ errors }: ErrorBoxProps) => {
     const defaultMessage = 'Error creating new person! Check input fields!';
 
     const [message, setMessage] = useState('');
     const [errorCodes, setErrorCodes] = useState<number[]>([]);
 
     useEffect(() => {
-        setErrorCodes(props.errors);
+        setErrorCodes(errors);
 
         const buildMessage = () => {
             if (errorCodes.length > 0) {
@@ -23,7 +23,7 @@ export const ErrorBox = (props: ErrorBoxProps) => {
         };
 
         buildMessage();
-    }, [errorCodes, props.errors]);
+    }, [errorCodes, errors]);
 
     return (
         <div className="error-box">

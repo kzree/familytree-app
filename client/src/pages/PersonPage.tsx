@@ -131,7 +131,7 @@ export const PersonPage = (props: IdFromUrl) => {
                         </div>
                     </div>
                     <div className="person-extra">
-                        <h1>Information</h1>
+                        <h2>Information</h2>
                         <div className="person-extra__info">
                             <div className="person-extra__info__text">
                                 Name: {person.dead ? `✝ ${person.name}` : person.name}

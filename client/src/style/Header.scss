@@ -15,15 +15,17 @@
     width: 156px;
     height: 100%;
 
-    &__img {
+    &__title {
         color: white;
         width: 156px;
         height: 100%;
+        margin-top: 0;
         font-size: 50px;
+        font-weight: normal;
         text-align: center;
         transition: all 0.2s;
         cursor: pointer;
-        
+
         &:hover {
             animation: start-anim 1s 0s ease-in, anim 2s 1s alternate infinite ease-in-out;
         }
@@ -43,13 +45,11 @@
         &--a {
             background-color: $app-color1;
         }
-    
+
         &--b {
             background-color: $app-color2;
         }
     }
-
-
 }
 
 // Animation

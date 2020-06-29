@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const HeaderLogo = () => (
     <div className="header-logo">
         <Link to={'/'}>
-            <div className="header-logo__img">FAMI</div>
+            <h1 className="header-logo__title">FAMI</h1>
         </Link>
     </div>
 );
@@ -17,12 +17,12 @@ const HeaderDeco = () => (
 );
 
 export const Header = () => (
-    <div className="header">
+    <header className="header">
         <div className="header__content">
             <HeaderLogo />
         </div>
         <HeaderDeco />
-    </div>
+    </header>
 );
 
 export default Header;

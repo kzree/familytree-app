@@ -62,7 +62,7 @@ const StatsPage = () => {
         <div className="list-page">
             <div className="list-page__content">
                 <div className="stats">
-                    <h1>Statistics</h1>
+                    <h2>Statistics</h2>
                     <div className="stats__text">
                         Total amount of people: <Link to={'/viewall'}>{totalPeople}</Link>
                     </div>

@@ -27,29 +27,25 @@ export const SearchPage = () => {
     };
 
     return (
-        <div>
-            <div className="list-page">
-                <div className="list-page__content">
-                    <div className="search-panel">
-                        <div className="search-panel__input-wrap">
-                            <div className="search-panel__input">
-                                <input
-                                    type="text"
-                                    placeholder="Search..."
-                                    value={searchQuery}
-                                    onChange={searchQueryValueHandler}
-                                />
-                                <div className="search-panel__search-btn" onClick={() => searchDatabase()}>
-                                    <IoMdSearch />
-                                </div>
-                            </div>
+        <main className="list-page">
+            <section className="list-page__content">
+                <div className="search-panel">
+                    <div className="search-panel__input-wrap">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            value={searchQuery}
+                            onChange={searchQueryValueHandler}
+                        />
+                        <div className="search-panel__search-btn" onClick={() => searchDatabase()}>
+                            <IoMdSearch />
                         </div>
                     </div>
-                    <PersonHeader />
-                    <PeopleTable visiblePeople={items} />
                 </div>
-            </div>
-        </div>
+                <PersonHeader />
+                <PeopleTable visiblePeople={items} />
+            </section>
+        </main>
     );
 };
 

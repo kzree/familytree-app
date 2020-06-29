@@ -1,13 +1,5 @@
 @import 'Variables.scss';
-// Pages
-@import 'HomePage.scss';
-@import 'PeoplePage.scss';
-@import 'PersonPage.scss';
-@import 'SearchPage.scss';
-@import 'NotFoundPage.scss';
-@import 'FamilyAdditionPage.scss';
-@import 'PersonAdditionPage.scss';
-@import 'StatsPage.scss';
+@import 'Globals.scss';
 // Components
 @import 'Header.scss';
 @import 'Button.scss';
@@ -18,3 +10,12 @@
 @import 'ErrorBox.scss';
 @import 'Alert.scss';
 @import 'Confirmation.scss';
+// Pages
+@import 'HomePage.scss';
+@import 'PeoplePage.scss';
+@import 'PersonPage.scss';
+@import 'SearchPage.scss';
+@import 'NotFoundPage.scss';
+@import 'FamilyAdditionPage.scss';
+@import 'PersonAdditionPage.scss';
+@import 'StatsPage.scss';

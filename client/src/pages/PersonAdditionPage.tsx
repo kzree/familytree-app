@@ -128,9 +128,9 @@ export const PersonAdditionPage = () => {
         : 'person-form__input person-form__input--not-dead ';
 
     return (
-        <div className="addition-page">
+        <main className="addition-page">
             <Alert text="Person added successfully" open={alert} handleClose={() => history.push('/viewall')} />
-            <div className="addition-page__content">
+            <section className="addition-page__content">
                 <h2>Add new person</h2>
                 <form onSubmit={postData} className="person-form">
                     <div className="person-form__input">
@@ -268,8 +268,8 @@ export const PersonAdditionPage = () => {
                         <ErrorBox errors={errorCodes} />
                     </div>
                 </form>
-            </div>
-        </div>
+            </section>
+        </main>
     );
 };
 

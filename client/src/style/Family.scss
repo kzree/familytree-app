@@ -1,24 +1,24 @@
+$family-name-width: 500px;
+$family-name-padding: 0 0 0 36px;
+$family-members-width: 100px;
+$family-members-padding: 0 0 0 12px;
+
 .family {
     display: flex;
     width: 100%;
     height: 30px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #ccc;
+    background-color: $app-white;
+    border-bottom: $table-border;
     font-weight: bold;
     color: $app-black;
-    transition: 0.2s ease-in-out;
-
-    &:hover {
-        background-color: #eeeeee;
-        cursor: pointer;
-    }
+    transition: $transition-all ease-in-out;
 
     &__body {
         display: flex;
         width: auto;
         height: 20px;
         padding: 5px;
-        transition: 0.2s ease-in-out;
+        transition: $transition-all ease-in-out;
 
         &--header {
             padding-top: 10px;
@@ -28,17 +28,24 @@
     }
 
     &__name {
-        width: 500px;
-        padding-left: 36px;
+        width: $family-name-width;
+        padding: $family-name-padding;
     }
 
     &__members {
-        width: 100px;
-        padding-left: 12px;
+        width: $family-members-width;
+        padding-left: $family-members-padding;
+    }
+
+    &--item {
+        &:hover {
+            background-color: $app-table-hover;
+            cursor: pointer;
+        }
     }
 
     &--header {
         height: 40px;
-        border-top: 1px solid #ccc;
+        border-top: $table-border;
     }
 }

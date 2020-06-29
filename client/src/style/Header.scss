@@ -1,8 +1,14 @@
+$header-height: 60px;
+$header-deco-width: calc(2 * $header-height);
+
+$header-deco-square-a-bg: $app-color1;
+$header-deco-square-b-bg: $app-color2;
+
 .header {
-    width: 100%;
-    height: 60px;
-    background-color: $app-black;
     display: flex;
+    width: 100%;
+    height: $header-height;
+    background-color: $app-black;
 
     &__content {
         display: flex;
@@ -16,14 +22,13 @@
     height: 100%;
 
     &__title {
-        color: white;
+        color: $app-white;
         width: 156px;
-        height: 100%;
         margin-top: 0;
-        font-size: 50px;
+        font-size: $font-size--h2-big;
         font-weight: normal;
         text-align: center;
-        transition: all 0.2s;
+        transition: $transition-all;
         cursor: pointer;
 
         &:hover {
@@ -35,19 +40,19 @@
 /* Decoration */
 
 .header-deco {
-    width: 120px;
-    height: 60px;
     display: flex;
+    width: $header-deco-width;
+    height: $header-height;
 
     &__square {
-        width: 60px;
+        width: $header-height;
 
         &--a {
-            background-color: $app-color1;
+            background-color: $header-deco-square-a-bg;
         }
 
         &--b {
-            background-color: $app-color2;
+            background-color: $header-deco-square-b-bg;
         }
     }
 }
@@ -55,7 +60,7 @@
 // Animation
 @keyframes start-anim {
     from {
-        color: #ffffff;
+        color: $app-white;
     }
     to {
         color: $app-color1;

@@ -5,8 +5,7 @@
     background: rgba(0, 0, 0, 0.5);
     top: 0;
     left: 0;
-    z-index: 2000;
-    font-family: 'Roboto', sans-serif;
+    z-index: 3;
 
     &__inner {
         max-width: 500px;
@@ -18,7 +17,7 @@
         box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
         background: white;
         position: relative;
-        
+
         .close {
             position: absolute;
             top: 25px;

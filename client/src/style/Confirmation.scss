@@ -1,6 +1,7 @@
 .confirmation-box {
+    height: 30px;
+
     &__btn-container {
-        height: 30px;
         width: 300px;
         padding-top: 46px;
         display: flex;
@@ -8,7 +9,6 @@
     }
 
     &__btn-wrap {
-        height: 30px;
         width: 100px;
     }
 }

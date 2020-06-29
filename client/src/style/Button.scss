@@ -1,12 +1,18 @@
-// Big button
+$btn-big-width: 300px;
+$btn-big-height: 80px;
+$btn-small-width: 100px;
+$btn-small-height: 30px;
+
+$btn-small-font-size: 1.1rem;
+
 .btn {
     display: flex;
     position: absolute;
-    background-color: white;
-    border-radius: 50px;
+    background-color: $app-white;
+    border-radius: $border-radius--big;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: $transition-all;
     border: none;
 
     &:hover {
@@ -24,21 +30,21 @@
         color: $app-black;
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
-        transition: all 0.2s;
+        transition: $transition-all;
 
         &--big {
-            font-size: 32px;
+            font-size: $font-size--h2;
         }
 
         &--small {
-            font-size: 18px;
+            font-size: $btn-small-font-size;
             font-weight: bold;
         }
     }
 
     &--big {
-        width: 300px;
-        height: 80px;
+        width: $btn-big-width;
+        height: $btn-big-height;
         left: 50%;
         -ms-transform: translateX(-50%);
         transform: translateX(-50%);
@@ -51,14 +57,14 @@
     }
 
     &--small {
-        width: 100px;
-        height: 30px;
+        width: $btn-small-width;
+        height: $btn-small-height;
     }
 
     &--alt {
         background-color: $app-black;
         .btn__text {
-            color: #ffffff;
+            color: $app-white;
         }
         &:hover {
             .btn__text {
@@ -70,7 +76,7 @@
     &--negative {
         background-color: $app-black;
         .btn__text {
-            color: #ffffff;
+            color: $app-white;
         }
         &:hover {
             background-color: $app-color1;

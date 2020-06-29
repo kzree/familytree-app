@@ -23,7 +23,7 @@ export const Family = (props: FamilyInterface) => {
 
     return (
         <Link to={`/family/${id}`}>
-            <div className="family">
+            <div className="family family--item">
                 <div className="family__body">
                     <p className="family__name">{name}</p>
                     <p className="family__members">{members}</p>

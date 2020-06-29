@@ -1,11 +1,14 @@
+$notfound-page-sides: 600px;
+$notfound-return-btn-width: 300px;
+
 .notfound-page {
-    width: 600px;
-    height: 600px;
-    padding: 32px;
+    width: $notfound-page-sides;
+    height: $notfound-page-sides;
+    padding: 2rem;
 
     &__title {
-        font-size: 48px;
-        padding-bottom: 24px;
+        font-size: $font-size--h2-big;
+        padding-bottom: 1.5rem;
         margin-top: 0;
         margin-bottom: 12px;
     }
@@ -18,7 +21,7 @@
 
     &__btn {
         position: relative;
-        padding-top: 48px;
-        width: 300px;
+        padding-top: $font-size--h2-big;
+        width: $notfound-return-btn-width;
     }
 }

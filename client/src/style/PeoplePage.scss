@@ -27,19 +27,21 @@
     background-color: $app-black;
     border-bottom: 1px solid #ccc;
 
-    &__head {
+    &__head-wrap {
         position: relative;
         width: 250px;
-        font-size: 42px;
         background-color: $app-color1;
-        color: #ffffff;
     }
 
-    &__text {
+    &__head {
         width: 100%;
         position: absolute;
         text-align: center;
         top: 50%;
+        margin-top: 0;
+        font-weight: normal;
+        font-size: 2.5rem;
+        color: #ffffff;
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
     }

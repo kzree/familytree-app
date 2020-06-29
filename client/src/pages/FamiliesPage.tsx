@@ -16,26 +16,26 @@ export const FamiliesPage = () => {
             });
         };
 
-        if (items.length === 0) fetchData();
-    }, [items]);
+        fetchData();
+    }, []);
 
     return (
-        <div className="list-page">
-            <div className="list-page__content">
+        <main className="list-page">
+            <section className="list-page__content">
                 <div className="list-panel">
-                    <div className="list-panel__btn">
+                    <nav className="list-panel__btn">
                         <Link to={'/viewall'}>
                             <Button buttonText="People" size="small" theme="main" />
                         </Link>
-                    </div>
-                    <div className="list-panel__head">
-                        <div className="list-panel__text">Families</div>
+                    </nav>
+                    <div className="list-panel__head-wrap">
+                        <h2 className="list-panel__head">Families</h2>
                     </div>
                 </div>
                 <FamilyHeader />
                 <FamilyTable visibleFamilies={items.sort((a, b) => a.name.localeCompare(b.name))} />
-            </div>
-        </div>
+            </section>
+        </main>
     );
 };
 

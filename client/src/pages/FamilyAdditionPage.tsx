@@ -21,13 +21,13 @@ export const FamilyAdditionPage = () => {
     };
 
     return (
-        <div className="addition-page">
+        <main className="addition-page">
             <Alert
                 text="Family added successfully"
                 open={alert}
                 handleClose={() => history.push('/viewall/families')}
             />
-            <div className="addition-page__content">
+            <section className="addition-page__content">
                 <h2>Add new family</h2>
                 <form onSubmit={submitNewFamily} className="family-form">
                     <div className="family-form__input">
@@ -44,8 +44,8 @@ export const FamilyAdditionPage = () => {
                         <input type="submit" value="Submit" className="submitbtn" />
                     </div>
                 </form>
-            </div>
-        </div>
+            </section>
+        </main>
     );
 };
 

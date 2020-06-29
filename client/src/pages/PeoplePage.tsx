@@ -8,13 +8,13 @@ import Button from '../components/Button';
 
 const PeoplePanel = () => (
     <div className="list-panel">
-        <div className="list-panel__btn">
+        <nav className="list-panel__btn">
             <Link to={'/viewall/families'}>
                 <Button buttonText="Families" size="small" theme="main" />
             </Link>
-        </div>
-        <div className="list-panel__head">
-            <div className="list-panel__text">List of all</div>
+        </nav>
+        <div className="list-panel__head-wrap">
+            <h2 className="list-panel__head">List of all</h2>
         </div>
     </div>
 );

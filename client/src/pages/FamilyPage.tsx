@@ -7,8 +7,8 @@ import { getByFamilyId } from '../services/personService';
 
 const FamilyPanel = () => (
     <div className="list-panel">
-        <div className="list-panel__head">
-            <div className="list-panel__text">List of family</div>
+        <div className="list-panel__head-wrap">
+            <div className="list-panel__head">List of family</div>
         </div>
     </div>
 );

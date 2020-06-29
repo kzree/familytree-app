@@ -34,14 +34,14 @@ export const PeoplePage = () => {
     }, []);
 
     return (
-        <div className="list-page">
-            <div className="list-page__content">
+        <main className="list-page">
+            <section className="list-page__content">
                 <PeoplePanel />
                 <PersonHeader />
 
                 <PeopleTable visiblePeople={items.sort((a, b) => a.name.localeCompare(b.name))} />
-            </div>
-        </div>
+            </section>
+        </main>
     );
 };
 

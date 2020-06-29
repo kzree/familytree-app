@@ -14,7 +14,7 @@ body {
 .home-greeting {
     position: relative;
     width: 100%;
-    max-width: 1920px;
+    max-width: 3840px;
     height: 600px;
 
     &__img {
@@ -33,7 +33,6 @@ body {
         width: 400px;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.75);
-
     }
 
     &__text-area {
@@ -43,20 +42,20 @@ body {
 
     &__text {
         padding: 12px;
-        font-size: 22px;
+        font-size: $font-size--body;
 
         &--header {
-            color: white;
-            font-size: 36px;
+            color: $app-white;
+            font-size: 2rem;
             text-align: center;
-            padding-top: 24px;
-            padding-bottom: 32px;
+            padding-top: 2rem;
+            padding-bottom: 1rem;
         }
 
         &--body {
             position: absolute;
             width: 90%;
-            color: white;
+            color: $app-white;
             text-align: justify;
             text-justify: inter-word;
             left: 50%;
@@ -78,7 +77,6 @@ body {
         position: relative;
         width: 100%;
         height: 450px;
-
     }
 
     &__header {
@@ -92,11 +90,12 @@ body {
     &__body {
         position: absolute;
         width: 90%;
-        font-size: 22px;
+        font-size: $font-size--body;
         padding: 12px;
         text-align: justify;
         text-justify: inter-word;
         left: 50%;
+        margin-top: 0;
         -ms-transform: translateX(-50%);
         transform: translateX(-50%);
     }
@@ -115,7 +114,7 @@ body {
         position: relative;
         width: 34%;
         height: 600px;
-        background-color: white;
+        background-color: $app-white;
         .lower-panel__text-area {
             color: $app-black;
         }

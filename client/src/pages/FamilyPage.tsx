@@ -8,7 +8,7 @@ import { getByFamilyId } from '../services/personService';
 const FamilyPanel = () => (
     <div className="list-panel">
         <div className="list-panel__head-wrap">
-            <div className="list-panel__head">List of family</div>
+            <h2 className="list-panel__head">List of family</h2>
         </div>
     </div>
 );
@@ -30,14 +30,14 @@ export const FamilyPage = (props: IdFromUrl) => {
     }, [familyid, props.match.params.id]);
 
     return (
-        <div className="list-page">
-            <div className="list-page__content">
+        <main className="list-page">
+            <section className="list-page__content">
                 <FamilyPanel />
                 <PersonHeader />
 
                 <PeopleTable visiblePeople={items} />
-            </div>
-        </div>
+            </section>
+        </main>
     );
 };
 

@@ -10,12 +10,12 @@ interface ModalProps {
 
 const Modal = ({ children, open, onClose }: ModalProps) => {
     return (
-        <div className={cx('modal', { open })}>
+        <section className={cx('modal', { open })}>
             <div className={'modal__inner'}>
                 <IoMdCloseCircle className={'close'} onClick={onClose} />
                 {children}
             </div>
-        </div>
+        </section>
     );
 };
 

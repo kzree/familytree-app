@@ -130,7 +130,7 @@ export const PersonPage = (props: IdFromUrl) => {
                             <p className="person-info__text">Age: {calculatePersonAge()}</p>
                         </div>
                     </aside>
-                    <section className="person-extra">
+                    <div className="person-extra">
                         <h2>Information</h2>
                         <div className="person-extra__info">
                             <p className="person-extra__text">Name: {person.dead ? `✝ ${person.name}` : person.name}</p>
@@ -153,14 +153,10 @@ export const PersonPage = (props: IdFromUrl) => {
                             </p>
                             <p className="person-extra__text"># child of family: {childNumber}</p>
                             <p className="person-extra__text">Number of documented relatives: {relativesAmount}</p>
-                            <p className="person-extra__text">
-                                Children: <br />
-                                <ChildrenList childrenList={personChildren} />
-                            </p>
-                            <p className="person-extra__text">
-                                Siblings: <br />
-                                <SiblingsList siblings={siblings} />
-                            </p>
+                            <p className="person-extra__text">Children:</p>
+                            <ChildrenList childrenList={personChildren} />
+                            <p className="person-extra__text">Siblings:</p>
+                            <SiblingsList siblings={siblings} />
                         </div>
                         <div className="person-page__btn person-page__btn--edit">
                             <Button handleClick={() => setAlert(!alert)} buttonText="Edit" size="small" theme="alt" />
@@ -178,7 +174,7 @@ export const PersonPage = (props: IdFromUrl) => {
                                 <Link to={`/family/${person.family}`}>View all relatives</Link>{' '}
                             </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
             </main>
         );

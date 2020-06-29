@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Button from '../components/Button';
-import '../style/Index.scss';
 import Modal from '../components/Modal';
 import AddSelection from '../components/AddSelection';
 import HomePagePanel from '../components/HomePagePanel';

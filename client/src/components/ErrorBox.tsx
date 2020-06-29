@@ -25,7 +25,7 @@ export const ErrorBox = ({ errors }: ErrorBoxProps) => {
 
     return (
         <div className="error-box">
-            <div>{message}</div>
+            <p>{message}</p>
         </div>
     );
 };

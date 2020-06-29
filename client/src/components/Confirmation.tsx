@@ -11,20 +11,20 @@ interface ConfirmationProps {
 
 const Confirmation = ({ text, open, handleClose, handleOk }: ConfirmationProps) => {
     return (
-        <div className={cx('alert-box', { open })}>
+        <section className={cx('alert-box', { open })}>
             <div className="alert-box__inner">
-                <div className="alert-box__title">Confirm</div>
-                <div className="alert-box__text">{text}</div>
+                <h3 className="alert-box__title">Confirm</h3>
+                <p className="alert-box__text">{text}</p>
                 <div className="confirmation-box__btn-container">
-                    <div className="confirmation-box__btn">
+                    <div className="confirmation-box__btn-wrap">
                         <Button buttonText="No" handleClick={handleClose} size="small" theme="negative" />
                     </div>
-                    <div className="confirmation-box__btn">
+                    <div className="confirmation-box__btn-wrap">
                         <Button buttonText="Yes" handleClick={handleClose} size="small" theme="alt" />
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

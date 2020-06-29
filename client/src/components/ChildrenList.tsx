@@ -8,7 +8,7 @@ interface ChildrenListProps {
 
 export const ChildrenList = ({ childrenList }: ChildrenListProps) =>
     childrenList.length ? (
-        <ul>
+        <ul className="person-extra__list">
             {childrenList.map((child, i) => {
                 return (
                     <li key={i + 'child'}>
@@ -18,7 +18,7 @@ export const ChildrenList = ({ childrenList }: ChildrenListProps) =>
             })}
         </ul>
     ) : (
-        <ul>None</ul>
+        <ul className="person-extra__list">None</ul>
     );
 
 export default ChildrenList;

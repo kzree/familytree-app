@@ -14,10 +14,10 @@ const Person = ({ id, name, gender, dead, birthDate, deathDate }: PersonInterfac
         <Link to={`/person/${id}`}>
             <div className="person person--item">
                 <div className="person__body">
-                    <div className="person__name">{dead ? `✝${name}` : name}</div>
-                    <div className="person__gender">{gender}</div>
-                    <div className="person__age">{age}</div>
-                    <div className="person__birthday">{birthDate}</div>
+                    <span className="person__name">{dead ? `✝${name}` : name}</span>
+                    <span className="person__gender">{gender}</span>
+                    <span className="person__age">{age}</span>
+                    <span className="person__birthday">{birthDate}</span>
                 </div>
             </div>
         </Link>
@@ -27,10 +27,10 @@ const Person = ({ id, name, gender, dead, birthDate, deathDate }: PersonInterfac
 export const PersonHeader = () => (
     <div className="person person--header">
         <div className="person__body person__body--header">
-            <div className="person__name">Name</div>
-            <div className="person__gender">Gender</div>
-            <div className="person__age">Age</div>
-            <div className="person__birthday">Birthday</div>
+            <span className="person__name">Name</span>
+            <span className="person__gender">Gender</span>
+            <span className="person__age">Age</span>
+            <span className="person__birthday">Birthday</span>
         </div>
     </div>
 );

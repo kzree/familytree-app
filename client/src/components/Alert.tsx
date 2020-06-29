@@ -10,15 +10,15 @@ interface PropTypes {
 
 const Alert = ({ text, open, handleClose }: PropTypes) => {
     return (
-        <div className={cx('alert-box', { open })}>
+        <section className={cx('alert-box', { open })}>
             <div className="alert-box__inner">
-                <div className="alert-box__title">Alert</div>
-                <div className="alert-box__text">{text}</div>
+                <h3 className="alert-box__title">Alert</h3>
+                <p className="alert-box__text">{text}</p>
                 <div className="alert-box__btn">
                     <Button buttonText="Close" handleClick={handleClose} size="small" theme="alt" />
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

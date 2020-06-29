@@ -1,3 +1,36 @@
-p {
+p,
+h3 {
     margin: 0;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+select {
+    width: 234px;
+    height: 30px;
+    font-size: 20px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+label {
+    padding-right: 12px;
+    width: 80px;
+}
+
+input {
+    width: 200px;
+    height: 24px;
+    font-size: 20px;
+    border-radius: 6px;
+    border: 2px solid $app-gray;
+    transition: all 0.2s;
+    padding-left: 12px;
+    padding-right: 12px;
+    &:focus {
+        outline: none;
+        border: 2px solid $app-black;
+    }
 }

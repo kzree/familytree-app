@@ -1,43 +1,42 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: rgba(0, 0, 0, 0.1);
+$greeting-img-max-width: 3840px;
+$greeting-img-height: 600px;
+$greeting-img-url: url(https://i.pinimg.com/originals/85/36/d4/8536d4935c6fc6fb4fa03d7c715c5e05.jpg);
 
-    a:link {
-        text-decoration: none;
-    }
-}
+$greeting-container-bg: rgba(0, 0, 0, 0.75);
+$greeting-container-distance-left: 10%;
+$greeting-container-width: 400px;
+$greeting-text-area-height: 450px;
+
+$lower-panel-height: 600px;
+$panel-a-width: 33%;
+$panel-b-width: 34%;
 
 .home-greeting {
     position: relative;
-    width: 100%;
-    max-width: 3840px;
-    height: 600px;
+    max-width: $greeting-img-max-width;
+    height: $greeting-img-height;
 
     &__img {
         position: absolute;
         width: 100%;
-        height: 600px;
-        /* Picture taken from https://www.pinterest.ie/pin/341992165438078832/ */
-        background-image: url(https://i.pinimg.com/originals/85/36/d4/8536d4935c6fc6fb4fa03d7c715c5e05.jpg);
+        height: $greeting-img-height;
+        background-image: $greeting-img-url;
         background-size: cover;
         background-position: 0 50%;
     }
 
     &__container {
         position: absolute;
-        left: 10%;
-        width: 400px;
+        left: $greeting-container-distance-left;
+        width: $greeting-container-width;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.75);
+        background-color: $greeting-container-bg;
     }
 
     &__text-area {
-        width: 100%;
-        height: 450px;
+        height: $greeting-text-area-height;
     }
 
     &__text {
@@ -46,7 +45,7 @@ body {
 
         &--header {
             color: $app-white;
-            font-size: 2rem;
+            font-size: $font-size--h2;
             text-align: center;
             padding-top: 2rem;
             padding-bottom: 1rem;
@@ -68,23 +67,19 @@ body {
 // Lower panel
 .lower-panels {
     display: flex;
-    width: 100%;
-    height: 600px;
 }
 
 .lower-panel {
+    height: $lower-panel-height;
+
     &__text-area {
         position: relative;
-        width: 100%;
         height: 450px;
     }
 
     &__header {
-        font-size: 48px;
+        font-size: $font-size--h2-big;
         text-align: center;
-        padding: 12px;
-        padding-top: 24px;
-        padding-bottom: 32px;
     }
 
     &__body {
@@ -95,24 +90,21 @@ body {
         text-align: justify;
         text-justify: inter-word;
         left: 50%;
-        -ms-transform: translateX(-50%);
         transform: translateX(-50%);
     }
 
     &--a {
         position: relative;
-        width: 33%;
-        height: 600px;
+        width: $panel-a-width;
         background-color: $app-black;
         .lower-panel__text-area {
-            color: white;
+            color: $app-white;
         }
     }
 
     &--b {
         position: relative;
-        width: 34%;
-        height: 600px;
+        width: $panel-b-width;
         background-color: $app-white;
         .lower-panel__text-area {
             color: $app-black;

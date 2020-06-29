@@ -11,7 +11,7 @@ interface ConfirmationProps {
 
 const Confirmation = ({ text, open, handleClose, handleOk }: ConfirmationProps) => {
     return (
-        <section className={cx('alert-box', { open })}>
+        <div className={cx('alert-box', { open })}>
             <div className="alert-box__inner">
                 <h3 className="alert-box__title">Confirm</h3>
                 <p className="alert-box__text">{text}</p>
@@ -24,7 +24,7 @@ const Confirmation = ({ text, open, handleClose, handleOk }: ConfirmationProps) 
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 

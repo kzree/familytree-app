@@ -12,7 +12,7 @@ interface PropTypes {
 const HomePagePanel = ({ title, path, buttonText, theme }: PropTypes) => {
     const panelTheme = theme ? 'lower-panel--a' : 'lower-panel--b';
     return (
-        <div className={panelTheme}>
+        <div className={`lower-panel ${panelTheme}`}>
             <div className="lower-panel__text-area">
                 <h2 className="lower-panel__header">{title}</h2>
                 <p className="lower-panel__body">

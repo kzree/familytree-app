@@ -1,14 +1,20 @@
+$confirmation-height: 30px;
+
+$confirmation-btn-container-width: 300px;
+$confirmation-btn-container-padding: 46px 0 0 0;
+$confirmation-btn-wrap-width: 100px;
+
 .confirmation-box {
-    height: 30px;
+    height: $confirmation-height;
 
     &__btn-container {
-        width: 300px;
-        padding-top: 46px;
+        width: $confirmation-btn-container-width;
+        padding-top: $confirmation-btn-container-padding;
         display: flex;
         justify-content: space-between;
     }
 
     &__btn-wrap {
-        width: 100px;
+        width: $confirmation-btn-wrap-width;
     }
 }

@@ -1,54 +1,55 @@
+$search-panel-width: 100%;
+$search-panel-height: 100px;
+
+$search-input-wrap-padding: 0 0 0 24px;
+$search-input-wrap-width: 700px;
+
+$search-input-text-padding: 0 12px 0 12px;
+
+$search-btn-svg-size: 62px;
 .search-panel {
     display: flex;
     position: relative;
-    width: 100%;
-    height: 100px;
+    width: $search-panel-width;
+    height: $search-panel-height;
     background-color: $app-black;
-    border-bottom: 1px solid #ccc;
+    border-bottom: $table-border;
 
     &__input-wrap {
-        padding-left: 24px;
+        padding: $search-input-wrap-padding;
         position: absolute;
-        top: 50%;
+        top: $distance-middle;
         transform: translateY(-50%);
         display: flex;
         justify-content: space-between;
-        width: 700px;
-        height: 62;
+        width: $search-input-wrap-width;
 
         input {
             width: 600px;
             height: 50px;
-            font-size: 40px;
-            border-radius: 50px;
-            border: 5px solid $app-color1;
-            transition: all 0.2s;
-            &:focus {
-                outline: none;
-                border: 5px solid $app-color2;
-            }
+            font-size: font-size--h2;
+            transition: $transition-all;
         }
 
         input[type='text'] {
-            padding-left: 12px;
-            padding-right: 12px;
+            padding: $search-input-text-padding;
         }
     }
 
     &__search-btn {
-        width: 62px;
-        height: 62px;
+        width: $search-btn-svg-size;
+        height: $search-btn-svg-size;
         cursor: pointer;
-        transition: all 0.2s;
+        transition: $transition-all;
         svg {
-            width: 62px;
-            height: 62px;
-            fill: #ffffff;
-            transition: all 0.2s;
+            width: $search-btn-svg-size;
+            height: $search-btn-svg-size;
+            fill: $app-white;
+            transition: $transition-all;
         }
         &:hover {
             svg {
-                fill: $app-color1;
+                fill: $app-table-hover;
             }
         }
     }

@@ -26,7 +26,7 @@ $btn-small-font-size: 1.1rem;
     &__text {
         position: absolute;
         text-align: center;
-        top: 50%;
+        top: $distance-middle;
         color: $app-black;
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
@@ -45,7 +45,7 @@ $btn-small-font-size: 1.1rem;
     &--big {
         width: $btn-big-width;
         height: $btn-big-height;
-        left: 50%;
+        left: $distance-middle;
         -ms-transform: translateX(-50%);
         transform: translateX(-50%);
 

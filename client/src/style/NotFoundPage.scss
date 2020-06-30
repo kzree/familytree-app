@@ -1,22 +1,29 @@
 $notfound-page-sides: 600px;
+$notfound-page-padding: 2rem;
+
+$notfound-title-padding: 0 0 1.5rem 0;
+$notfound-title-margin: 0 0 0.75rem 0;
+
+$notfound-text-padding: 12px 0 0 0;
+$notfound-text-margin: 0;
+
 $notfound-return-btn-width: 300px;
 
 .notfound-page {
     width: $notfound-page-sides;
     height: $notfound-page-sides;
-    padding: 2rem;
+    padding: $notfound-page-padding;
 
     &__title {
         font-size: $font-size--h2-big;
-        padding-bottom: 1.5rem;
-        margin-top: 0;
-        margin-bottom: 12px;
+        padding: $notfound-title-padding;
+        margin: $notfound-title-padding;
     }
 
     &__text {
-        padding-top: 12px;
+        padding: $notfound-text-padding;
         font-size: $font-size--body;
-        margin: 0;
+        margin: $notfound-text-margin;
     }
 
     &__btn {

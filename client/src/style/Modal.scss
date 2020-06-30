@@ -1,30 +1,38 @@
+$modal-inner-max-width: 500px;
+$modal-inner-min-width: 300px;
+$modal-inner-margin: 50px auto;
+$modal-inner-padding: 25px;
+
+$modal-close-distance-top: 25px;
+$modal-close-distance-right: 25px;
+$modal-close-font-size: 30px;
+
 .modal {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: $modal-bg;
     top: 0;
     left: 0;
     z-index: 3;
 
     &__inner {
-        max-width: 500px;
-        min-width: 300px;
-        margin: 0 auto;
-        margin-top: 50px;
-        padding: 25px;
-        border-radius: 5px;
-        box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
-        background: white;
+        max-width: $modal-inner-max-width;
+        min-width: $modal-inner-min-width;
+        margin: $modal-inner-margin;
+        padding: $modal-inner-padding;
+        border-radius: $border-radius--small;
+        box-shadow: $box-shadow;
+        background: $app-white;
         position: relative;
 
         .close {
             position: absolute;
-            top: 25px;
-            right: 25px;
-            font-size: 30px;
+            top: $modal-close-distance-top;
+            right: $modal-close-distance-right;
+            font-size: $modal-close-font-size;
             cursor: pointer;
-            transition: all 0.3s ease-in-out;
+            transition: $transition-all ease-in-out;
             &:hover {
                 fill: $app-color1;
             }

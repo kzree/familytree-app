@@ -1,19 +1,32 @@
+$addition-page-width: 100%;
+$addition-page-height: 90vh;
+$addition-page-content-height: 800px;
+$addition-page-content-width: 80%;
+
 $family-form-width: 400px;
 $family-form-height: 200px;
-$family-form-input-transition: all 0.4s ease-in-out;
+$family-form-distance-top: 36%;
+
+$family-form-input-height: 60px;
+$family-form-input-margin: 10px 0 30px 0;
+$family-form-input-text-transition: all 0.4s ease-in-out;
+$family-form-input-text-width: 80%;
+$family-form-input-text-width--focus: 100%;
+$family-form-input-text-height: 90%;
+$family-form-input-text-border: 3px solid $app-black;
 $family-form-submit-margin: 100px;
 
 .addition-page {
-    width: 100%;
-    height: 90vh;
+    width: $addition-page-width;
+    height: $addition-page-height;
     display: flex;
     justify-content: center;
 
     &__content {
         position: relative;
-        width: 80%;
+        width: $addition-page-content-width;
         background-color: $app-white;
-        height: 800px;
+        height: $addition-page-content-height;
         box-shadow: $box-shadow;
     }
 
@@ -27,29 +40,28 @@ $family-form-submit-margin: 100px;
 
 .family-form {
     position: absolute;
-    top: 36%;
-    left: 50%;
+    top: $family-form-distance-top;
+    left: $distance-middle;
     transform: translate(-50%, -50%);
     width: $family-form-width;
     height: $family-form-height;
 
     &__input {
         display: flex;
-        height: 60px;
-        margin-top: 10px;
-        margin-bottom: 30px;
+        height: $family-form-input-height;
+        margin: $family-form-input-margin;
         justify-content: center;
 
         input[type='text'] {
-            width: 80%;
-            height: 90%;
-            border: 3px solid $app-black;
-            transition: $family-form-input-transition;
+            width: $family-form-input-text-width;
+            height: $family-form-input-text-height;
+            border: $family-form-input-text-border;
+            transition: $family-form-input-text-transition;
             font-size: $font-size--body;
 
             &:focus {
                 outline: none;
-                width: 100%;
+                width: $family-form-input-text-width--focus;
             }
         }
     }

@@ -1,5 +1,7 @@
+$error-box-height: 40px;
+
 .error-box {
-    height: 40px;
+    height: $error-box-height;
     background-color: $app-white;
     font-size: $font-size--body;
     font-weight: bold;

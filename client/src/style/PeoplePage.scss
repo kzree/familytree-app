@@ -1,3 +1,5 @@
+$list-page-height: 98vh;
+
 $list-page-content-width: 80%;
 $list-page-content-height: 800px;
 $list-page-table-height: 650px;
@@ -6,10 +8,13 @@ $list-panel-height: 100px;
 $list-panel-btn-width: 100px;
 $list-panel-btn-height: 30px;
 
+$list-panel-head-wrap-height: 250px;
+$list-panel-head-font-size: 2.5rem;
+
 $list-page-width-100: 100%;
 .list-page {
     width: $list-page-width-100;
-    height: 90vh;
+    height: $list-page-height;
     display: flex;
     justify-content: center;
 
@@ -38,7 +43,7 @@ $list-page-width-100: 100%;
 
     &__head-wrap {
         position: relative;
-        width: 250px;
+        width: $list-panel-head-wrap-height;
         background-color: $app-color1;
     }
 
@@ -46,10 +51,10 @@ $list-page-width-100: 100%;
         width: $list-page-width-100;
         position: absolute;
         text-align: center;
-        top: 50%;
+        top: $distance-middle;
         margin-top: 0;
         font-weight: normal;
-        font-size: 2.5rem;
+        font-size: $list-panel-head-font-size;
         color: $app-white;
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);

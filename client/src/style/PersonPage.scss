@@ -1,51 +1,79 @@
+$person-page-width: 100%;
+$person-page-height: 95vh;
+
+$person-page-content-width: 80%;
+$person-page-content-height: 90%;
+
+$person-page-btn-width: 100px;
+$person-page-btn-height: 30px;
+$person-page-btn-distance-right: 45px;
+$person-page-btn-distance-top--edit: 50px;
+$person-page-btn-distance-top--del: 90px;
+
+$person-info-width: 300px;
+$person-info-height: 100%;
+$person-info-content-width: 300px;
+$person-info-content-height: 500px;
+
+$person-info-img-size: 200px;
+$person-img-wrap-width: 300px;
+$person-img-wrap-height: 250px;
+$person-img-wrap-padding: 32px 0 0 0;
+
+$person-img-male: url(/male-pic.png);
+$person-img-female: url(/female-pic.png);
+
+$person-extra-width: 100%;
+$person-extra-height: 100%;
+$person-extra-padding: 24px;
+
 .person-page {
-    width: 100%;
-    height: 95vh;
+    width: $person-page-width;
+    height: $person-page-height;
     display: flex;
     justify-content: center;
 
     &__content {
         position: relative;
         display: flex;
-        width: 80%;
-        background-color: #ffffff;
-        height: 800px;
-        height: 90%;
-        box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+        width: $person-page-content-width;
+        background-color: $app-white;
+        height: $person-page-content-height;
+        box-shadow: $box-shadow;
     }
 
     &__btn {
-        width: 100px;
-        height: 30px;
+        width: $person-page-btn-width;
+        height: $person-page-btn-height;
         position: absolute;
-        right: 45px;
+        right: $person-page-btn-distance-right;
 
         &--edit {
-            top: 50px;
+            top: $person-page-btn-distance-top--edit;
         }
 
         &--del {
-            top: 90px;
+            top: $person-page-btn-distance-top--del;
         }
     }
 }
 
 .person-info {
-    width: 300px;
-    height: 100%;
+    width: $person-info-width;
+    height: $person-info-height;
     background-color: $app-black;
 
     &__img-wrap {
-        padding-top: 32px;
-        width: 300px;
-        height: 250px;
+        padding: $person-img-wrap-padding;
+        width: $person-img-wrap-width;
+        height: $person-img-wrap-height;
         display: flex;
         justify-content: center;
     }
 
     &__img {
-        width: 200px;
-        height: 200px;
+        width: $person-info-img-size;
+        height: $person-info-img-size;
 
         &--male {
             background-image: url(/male-pic.png);
@@ -59,16 +87,15 @@
     }
 
     &__content {
-        width: 300px;
-        height: 500px;
+        width: $person-info-content-width;
+        height: $person-info-content-height;
     }
 
     &__text {
-        height: 30px;
         padding-top: 10px;
         text-align: center;
-        font-size: 26px;
-        color: #ffffff;
+        font-size: $font-size--body-big;
+        color: $app-white;
     }
 }
 
@@ -77,9 +104,9 @@
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box; /* Firefox, other Gecko */
     box-sizing: border-box; /* Opera/IE 8+ */
-    padding: 24px;
-    width: 100%;
-    height: 100%;
+    padding: $person-extra-padding;
+    width: $person-extra-width;
+    height: $person-extra-height;
     overflow-y: auto;
 
     &__text {
@@ -92,11 +119,9 @@
         -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
         -moz-box-sizing: border-box; /* Firefox, other Gecko */
         box-sizing: border-box; /* Opera/IE 8+ */
-        padding: 24px;
+        padding: $person-extra-padding;
         bottom: 0;
-        right: 0;
-        height: 150px;
-        width: 100%;
+        left: 0;
     }
 
     &__list {

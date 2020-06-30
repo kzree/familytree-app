@@ -1,3 +1,10 @@
+$family-width: 100%;
+$family-height: 30px;
+$family-body-width: auto;
+$family-body-height: 20px;
+$family-body-padding: 5px;
+$family-body-head-padding: 10px 0 10px 0;
+
 $family-name-width: 500px;
 $family-name-padding: 0 0 0 36px;
 $family-members-width: 100px;
@@ -5,25 +12,24 @@ $family-members-padding: 0 0 0 12px;
 
 .family {
     display: flex;
-    width: 100%;
-    height: 30px;
+    width: $family-width;
+    height: $family-height;
     background-color: $app-white;
     border-bottom: $table-border;
-    font-weight: bold;
     color: $app-black;
     transition: $transition-all ease-in-out;
 
     &__body {
         display: flex;
-        width: auto;
-        height: 20px;
-        padding: 5px;
+        width: $family-body-width;
+        height: $family-body-height;
+        padding: $family-body-padding;
         transition: $transition-all ease-in-out;
 
         &--header {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            font-size: 20px;
+            padding: $family-body-head-padding;
+            font-size: $font-size--body;
+            font-weight: bold;
         }
     }
 

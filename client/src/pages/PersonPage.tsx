@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { PersonType } from '../types/PersonType';
-import { getById, getByFamilyId, getChildren, getSiblings, deleteById } from '../services/personService';
+import { getPersonFromServer, getArrayOfPersonFromServer, deleteById } from '../services/personService';
 import { Link } from 'react-router-dom';
 import IdFromUrl from '../types/urlParamTypes';
 import Alert from '../components/Alert';
@@ -33,7 +33,7 @@ export const PersonPage = (props: IdFromUrl) => {
 
     const getRelatives = useCallback(() => {
         if (person.family) {
-            getByFamilyId(person.family).then((data) => {
+            getArrayOfPersonFromServer(`family/${person.family}`).then((data) => {
                 setRelativesAmount(data.length - 1);
             });
         }
@@ -41,7 +41,7 @@ export const PersonPage = (props: IdFromUrl) => {
 
     const getPersonChildren = useCallback(() => {
         if (person.id) {
-            getChildren(person.id).then((data) => {
+            getArrayOfPersonFromServer(`child/${person.id}`).then((data) => {
                 setPersonChildren(data);
             });
         }
@@ -67,7 +67,7 @@ export const PersonPage = (props: IdFromUrl) => {
 
     const getPersonSiblings = useCallback(() => {
         if (person.id) {
-            getSiblings(person.id).then((data) => {
+            getArrayOfPersonFromServer(`sibling/${person.id}`).then((data) => {
                 setSiblings(data);
             });
         }
@@ -77,13 +77,13 @@ export const PersonPage = (props: IdFromUrl) => {
         if (person) {
             // Parent information
             person.parent1
-                ? getById(person.parent1).then((data) => {
+                ? getPersonFromServer(person.parent1).then((data) => {
                       setParent1(data);
                   })
                 : setParent1(createEmptyPerson());
 
             person.parent2
-                ? getById(person.parent2).then((data) => {
+                ? getPersonFromServer(person.parent2).then((data) => {
                       setParent2(data);
                   })
                 : setParent2(createEmptyPerson());
@@ -96,7 +96,7 @@ export const PersonPage = (props: IdFromUrl) => {
     }, [getChildNumber, getPersonChildren, getPersonSiblings, getRelatives, person]);
 
     useEffect(() => {
-        getById(props.match.params.id).then((data) => {
+        getPersonFromServer(props.match.params.id).then((data) => {
             setPerson(data);
         });
     }, [props.match.params.id]);

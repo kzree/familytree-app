@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PersonType } from '../types/PersonType';
-import { getAll } from '../services/personService';
+import { getArrayOfPersonFromServer } from '../services/personService';
 import { PersonHeader } from '../components/Person';
 import PeopleTable from '../components/PeopleTable';
 import { Link } from 'react-router-dom';
@@ -24,7 +24,7 @@ export const PeoplePage = () => {
 
     const fetchAll = async () => {
         window.scrollTo(0, 0);
-        await getAll().then((data) => {
+        await getArrayOfPersonFromServer('all').then((data) => {
             setItems(data);
         });
     };

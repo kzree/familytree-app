@@ -3,7 +3,7 @@ import { IoMdSearch } from 'react-icons/io';
 import { PersonType } from '../types/PersonType';
 import { PersonHeader } from '../components/Person';
 import PeopleTable from '../components/PeopleTable';
-import { searchPeopleByQuery } from '../services/personService';
+import { getArrayOfPersonFromServer } from '../services/personService';
 
 export const SearchPage = () => {
     const [searchQuery, setSearchQuery] = useState<string>('');
@@ -14,7 +14,7 @@ export const SearchPage = () => {
         const temp = searchQuery.trim();
         if (temp && temp !== ' ') {
             // Removing error causing symbol
-            await searchPeopleByQuery(temp.replace('+', '')).then((data) => {
+            await getArrayOfPersonFromServer(`search/${searchQuery.replace('+', '')}`).then((data) => {
                 setItems(data);
             });
         } else {

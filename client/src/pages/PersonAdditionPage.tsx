@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FamilyType } from '../types/FamilyType';
-import { searchPeopleByQuery, getById, addPerson } from '../services/personService';
+import { getArrayOfPersonFromServer, getPersonFromServer, addPerson } from '../services/personService';
 import { getAll } from '../services/familyService';
 import {
     calculateAgeByPerson,
@@ -61,7 +61,7 @@ export const PersonAdditionPage = () => {
         const { hasMother, hasFather, motherQuery, fatherQuery } = personFormOptions;
         if (parent === 'mother' && hasMother && motherQuery) {
             const searchQuery = motherQuery;
-            await searchPeopleByQuery(searchQuery.replace('+', '')).then((data) => {
+            await getArrayOfPersonFromServer(`search/${searchQuery.replace('+', '')}`).then((data) => {
                 setPersonFormOptions({ ...personFormOptions, possibleMothers: data });
             });
         } else if (parent === 'mother' && hasMother && !motherQuery) {
@@ -70,7 +70,7 @@ export const PersonAdditionPage = () => {
 
         if (parent === 'father' && hasFather && fatherQuery) {
             const searchQuery = fatherQuery;
-            await searchPeopleByQuery(searchQuery.replace('+', '')).then((data) => {
+            await getArrayOfPersonFromServer(`search/${searchQuery.replace('+', '')}`).then((data) => {
                 setPersonFormOptions({ ...personFormOptions, possibleFathers: data, fatherQuery: searchQuery });
             });
         } else if (parent === 'father' && hasFather && !fatherQuery) {
@@ -79,7 +79,7 @@ export const PersonAdditionPage = () => {
     };
 
     const getParentAge = async (id: string) => {
-        await getById(id).then((data) => {
+        await getPersonFromServer(id).then((data) => {
             data.gender === 'male'
                 ? setPersonFormOptions({ ...personFormOptions, fatherAge: calculateAgeByPerson(data) })
                 : setPersonFormOptions({ ...personFormOptions, motherAge: calculateAgeByPerson(data) });

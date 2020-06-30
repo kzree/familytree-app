@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PersonType } from '../types/PersonType';
-import { getAll, getYoungestPerson, getOldestPerson, getYoungestUncle } from '../services/personService';
+import { getArrayOfPersonFromServer, getPersonFromServer } from '../services/personService';
 import { getAll as getAllFamilies } from '../services/familyService';
 import { Link } from 'react-router-dom';
 import { createEmptyPerson } from '../services/util';
@@ -14,7 +14,7 @@ const StatsPage = () => {
     const [youngestUncle, setYoungestUncle] = useState<PersonType>(createEmptyPerson());
 
     const getTotalPeopleAmount = async () => {
-        await getAll().then((data) => {
+        await getArrayOfPersonFromServer('all').then((data) => {
             setTotalPeople(data.length);
         });
     };
@@ -26,19 +26,19 @@ const StatsPage = () => {
     };
 
     const getTheYoungestPerson = async () => {
-        await getYoungestPerson().then((data) => {
+        await getPersonFromServer('youngest').then((data) => {
             setYoungestPerson(data);
         });
     };
 
     const getTheOldestPerson = async () => {
-        await getOldestPerson().then((data) => {
+        await getPersonFromServer('oldest').then((data) => {
             setOldestPerson(data);
         });
     };
 
     const getTheYoungestUncle = async () => {
-        await getYoungestUncle().then((data) => {
+        await getPersonFromServer('youngest/uncle').then((data) => {
             setYoungestUncle(data);
         });
     };

@@ -1,10 +1,10 @@
 import { PersonType } from '../types/PersonType';
 import PersonAdditionForm from '../types/PersonAdditionForm';
 
-const basePath = '/api/v1/person';
+const basePath = '/api/v1/person/';
 
 export function getPersonFromServer(path: string): Promise<PersonType> {
-    return fetch(path, {
+    return fetch(`${basePath}${path}`, {
         headers: {
             'Content-Type': 'application/json',
         },
@@ -16,8 +16,8 @@ export function getPersonFromServer(path: string): Promise<PersonType> {
     });
 }
 
-export function getAll(): Promise<Array<PersonType>> {
-    return fetch(basePath + '/all', {
+export function getArrayOfPersonFromServer(path: string): Promise<Array<PersonType>> {
+    return fetch(`${basePath}${path}`, {
         headers: {
             'Content-Type': 'application/json',
         },
@@ -29,73 +29,8 @@ export function getAll(): Promise<Array<PersonType>> {
     });
 }
 
-export function getById(id: string): Promise<PersonType> {
-    return fetch(basePath + '/' + id, {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then((response) => {
-        if (!response.ok) {
-            throw new Error(response.statusText);
-        }
-        return response.json();
-    });
-}
-
-export function getByFamilyId(id: string): Promise<Array<PersonType>> {
-    return fetch(basePath + '/family/' + id, {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then((response) => {
-        if (!response.ok) {
-            throw new Error(response.statusText);
-        }
-        return response.json();
-    });
-}
-
-export function getChildren(id: string): Promise<Array<PersonType>> {
-    return fetch(basePath + '/child/' + id, {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then((response) => {
-        if (!response.ok) {
-            throw new Error(response.statusText);
-        }
-        return response.json();
-    });
-}
-
-export function getSiblings(id: string): Promise<Array<PersonType>> {
-    return fetch(basePath + '/sibling/' + id, {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then((response) => {
-        if (!response.ok) {
-            throw new Error(response.statusText);
-        }
-        return response.json();
-    });
-}
-
-export function searchPeopleByQuery(searchQuery: string): Promise<Array<PersonType>> {
-    return fetch(basePath + '/search/' + searchQuery, {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then((response) => {
-        if (!response.ok) {
-            throw new Error(response.statusText);
-        }
-        return response.json();
-    });
-}
-
-export async function addPerson(personToSend: PersonAdditionForm) {
-    await fetch(basePath, {
+export function addPerson(personToSend: PersonAdditionForm) {
+    fetch(basePath, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -111,45 +46,6 @@ export async function addPerson(personToSend: PersonAdditionForm) {
             parent2: personToSend.fatherId,
             family: personToSend.familyId,
         }),
-    });
-}
-
-export async function getYoungestPerson(): Promise<PersonType> {
-    return fetch(basePath + '/youngest', {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then(async (response) => {
-        if (!response.ok) {
-            throw new Error(response.statusText);
-        }
-        return response.json();
-    });
-}
-
-export async function getOldestPerson(): Promise<PersonType> {
-    return fetch(basePath + '/oldest', {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then(async (response) => {
-        if (!response.ok) {
-            throw new Error(response.statusText);
-        }
-        return response.json();
-    });
-}
-
-export async function getYoungestUncle(): Promise<PersonType> {
-    return fetch(basePath + '/youngest/uncle', {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then(async (response) => {
-        if (!response.ok) {
-            throw new Error(response.statusText);
-        }
-        return response.json();
     });
 }
 

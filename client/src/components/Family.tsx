@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FamilyInterface } from '../types/FamilyType';
 import { Link } from 'react-router-dom';
-import { getByFamilyId } from '../services/personService';
+import { getArrayOfPersonFromServer } from '../services/personService';
 
 export const Family = (props: FamilyInterface) => {
     const [id, setId] = useState('');
@@ -12,7 +12,7 @@ export const Family = (props: FamilyInterface) => {
         setId(props.id);
 
         const fetchData = async () => {
-            await getByFamilyId(props.id).then((data) => {
+            await getArrayOfPersonFromServer(`family/${props.id}`).then((data) => {
                 setName(props.name);
                 setMembers(data.length);
             });

@@ -3,7 +3,7 @@ import { PersonHeader } from '../components/Person';
 import PeopleTable from '../components/PeopleTable';
 import { PersonType } from '../types/PersonType';
 import IdFromUrl from '../types/urlParamTypes';
-import { getByFamilyId } from '../services/personService';
+import { getArrayOfPersonFromServer } from '../services/personService';
 
 const FamilyPanel = () => (
     <div className="list-panel">
@@ -20,7 +20,7 @@ export const FamilyPage = (props: IdFromUrl) => {
     useEffect(() => {
         const loadFamilyData = async () => {
             let idFromParams: string = props.match.params.id;
-            await getByFamilyId(idFromParams).then((data) => {
+            await getArrayOfPersonFromServer(`family/${idFromParams}`).then((data) => {
                 setItems(data);
                 setFamilyid(idFromParams);
             });
